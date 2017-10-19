@@ -1,20 +1,20 @@
 function Game() {
   this.viewport = new Viewport();
   this.player = new Player();
+
+  this.viewport.objects.push(this.player);
 }
 
 Game.prototype.Start = function() {
     this.Main();
 }
 
-// TODO: Don't hardcode player
 Game.prototype.Main = function() {
-  setInterval(this.viewport.Draw.bind(this), 100, this.player.position);
-  //this.viewport.Draw(this.player.position);
+  setInterval(this.viewport.Draw.bind(this.viewport), 100);
 }
 
 function Viewport() {
-
+  this.objects = [];
 }
 
 // TODO: draw stuff other than rectangle
@@ -25,7 +25,7 @@ Viewport.prototype.Draw = function(position) {
     var ctx = canvas.getContext('2d');
 
     ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(position.x, position.y, 100, 100);
+    ctx.fillRect(this.objects[0].position.x, this.objects[0].position.y, 100, 100);
   }
 }
 
