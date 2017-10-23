@@ -4,11 +4,15 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rename.Models;
 
-namespace Rename.Tests
+namespace Rename.Models.Tests
 {
   [TestClass]
-  public class RenameTest
+  public class ClassTests : IDisposable
   {
+    public void Dispose()
+    {
+      Class.ClearAll
+    }
     [TestMethod]
     public void Method_Description_ExpectedValue()
     {

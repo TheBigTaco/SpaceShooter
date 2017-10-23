@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Rename
 {
+  public static class DBConfiguration
+    {
+      public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=_database;";
+    }
   public class Startup
   {
     public Startup(IHostingEnvironment env)

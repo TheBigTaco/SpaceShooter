@@ -1,16 +1,21 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
+using Rename.Controllers;
 using Rename.Models;
 
-namespace Rename.Controllers
+namespace Rename.Tests
 {
-    public class HomeController : Controller
+    [TestClass]
+    public class HomeControllerTests
     {
-      [HttpGet("/")]
-      public ActionResult Index()
-      {
-        return View();
-      }
+      [TestMethod]
+        public void Index_ReturnsCorrectView_True()
+        {
+          HomeController controller = new HomeController();
+          IActionResult indexView = controller.Index();
+          ViewResult result = indexView as ViewResult;
+          Assert.IsInsctanceOfType(result, typeof(ViewResult));
+        }
     }
 }
