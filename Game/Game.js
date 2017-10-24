@@ -16,27 +16,18 @@ Game.prototype.start = function() {
 Game.prototype.main = function() {
   var currentTickTime = new Date().getTime();
   var prevTickTime = currentTickTime;
-  var currentTime = new Date().getTime();
-  var prevTime = currentTime;
   var dT = 0;
   setInterval(function() {
-    currentTime = new Date().getTime();
-    dT += currentTime - prevTime;
-    if (dT >= 10) {
-      prevTickTime = currentTickTime;
-      currentTickTime = new Date().getTime();
-      this.tickNumber++;
-      dT %= 10;
-      this.updateGameObjects();
-    }
-    prevTime = currentTime;
-  }.bind(this), 1);
+    currentTickTime = new Date().getTime();
+    this.updateGameObjects(currentTickTime - prevTickTime);
+    prevTickTime = currentTickTime;
+  }.bind(this), 10);
 }
 
-Game.prototype.updateGameObjects = function() {
+Game.prototype.updateGameObjects = function(dT) {
   if (this.gameObjects.length > 0) {
     this.gameObjects.forEach(function(gameObject) {
-      gameObject.update();
+      gameObject.update(dT);
     });
   }
 }
@@ -72,32 +63,36 @@ function Player() {
   };
   this.position = new Vector(50, 50);
   this.velocity = new Vector(0, 0);
+  this.maxVelocity = 350;
 }
 
-Player.prototype.update = function() {
-  this.getKeyInput();
-  this.position = Vector.Add(this.position, this.velocity);
+Player.prototype.update = function(dT) {
+  var moveVector = this.getKeyInput();
+  this.velocity = Vector.scale(this.maxVelocity * dT / 1000, moveVector);
+  this.position = Vector.add(this.position, this.velocity);
 }
 
 Player.prototype.getKeyInput = function() {
+  var output = new Vector(0, 0);
   if (this.keyDown.left === true) {
-    this.velocity.x = -3;
+    output.x = -1;
   }
   else if (this.keyDown.right === true) {
-    this.velocity.x = 3;
+    output.x = 1;
   }
   else {
-    this.velocity.x = 0;
+    output.x = 0;
   }
   if (this.keyDown.up === true) {
-    this.velocity.y = -3;
+    output.y = -1;
   }
   else if (this.keyDown.down === true) {
-    this.velocity.y = 3;
+    output.y = 1;
   }
   else {
-    this.velocity.y = 0;
+    output.y = 0;
   }
+  return output;
 }
 
 function Vector(x, y) {
@@ -105,11 +100,16 @@ function Vector(x, y) {
   this.y = y;
 }
 
-Vector.Add = function(Vector1, Vector2) {
+Vector.add = function(vector1, vector2) {
   var result = new Vector(0, 0);
-  result.x = Vector1.x + Vector2.x;
-  result.y = Vector1.y + Vector2.y;
+  result.x = vector1.x + vector2.x;
+  result.y = vector1.y + vector2.y;
   return result;
+}
+
+Vector.scale = function(scaleFactor, vector)
+{
+  return new Vector(scaleFactor * vector.x, scaleFactor * vector.y);
 }
 
 $(document).ready(function() {
