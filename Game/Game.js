@@ -9,9 +9,19 @@ class Game {
   // TODO: fix hacked-in player
   start() {
     this.isRunning = true;
-    this.player = new Player(new Vector(50, 50));
-    this.gameObjects.push(this.player);
+    this.initObjects();
     this.main();
+  }
+  initObjects() {
+    this.player = new Player();
+    this.player.position = new Vector(50, 50);
+    this.player.collisionBox = new Rect(0, 0, 100, 100);
+    this.gameObjects.push(this.player);
+
+    var obj1 = new GameObject();
+    obj1.position = new Vector(200, 200);
+    obj1.collisionBox = new Rect(0, 0, 100, 100);
+    this.gameObjects.push(obj1);
   }
   main() {
     var currentTickTime = new Date().getTime();
@@ -44,11 +54,17 @@ class Viewport {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
 
-      // do the rectangle
-      if(this.gameObjects.length > 0) {
-        ctx.fillStyle = 'rgb(200, 0, 0)';
-        ctx.fillRect(this.gameObjects[0].position.x, this.gameObjects[0].position.y, 100, 100);
-      }
+      // draw all gameobjects based on collisionBox
+      this.gameObjects.forEach(function(gameObject) {
+        if(gameObject.type === "player") {
+          ctx.fillStyle = 'rgb(200, 0, 0)';
+        }
+        else {
+          ctx.fillStyle = 'rgb(0,200,0)';
+        }
+        ctx.fillRect(gameObject.position.x, gameObject.position.y, gameObject.collisionBox.width, gameObject.collisionBox.height);
+
+      }.bind(this));
       ctx.restore();
       window.requestAnimationFrame(this.draw.bind(this));
     }
@@ -56,8 +72,9 @@ class Viewport {
 }
 
 class GameObject {
-  constructor(spawnPosition) {
-    this.position = spawnPosition;
+  constructor() {
+    this.type = "game-object";
+    this.position = null;
     this.velocity = new Vector(0, 0);
     this.collisionBox = null;
   }
@@ -74,8 +91,9 @@ class GameObject {
 }
 
 class Player extends GameObject {
-  constructor(spawnPosition) {
-    super(spawnPosition);
+  constructor() {
+    super();
+    this.type = "player";
     this.keyDown = {
       left: false,
       right: false,
@@ -125,6 +143,15 @@ class Vector {
   }
   static scale(scaleFactor, vector) {
     return new Vector(scaleFactor * vector.x, scaleFactor * vector.y);
+  }
+}
+
+class Rect {
+  constructor(x, y, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
   }
 }
 
