@@ -116,7 +116,7 @@ class Player extends GameObject {
       up: false,
       down: false
     }
-    this.maxVelocity = 350;
+    this.maxVelocity = 250;
   }
   update(dT) {
     this.velocity = Vector.scale(this.maxVelocity / 1000,  this.getKeyInput());
@@ -124,10 +124,20 @@ class Player extends GameObject {
   }
   onCollision(collisionResult) {
     if (collisionResult.intersection.width < collisionResult.intersection.height) {
-      this.position.x += (this.velocity.x > 0) ? -collisionResult.intersection.width : collisionResult.intersection.width;
+      if (this.getOffsetCollisionBox().x + this.getOffsetCollisionBox().width < collisionResult.collideTarget.getOffsetCollisionBox().x + collisionResult.collideTarget.getOffsetCollisionBox().width) {
+        this.position.x -= collisionResult.intersection.width;
+      }
+      else if (this.getOffsetCollisionBox().x > collisionResult.collideTarget.getOffsetCollisionBox().x) {
+        this.position.x += collisionResult.intersection.width;
+      }
     }
     else {
-      this.position.y += (this.velocity.y > 0) ? -collisionResult.intersection.height : collisionResult.intersection.height;
+      if (this.getOffsetCollisionBox().y + this.getOffsetCollisionBox().height < collisionResult.collideTarget.getOffsetCollisionBox().y + collisionResult.collideTarget.getOffsetCollisionBox().height) {
+        this.position.y -= collisionResult.intersection.height;
+      }
+      else if (this.getOffsetCollisionBox().y > collisionResult.collideTarget.getOffsetCollisionBox().y) {
+        this.position.y += collisionResult.intersection.height;
+      }
     }
   }
   getKeyInput() {
