@@ -61,7 +61,7 @@ class Viewport {
     this.draw();
   }
   draw() {
-    var canvas = document.getElementById("canvas");
+    var canvas = document.getElementById("game-window");
     if (canvas.getContext) {
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
