@@ -4,7 +4,7 @@ class TestGame extends Game {
     this.player = null;
   }
   initObjects() {
-    var playerSprite =  new GameObjectSprite("img/player.png", 32, 32);
+    var playerSprite =  new GameObjectSprite("img/player/player.png", 32, 32);
     this.player = new Player(playerSprite);
     this.player.position = new Vector(50, 50);
     this.player.collisionBox = new Rect(4, 8, 24, 16);
@@ -25,12 +25,14 @@ class Player extends GameObject {
       left: false,
       right: false,
       up: false,
-      down: false
+      down: false,
+      fire: false
     }
     this.maxVelocity = 250;
   }
   update(dT) {
-    this.velocity = Vector.scale(this.maxVelocity / 1000,  this.getKeyInput());
+    this.velocity = Vector.scale(this.maxVelocity / 1000,  this.getMovementInput());
+    this.getActionInput();
     super.update(dT);
   }
   onCollision(collisionResult) {
@@ -51,8 +53,7 @@ class Player extends GameObject {
       }
     }
   }
-
-  getKeyInput() {
+  getMovementInput() {
     var output = new Vector(0, 0);
     if (this.keyDown.left === true) {
       output.x = -1;
@@ -79,6 +80,24 @@ class Player extends GameObject {
     }
     return output;
   }
+  getActionInput() {
+    if (this.keyDown.fire === true) {
+      this.fire();
+      this.keyDown.fire = false;
+    }
+  }
+  fire() {
+    console.log("pew");
+  }
+}
+
+class PlayerBullet extends GameObject {
+  constructor(sprite, spawnPosition, velocity) {
+    super(sprite);
+    this.type = "player-projectile";
+    this.position = spawnPosition;
+    this.velocity = velocity;
+  }
 }
 
 $(document).ready(function() {
@@ -101,6 +120,9 @@ $(document).ready(function() {
     }
     else if (key === "ArrowDown") {
       game.player.keyDown.down = true;
+    }
+    else if (key === " ") {
+      game.player.keyDown.fire = true;
     }
   };
   document.onkeyup = function(event) {
