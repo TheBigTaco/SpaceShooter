@@ -1,49 +1,48 @@
-class Game {
-  constructor(canvas) {
-    this.gameObjects = [];
-    this.isRunning = false;
-    this.tickNumber = 0;
-    this.viewport = new Viewport(canvas, this.gameObjects);
+// Game is a static class
+var Game = {
+  gameObjects: [],
+  isRunning: false,
+  tickNumber: 0,
+  viewport: null,
+};
+Game.start = function(canvas) {
+  Game.isRunning = true;
+  Game.viewport = new Viewport(canvas);
+  Game.main();
+}
+Game.main = function() {
+  var currentTickTime = new Date().getTime();
+  var prevTickTime = currentTickTime;
+  setInterval(function() {
+    currentTickTime = new Date().getTime();
+    Game.updateGameObjects(currentTickTime - prevTickTime);
+    Game.checkCollisions();
+    prevTickTime = currentTickTime;
+  }, 10);
+}
+Game.updateGameObjects = function(dT) {
+  if (Game.gameObjects.length > 0) {
+    Game.gameObjects.forEach(function(gameObject) {
+      gameObject.update(dT);
+    });
   }
-  start() {
-    this.isRunning = true;
-    this.main();
-  }
-  main() {
-    var currentTickTime = new Date().getTime();
-    var prevTickTime = currentTickTime;
-    setInterval(function() {
-      currentTickTime = new Date().getTime();
-      this.updateGameObjects(currentTickTime - prevTickTime);
-      this.checkCollisions();
-      prevTickTime = currentTickTime;
-    }.bind(this), 10);
-  }
-  updateGameObjects(dT) {
-    if (this.gameObjects.length > 0) {
-      this.gameObjects.forEach(function(gameObject) {
-        gameObject.update(dT);
-      });
-    }
-  }
-  // TODO: be more efficient
-  checkCollisions() {
-    for (var i = 0; i < this.gameObjects.length; i++) {
-      for (var j = i + 1; j < this.gameObjects.length; j++) {
-        var collisionOverlap = this.gameObjects[i].getCollisionBoxPosition().calcIntersectionWith(this.gameObjects[j].getCollisionBoxPosition());
-        if(collisionOverlap != null) {
-          this.gameObjects[i].onCollision(new CollisionResult(this.gameObjects[j], collisionOverlap));
-          this.gameObjects[j].onCollision(new CollisionResult(this.gameObjects[i], collisionOverlap));
-        }
+}
+// TODO: be more efficient
+Game.checkCollisions = function() {
+  for (var i = 0; i < Game.gameObjects.length; i++) {
+    for (var j = i + 1; j < Game.gameObjects.length; j++) {
+      var collisionOverlap = Game.gameObjects[i].getCollisionBoxPosition().calcIntersectionWith(Game.gameObjects[j].getCollisionBoxPosition());
+      if(collisionOverlap != null) {
+        Game.gameObjects[i].onCollision(new CollisionResult(Game.gameObjects[j], collisionOverlap));
+        Game.gameObjects[j].onCollision(new CollisionResult(Game.gameObjects[i], collisionOverlap));
       }
     }
   }
 }
 
 class Viewport {
-  constructor(canvas, gameObjects) {
+  constructor(canvas) {
     this.canvas = canvas;
-    this.gameObjects = gameObjects;
     this.drawDebugInfo = false;
     this.draw();
   }
@@ -53,7 +52,7 @@ class Viewport {
       ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       ctx.save();
 
-      this.gameObjects.forEach(function(gameObject) {
+      Game.gameObjects.forEach(function(gameObject) {
         // draw sprite
         if (gameObject.sprite) {
           ctx.drawImage(gameObject.sprite.img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);

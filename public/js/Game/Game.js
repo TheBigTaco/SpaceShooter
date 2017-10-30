@@ -1,20 +1,14 @@
-class TestGame extends Game {
-  constructor(canvas) {
-    super(canvas);
-    this.player = null;
-  }
-  initObjects() {
-    var playerSprite =  new GameObjectSprite("img/player/player.png", 32, 32);
-    this.player = new Player(playerSprite);
-    this.player.position = new Vector(50, 50);
-    this.player.collisionBox = new Rect(4, 8, 24, 16);
-    this.gameObjects.push(this.player);
+Game.initObjects = function() {
+  var playerSprite =  new GameObjectSprite("img/player/player.png", 32, 32);
+  Game.player = new Player(playerSprite);
+  Game.player.position = new Vector(50, 50);
+  Game.player.collisionBox = new Rect(4, 8, 24, 16);
+  Game.gameObjects.push(Game.player);
 
-    var obj1 = new GameObject(null);
-    obj1.position = new Vector(200, 200);
-    obj1.collisionBox = new Rect(0, 0, 100, 100);
-    this.gameObjects.push(obj1);
-  }
+  var obj1 = new GameObject(null);
+  obj1.position = new Vector(200, 200);
+  obj1.collisionBox = new Rect(0, 0, 100, 100);
+  Game.gameObjects.push(obj1);
 }
 
 class Player extends GameObject {
@@ -102,42 +96,41 @@ class PlayerBullet extends GameObject {
 
 $(document).ready(function() {
   var canvas = document.getElementById("game-window");
-  var game = new TestGame(canvas);
-  game.initObjects();
-  game.viewport.drawDebugInfo = true;
-  game.start();
+  Game.initObjects();
+  Game.start(canvas);
+  Game.viewport.drawDebugInfo = true;
 
   document.onkeydown = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
-      game.player.keyDown.right = true;
+      Game.player.keyDown.right = true;
     }
     else if (key === "ArrowLeft") {
-      game.player.keyDown.left = true;
+      Game.player.keyDown.left = true;
     }
     else if (key === "ArrowUp") {
-      game.player.keyDown.up = true;
+      Game.player.keyDown.up = true;
     }
     else if (key === "ArrowDown") {
-      game.player.keyDown.down = true;
+      Game.player.keyDown.down = true;
     }
     else if (key === " ") {
-      game.player.keyDown.fire = true;
+      Game.player.keyDown.fire = true;
     }
   };
   document.onkeyup = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
-      game.player.keyDown.right = false;
+      Game.player.keyDown.right = false;
     }
     else if (key === "ArrowLeft") {
-      game.player.keyDown.left = false;
+      Game.player.keyDown.left = false;
     }
     else if (key === "ArrowUp") {
-      game.player.keyDown.up = false;
+      Game.player.keyDown.up = false;
     }
     else if (key === "ArrowDown") {
-      game.player.keyDown.down = false;
+      Game.player.keyDown.down = false;
     }
   };
 });
