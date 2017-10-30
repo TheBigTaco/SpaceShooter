@@ -1,6 +1,5 @@
 Game.initObjects = function() {
-  var playerSprite =  new GameObjectSprite("img/player/player.png", 32, 32);
-  Game.player = new Player(playerSprite);
+  Game.player = new Player();
   Game.player.position = new Vector(50, 50);
   Game.player.collisionBox = new Rect(4, 8, 24, 16);
   Game.spawnObject(Game.player);
@@ -12,7 +11,8 @@ Game.initObjects = function() {
 }
 
 class Player extends GameObject {
-  constructor(playerSprite) {
+  constructor() {
+    var playerSprite =  new GameObjectSprite("img/player/player.png", 32, 32);
     super(playerSprite);
     this.type = "player";
     this.keyDown = {
@@ -80,7 +80,7 @@ class Player extends GameObject {
       this.fire();
       this.keyDown.fire = false;
     }
-    else if (this.keyDown.drawDebug === true) {
+    if (this.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
       this.keyDown.drawDebug = false;
     }
@@ -98,6 +98,21 @@ class PlayerBullet extends GameObject {
     this.type = "player-projectile";
     this.position = Vector.add(playerPosition, offset);
     this.velocity = new Vector(500, 0);
+  }
+}
+
+class Enemy extends GameObject {
+  constructor(enemySprite) {
+    super(enemySprite);
+    this.type = "enemy";
+    this.sprite = enemySprite;
+  }
+}
+
+class BasicEnemy extends Enemy {
+  constructor(sprite) {
+    var sprite = new GameObjectSprite("img/player/player.png", 32, 32);
+    super(sprite);
   }
 }
 

@@ -1,6 +1,7 @@
 // Game is a static class
 var Game = {
-  gameObjects: [],
+  gameObjects: {},
+  lastObjectId: 0,
   isRunning: false,
   drawDebugInfo: false,
   tickNumber: 0,
@@ -22,28 +23,34 @@ Game.main = function() {
   }, 10);
 }
 Game.updateGameObjects = function(dT) {
-  if (Game.gameObjects.length > 0) {
-    Game.gameObjects.forEach(function(gameObject) {
-      gameObject.update(dT);
+  if (Object.keys(Game.gameObjects).length > 0) {
+    Object.keys(Game.gameObjects).forEach(function(key) {
+      Game.gameObjects[key].update(dT);
     });
   }
 }
 // TODO: be more efficient
 Game.checkCollisions = function() {
-  for (var i = 0; i < Game.gameObjects.length; i++) {
-    for (var j = i + 1; j < Game.gameObjects.length; j++) {
-      if (Game.gameObjects[i].collisionBox !== null && Game.gameObjects[j].collisionBox !== null) {
-        var collisionOverlap = Game.gameObjects[i].getCollisionBoxPosition().calcIntersectionWith(Game.gameObjects[j].getCollisionBoxPosition());
+  for (var i = 0; i < Object.keys(Game.gameObjects).length; i++) {
+    var keyI = Object.keys(Game.gameObjects)[i];
+    for (var j = i + 1; j < Object.keys(Game.gameObjects).length; j++) {
+      var keyJ = Object.keys(Game.gameObjects)[j]
+      if (Game.gameObjects[keyI].collisionBox !== null && Game.gameObjects[keyJ].collisionBox !== null) {
+        var collisionOverlap = Game.gameObjects[keyI].getCollisionBoxPosition().calcIntersectionWith(Game.gameObjects[keyJ].getCollisionBoxPosition());
         if(collisionOverlap != null) {
-          Game.gameObjects[i].onCollision(new CollisionResult(Game.gameObjects[j], collisionOverlap));
-          Game.gameObjects[j].onCollision(new CollisionResult(Game.gameObjects[i], collisionOverlap));
+          Game.gameObjects[keyI].onCollision(new CollisionResult(Game.gameObjects[keyJ], collisionOverlap));
+          Game.gameObjects[keyJ].onCollision(new CollisionResult(Game.gameObjects[keyI], collisionOverlap));
         }
       }
     }
   }
 }
 Game.spawnObject = function(gameObject) {
-  Game.gameObjects.push(gameObject);
+  Game.lastObjectId++;
+  Game.gameObjects[Game.lastObjectId] = gameObject;
+}
+Game.destroyObject = function(gameObject) {
+
 }
 
 class Viewport {
@@ -57,15 +64,15 @@ class Viewport {
       ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       ctx.save();
 
-      Game.gameObjects.forEach(function(gameObject) {
+      Object.keys(Game.gameObjects).forEach(function(key) {
         // draw sprite
-        if (gameObject.sprite) {
-          ctx.drawImage(gameObject.sprite.img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);
+        if (Game.gameObjects[key].sprite) {
+          ctx.drawImage(Game.gameObjects[key].sprite.img, Game.gameObjects[key].position.x, Game.gameObjects[key].position.y, Game.gameObjects[key].sprite.width, Game.gameObjects[key].sprite.height);
         }
         // draw collision boxes
-        if (Game.drawDebugInfo && gameObject.collisionBox) {
+        if (Game.drawDebugInfo && Game.gameObjects[key].collisionBox) {
           ctx.fillStyle = 'rgba(0,200,0,0.3)';
-          ctx.fillRect(gameObject.getCollisionBoxPosition().x, gameObject.getCollisionBoxPosition().y, gameObject.collisionBox.width, gameObject.collisionBox.height);
+          ctx.fillRect(Game.gameObjects[key].getCollisionBoxPosition().x, Game.gameObjects[key].getCollisionBoxPosition().y, Game.gameObjects[key].collisionBox.width, Game.gameObjects[key].collisionBox.height);
         }
       }.bind(this));
       ctx.restore();
@@ -76,6 +83,7 @@ class Viewport {
 
 class GameObject {
   constructor(gameObjectSprite) {
+    this.id = null;
     this.type = "game-object";
     this.sprite = gameObjectSprite;
     this.position = null;
