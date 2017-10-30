@@ -2,6 +2,7 @@
 var Game = {
   gameObjects: [],
   isRunning: false,
+  drawDebugInfo: false,
   tickNumber: 0,
   viewport: null,
 };
@@ -48,7 +49,6 @@ Game.spawnObject = function(gameObject) {
 class Viewport {
   constructor(canvas) {
     this.canvas = canvas;
-    this.drawDebugInfo = false;
     this.draw();
   }
   draw() {
@@ -63,7 +63,7 @@ class Viewport {
           ctx.drawImage(gameObject.sprite.img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);
         }
         // draw collision boxes
-        if (this.drawDebugInfo && gameObject.collisionBox) {
+        if (Game.drawDebugInfo && gameObject.collisionBox) {
           ctx.fillStyle = 'rgba(0,200,0,0.3)';
           ctx.fillRect(gameObject.getCollisionBoxPosition().x, gameObject.getCollisionBoxPosition().y, gameObject.collisionBox.width, gameObject.collisionBox.height);
         }

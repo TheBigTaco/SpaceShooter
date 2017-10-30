@@ -20,7 +20,8 @@ class Player extends GameObject {
       right: false,
       up: false,
       down: false,
-      fire: false
+      fire: false,
+      drawDebug: false,
     }
     this.maxVelocity = 250;
   }
@@ -79,9 +80,12 @@ class Player extends GameObject {
       this.fire();
       this.keyDown.fire = false;
     }
+    else if (this.keyDown.drawDebug === true) {
+      Game.drawDebugInfo = !Game.drawDebugInfo;
+      this.keyDown.drawDebug = false;
+    }
   }
   fire() {
-    console.log("pew");
     Game.spawnObject(new PlayerBullet(this.position));
   }
 }
@@ -101,24 +105,33 @@ $(document).ready(function() {
   var canvas = document.getElementById("game-window");
   Game.initObjects();
   Game.start(canvas);
-  Game.viewport.drawDebugInfo = true;
+  Game.drawDebugInfo = true;
 
   document.onkeydown = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
       Game.player.keyDown.right = true;
+      event.preventDefault();
     }
     else if (key === "ArrowLeft") {
       Game.player.keyDown.left = true;
+      event.preventDefault();
     }
     else if (key === "ArrowUp") {
       Game.player.keyDown.up = true;
+      event.preventDefault();
     }
     else if (key === "ArrowDown") {
       Game.player.keyDown.down = true;
+      event.preventDefault();
     }
     else if (key === " ") {
       Game.player.keyDown.fire = true;
+      event.preventDefault();
+    }
+    else if (key === "F2") {
+      Game.player.keyDown.drawDebug = true;
+      event.preventDefault();
     }
   };
   document.onkeyup = function(event) {
@@ -134,6 +147,13 @@ $(document).ready(function() {
     }
     else if (key === "ArrowDown") {
       Game.player.keyDown.down = false;
+    }
+    else if (key === " ") {
+      Game.player.keyDown.fire = false;
+    }
+    else if (key === "F2") {
+      Game.player.keyDown.drawDebug = false;
+      event.preventDefault();
     }
   };
 });
