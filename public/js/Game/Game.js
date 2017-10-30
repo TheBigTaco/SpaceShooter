@@ -99,6 +99,12 @@ class PlayerBullet extends GameObject {
     this.position = Vector.add(playerPosition, offset);
     this.velocity = new Vector(500, 0);
   }
+  update(dT) {
+    if (this.position.x > 400) {
+      this.destroy();
+    }
+    super.update(dT);
+  }
 }
 
 class Enemy extends GameObject {

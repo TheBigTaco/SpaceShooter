@@ -47,10 +47,11 @@ Game.checkCollisions = function() {
 }
 Game.spawnObject = function(gameObject) {
   Game.lastObjectId++;
-  Game.gameObjects[Game.lastObjectId] = gameObject;
+  gameObject.id = Game.lastObjectId;
+  Game.gameObjects[gameObject.id] = gameObject;
 }
 Game.destroyObject = function(gameObject) {
-
+  delete Game.gameObjects[gameObject.id];
 }
 
 class Viewport {
@@ -98,6 +99,9 @@ class GameObject {
       var deltaPostion = Vector.scale(dT / 1000, this.velocity);
       this.position = Vector.add(this.position, deltaPostion);
     }
+  }
+  destroy() {
+    Game.destroyObject(this);
   }
   getCollisionBoxPosition() {
     return (this.collisionBox != null) ? this.collisionBox.addOffsetVector(this.position) : null;
