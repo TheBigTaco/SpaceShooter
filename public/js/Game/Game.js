@@ -72,6 +72,11 @@ class Player extends GameObject {
     else {
       output.y = 0;
     }
+    // normalize velocity for diagonals
+    if(output.x && output.y) {
+      output.x *= Math.SQRT1_2;
+      output.y *= Math.SQRT1_2;
+    }
     return output;
   }
 }
