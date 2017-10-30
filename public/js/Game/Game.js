@@ -4,12 +4,13 @@ class TestGame extends Game {
     this.player = null;
   }
   initObjects() {
-    this.player = new Player();
+    var playerSprite =  new GameObjectSprite("img/player.png", 32, 32);
+    this.player = new Player(playerSprite);
     this.player.position = new Vector(50, 50);
-    this.player.collisionBox = new Rect(0, 0, 100, 100);
+    this.player.collisionBox = new Rect(4, 8, 24, 16);
     this.gameObjects.push(this.player);
 
-    var obj1 = new GameObject();
+    var obj1 = new GameObject(null);
     obj1.position = new Vector(200, 200);
     obj1.collisionBox = new Rect(0, 0, 100, 100);
     this.gameObjects.push(obj1);
@@ -17,8 +18,8 @@ class TestGame extends Game {
 }
 
 class Player extends GameObject {
-  constructor() {
-    super();
+  constructor(playerSprite) {
+    super(playerSprite);
     this.type = "player";
     this.keyDown = {
       left: false,

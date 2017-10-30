@@ -54,8 +54,14 @@ class Viewport {
       ctx.save();
 
       this.gameObjects.forEach(function(gameObject) {
+        // draw sprite
+        if (gameObject.sprite) {
+          var img = new Image();
+          img.src = gameObject.sprite.imgSrc;
+          ctx.drawImage(img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);
+        }
         // draw collision boxes
-        if(this.drawDebugInfo) {
+        if (this.drawDebugInfo) {
           ctx.fillStyle = 'rgba(0,200,0,0.3)';
           ctx.fillRect(gameObject.getCollisionBoxPosition().x, gameObject.getCollisionBoxPosition().y, gameObject.collisionBox.width, gameObject.collisionBox.height);
         }
@@ -67,8 +73,9 @@ class Viewport {
 }
 
 class GameObject {
-  constructor() {
+  constructor(gameObjectSprite) {
     this.type = "game-object";
+    this.sprite = gameObjectSprite;
     this.position = null;
     this.velocity = new Vector(0, 0);
     this.collisionBox = null;
@@ -85,6 +92,14 @@ class GameObject {
   }
   onCollision(collisionResult) {
 
+  }
+}
+
+class GameObjectSprite {
+  constructor(imgSrc, width, height) {
+    this.imgSrc = imgSrc;
+    this.width = width;
+    this.height = height;
   }
 }
 
