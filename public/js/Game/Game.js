@@ -3,12 +3,12 @@ Game.initObjects = function() {
   Game.player = new Player(playerSprite);
   Game.player.position = new Vector(50, 50);
   Game.player.collisionBox = new Rect(4, 8, 24, 16);
-  Game.gameObjects.push(Game.player);
+  Game.spawnObject(Game.player);
 
   var obj1 = new GameObject(null);
   obj1.position = new Vector(200, 200);
   obj1.collisionBox = new Rect(0, 0, 100, 100);
-  Game.gameObjects.push(obj1);
+  Game.spawnObject(obj1);
 }
 
 class Player extends GameObject {
@@ -25,7 +25,7 @@ class Player extends GameObject {
     this.maxVelocity = 250;
   }
   update(dT) {
-    this.velocity = Vector.scale(this.maxVelocity / 1000,  this.getMovementInput());
+    this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
     super.update(dT);
   }
@@ -82,15 +82,18 @@ class Player extends GameObject {
   }
   fire() {
     console.log("pew");
+    Game.spawnObject(new PlayerBullet(this.position));
   }
 }
 
 class PlayerBullet extends GameObject {
-  constructor(sprite, spawnPosition, velocity) {
+  constructor(playerPosition) {
+    var sprite = new GameObjectSprite("img/player/bullet.png", 5, 2);
+    var offset = new Vector(32, 15);
     super(sprite);
     this.type = "player-projectile";
-    this.position = spawnPosition;
-    this.velocity = velocity;
+    this.position = Vector.add(playerPosition, offset);
+    this.velocity = new Vector(500, 0);
   }
 }
 

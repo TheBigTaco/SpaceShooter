@@ -31,13 +31,18 @@ Game.updateGameObjects = function(dT) {
 Game.checkCollisions = function() {
   for (var i = 0; i < Game.gameObjects.length; i++) {
     for (var j = i + 1; j < Game.gameObjects.length; j++) {
-      var collisionOverlap = Game.gameObjects[i].getCollisionBoxPosition().calcIntersectionWith(Game.gameObjects[j].getCollisionBoxPosition());
-      if(collisionOverlap != null) {
-        Game.gameObjects[i].onCollision(new CollisionResult(Game.gameObjects[j], collisionOverlap));
-        Game.gameObjects[j].onCollision(new CollisionResult(Game.gameObjects[i], collisionOverlap));
+      if (Game.gameObjects[i].collisionBox !== null && Game.gameObjects[j].collisionBox !== null) {
+        var collisionOverlap = Game.gameObjects[i].getCollisionBoxPosition().calcIntersectionWith(Game.gameObjects[j].getCollisionBoxPosition());
+        if(collisionOverlap != null) {
+          Game.gameObjects[i].onCollision(new CollisionResult(Game.gameObjects[j], collisionOverlap));
+          Game.gameObjects[j].onCollision(new CollisionResult(Game.gameObjects[i], collisionOverlap));
+        }
       }
     }
   }
+}
+Game.spawnObject = function(gameObject) {
+  Game.gameObjects.push(gameObject);
 }
 
 class Viewport {
@@ -58,7 +63,7 @@ class Viewport {
           ctx.drawImage(gameObject.sprite.img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);
         }
         // draw collision boxes
-        if (this.drawDebugInfo) {
+        if (this.drawDebugInfo && gameObject.collisionBox) {
           ctx.fillStyle = 'rgba(0,200,0,0.3)';
           ctx.fillRect(gameObject.getCollisionBoxPosition().x, gameObject.getCollisionBoxPosition().y, gameObject.collisionBox.width, gameObject.collisionBox.height);
         }
@@ -81,11 +86,13 @@ class GameObject {
     this.updatePosition(dT);
   }
   updatePosition(dT) {
-    var deltaPostion = Vector.scale(dT, this.velocity);
-    this.position = Vector.add(this.position, deltaPostion);
+    if (this.position != null) {
+      var deltaPostion = Vector.scale(dT / 1000, this.velocity);
+      this.position = Vector.add(this.position, deltaPostion);
+    }
   }
   getCollisionBoxPosition() {
-    return this.collisionBox.addOffsetVector(this.position);
+    return (this.collisionBox != null) ? this.collisionBox.addOffsetVector(this.position) : null;
   }
   onCollision(collisionResult) {
 
