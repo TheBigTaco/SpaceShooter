@@ -56,9 +56,7 @@ class Viewport {
       this.gameObjects.forEach(function(gameObject) {
         // draw sprite
         if (gameObject.sprite) {
-          var img = new Image();
-          img.src = gameObject.sprite.imgSrc;
-          ctx.drawImage(img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);
+          ctx.drawImage(gameObject.sprite.img, gameObject.position.x, gameObject.position.y, gameObject.sprite.width, gameObject.sprite.height);
         }
         // draw collision boxes
         if (this.drawDebugInfo) {
@@ -100,6 +98,8 @@ class GameObjectSprite {
     this.imgSrc = imgSrc;
     this.width = width;
     this.height = height;
+    this.img = new Image();
+    this.img.src = imgSrc;
   }
 }
 
