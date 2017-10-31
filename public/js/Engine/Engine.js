@@ -2,6 +2,7 @@
 var Game = {
   gameObjects: {},
   lastObjectId: 0,
+  objectsToBeDisposed: [],
   isRunning: false,
   drawDebugInfo: false,
   tickNumber: 0,
@@ -19,6 +20,7 @@ Game.main = function() {
     currentTickTime = new Date().getTime();
     Game.updateGameObjects(currentTickTime - prevTickTime);
     Game.checkCollisions();
+    Game.deleteDisposedObjects();
     prevTickTime = currentTickTime;
   }, 10);
 }
@@ -50,13 +52,22 @@ Game.spawnObject = function(gameObject) {
   gameObject.id = Game.lastObjectId;
   Game.gameObjects[gameObject.id] = gameObject;
 }
-Game.destroyObject = function(gameObject) {
-  delete Game.gameObjects[gameObject.id];
+Game.markAsDisposed = function(gameObject) {
+  gameObject.isDisposed = true;
+  Game.objectsToBeDisposed.push(gameObject);
+}
+Game.deleteDisposedObjects = function() {
+  Game.objectsToBeDisposed.forEach(function(gameObject) {
+    delete Game.gameObjects[gameObject.id];
+  });
+Game.objectsToBeDisposed = [];
 }
 
 class Viewport {
   constructor(canvas) {
     this.canvas = canvas;
+    this.width = this.canvas.width;
+    this.height = this.canvas.height;
     this.draw();
   }
   draw() {
@@ -86,6 +97,7 @@ class GameObject {
   constructor(gameObjectSprite) {
     this.id = null;
     this.type = "game-object";
+    this.isDisposed = false;
     this.sprite = gameObjectSprite;
     this.position = null;
     this.velocity = new Vector(0, 0);
@@ -101,7 +113,7 @@ class GameObject {
     }
   }
   destroy() {
-    Game.destroyObject(this);
+    Game.markAsDisposed(this);
   }
   getCollisionBoxPosition() {
     return (this.collisionBox != null) ? this.collisionBox.addOffsetVector(this.position) : null;

@@ -1,19 +1,23 @@
 Game.initObjects = function() {
   Game.player = new Player();
   Game.player.position = new Vector(50, 50);
-  Game.player.collisionBox = new Rect(4, 8, 24, 16);
   Game.spawnObject(Game.player);
 
-  var obj1 = new GameObject(null);
-  obj1.position = new Vector(200, 200);
-  obj1.collisionBox = new Rect(0, 0, 100, 100);
-  Game.spawnObject(obj1);
+  var testCollider = new GameObject(null);
+  testCollider.position = new Vector(200, 200);
+  testCollider.collisionBox = new Rect(0, 0, 100, 100);
+  Game.spawnObject(testCollider);
+
+  var testEnemy = new BasicEnemy();
+  testEnemy.position = new Vector(200, 100);
+  Game.spawnObject(testEnemy);
 }
 
 class Player extends GameObject {
   constructor() {
     var playerSprite =  new GameObjectSprite("img/player/player.png", 32, 32);
     super(playerSprite);
+    this.collisionBox = new Rect(4, 8, 24, 16);
     this.type = "player";
     this.keyDown = {
       left: false,
@@ -95,15 +99,21 @@ class PlayerBullet extends GameObject {
     var sprite = new GameObjectSprite("img/player/bullet.png", 5, 2);
     var offset = new Vector(32, 15);
     super(sprite);
+    this.collisionBox = new Rect(0, 0, 5, 2);
     this.type = "player-projectile";
     this.position = Vector.add(playerPosition, offset);
     this.velocity = new Vector(500, 0);
   }
   update(dT) {
-    if (this.position.x > 400) {
+    if (this.position.x > Game.viewport.width) {
       this.destroy();
     }
     super.update(dT);
+  }
+  onCollision(collisionResult) {
+    if (collisionResult.collideTarget.type === "enemy") {
+      this.destroy();
+    }
   }
 }
 
@@ -113,12 +123,18 @@ class Enemy extends GameObject {
     this.type = "enemy";
     this.sprite = enemySprite;
   }
+  onCollision(collisionResult) {
+    if (collisionResult.collideTarget.type === "player-projectile") {
+      this.destroy();
+    }
+  }
 }
 
 class BasicEnemy extends Enemy {
-  constructor(sprite) {
+  constructor() {
     var sprite = new GameObjectSprite("img/player/player.png", 32, 32);
     super(sprite);
+    this.collisionBox = new Rect(4, 8, 24, 16);
   }
 }
 
