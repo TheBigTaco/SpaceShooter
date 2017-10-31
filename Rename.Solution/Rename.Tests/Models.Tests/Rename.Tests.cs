@@ -7,11 +7,11 @@ using Rename.Models;
 namespace Rename.Models.Tests
 {
   [TestClass]
-  public class ClassTests : IDisposable
+  public class _classTests : IDisposable
   {
     public void Dispose()
     {
-      Class.ClearAll
+      _class.ClearAll
     }
     [TestMethod]
     public void Method_Description_ExpectedValue()

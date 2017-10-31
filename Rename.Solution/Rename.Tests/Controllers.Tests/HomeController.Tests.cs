@@ -15,7 +15,7 @@ namespace Rename.Tests
           HomeController controller = new HomeController();
           IActionResult indexView = controller.Index();
           ViewResult result = indexView as ViewResult;
-          Assert.IsInsctanceOfType(result, typeof(ViewResult));
+          Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
     }
 }
