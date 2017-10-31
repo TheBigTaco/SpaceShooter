@@ -3,14 +3,37 @@ Game.initObjects = function() {
   Game.player.position = new Vector(50, 50);
   Game.spawnObject(Game.player);
 
-  var testCollider = new GameObject(null);
-  testCollider.position = new Vector(200, 200);
-  testCollider.collisionBox = new Rect(0, 0, 100, 100);
-  Game.spawnObject(testCollider);
+  Game.addScreenBounds();
 
   var testEnemy = new BasicEnemy();
   testEnemy.position = new Vector(200, 100);
   Game.spawnObject(testEnemy);
+}
+
+Game.addScreenBounds = function() {
+  var screenBoundsT = new GameObject(null);
+  screenBoundsT.type = "bounds";
+  screenBoundsT.position = new Vector(0, 0);
+  screenBoundsT.collisionBox = new Rect(0, -100, Game.viewport.width, 100);
+  Game.spawnObject(screenBoundsT);
+
+  var screenBoundsB = new GameObject(null);
+  screenBoundsB.type = "bounds";
+  screenBoundsB.position = new Vector(0, 0);
+  screenBoundsB.collisionBox = new Rect(0, Game.viewport.height, Game.viewport.width, 100);
+  Game.spawnObject(screenBoundsB);
+
+  var screenBoundsL = new GameObject(null);
+  screenBoundsL.type = "bounds";
+  screenBoundsL.position = new Vector(0, 0);
+  screenBoundsL.collisionBox = new Rect(-100, 0, 100, Game.viewport.height);
+  Game.spawnObject(screenBoundsL);
+
+  var screenBoundsR = new GameObject(null);
+  screenBoundsR.type = "bounds";
+  screenBoundsR.position = new Vector(0, 0);
+  screenBoundsR.collisionBox = new Rect(Game.viewport.width, 0, 100, Game.viewport.height);
+  Game.spawnObject(screenBoundsR);
 }
 
 class Player extends GameObject {
@@ -140,8 +163,8 @@ class BasicEnemy extends Enemy {
 
 $(document).ready(function() {
   var canvas = document.getElementById("game-window");
-  Game.initObjects();
   Game.start(canvas);
+  Game.initObjects();
   Game.drawDebugInfo = true;
 
   document.onkeydown = function(event) {
