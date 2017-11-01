@@ -11,7 +11,11 @@ namespace Rename.Models.Tests
   {
     public void Dispose()
     {
-      _class.ClearAll
+      _class.ClearAll();
+    }
+    public CourseTests()
+    {
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=_database_test;";
     }
     [TestMethod]
     public void Method_Description_ExpectedValue()
