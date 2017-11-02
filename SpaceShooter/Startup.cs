@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace SpaceShooter
 {
   public static class DBConfiguration
-    {
-      public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=_database;";
-    }
+  {
+    public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=space_shooter;";
+  }
   public class Startup
   {
     public Startup(IHostingEnvironment env)

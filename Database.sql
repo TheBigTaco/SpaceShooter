@@ -6,18 +6,17 @@
 -- SET FOREIGN_KEY_CHECKS=0;
 
 -- ---
--- Table 'players'
+-- Table 'login_info'
 --
 -- ---
 
-DROP TABLE IF EXISTS `players`;
+DROP TABLE IF EXISTS `login_info`;
 
-CREATE TABLE `players` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `username` VARCHAR(255) NULL DEFAULT NULL,
-  `password` VARCHAR(255) NULL DEFAULT NULL,
-  `salt` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `login_info` (
+  `player_id` INTEGER NULL DEFAULT NULL,
+  `login_name` VARCHAR(255) NULL DEFAULT NULL,
+  `password_hash` VARCHAR(255) NULL DEFAULT NULL,
+  `salt` VARCHAR(255) NULL DEFAULT NULL
 );
 
 -- ---
@@ -45,28 +44,45 @@ CREATE TABLE `friends` (
 );
 
 -- ---
+-- Table 'player'
+--
+-- ---
+
+DROP TABLE IF EXISTS `player`;
+
+CREATE TABLE `player` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `screen_name` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `scores` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
-ALTER TABLE `friends` ADD FOREIGN KEY (player_1_id) REFERENCES `players` (`id`);
-ALTER TABLE `friends` ADD FOREIGN KEY (player_2_id) REFERENCES `players` (`id`);
+ALTER TABLE `login_info` ADD FOREIGN KEY (player_id) REFERENCES `player` (`id`);
+ALTER TABLE `scores` ADD FOREIGN KEY (player_id) REFERENCES `player` (`id`);
+ALTER TABLE `friends` ADD FOREIGN KEY (player_1_id) REFERENCES `player` (`id`);
+ALTER TABLE `friends` ADD FOREIGN KEY (player_2_id) REFERENCES `player` (`id`);
 
 -- ---
 -- Table Properties
 -- ---
 
--- ALTER TABLE `players` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `login_info` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `scores` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `friends` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `player` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
 -- ---
 
--- INSERT INTO `players` (`id`,`username`,`password`,`salt`) VALUES
+-- INSERT INTO `login_info` (`player_id`,`login_name`,`password_hash`,`salt`) VALUES
 -- ('','','','');
 -- INSERT INTO `scores` (`player_id`,`score`) VALUES
 -- ('','');
 -- INSERT INTO `friends` (`player_1_id`,`player_2_id`) VALUES
+-- ('','');
+-- INSERT INTO `player` (`id`,`screen_name`) VALUES
 -- ('','');

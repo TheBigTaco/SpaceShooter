@@ -7,15 +7,15 @@ using SpaceShooter.Models;
 namespace SpaceShooter.Models.Tests
 {
   [TestClass]
-  public class _classTests : IDisposable
+  public class PlayerTests : IDisposable
   {
     public void Dispose()
     {
-      _class.ClearAll();
+      Player.ClearAll();
     }
-    public CourseTests()
+    public PlayerTests()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=_database_test;";
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=space_shooter_test;";
     }
     [TestMethod]
     public void Method_Description_ExpectedValue()
