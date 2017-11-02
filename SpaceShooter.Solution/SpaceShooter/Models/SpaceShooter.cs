@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 
-namespace Rename.Models
+namespace SpaceShooter.Models
 {
   public class _class
   {

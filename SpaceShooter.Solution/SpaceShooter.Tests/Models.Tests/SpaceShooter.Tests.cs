@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rename.Models;
+using SpaceShooter.Models;
 
-namespace Rename.Models.Tests
+namespace SpaceShooter.Models.Tests
 {
   [TestClass]
   public class _classTests : IDisposable

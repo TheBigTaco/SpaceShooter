@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using Rename.Models;
+using SpaceShooter.Models;
 
-namespace Rename.Controllers
+namespace SpaceShooter.Controllers
 {
     public class HomeController : Controller
     {

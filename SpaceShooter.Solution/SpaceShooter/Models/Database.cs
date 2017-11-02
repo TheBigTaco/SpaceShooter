@@ -1,8 +1,8 @@
 using System;
 using MySql.Data.MySqlClient;
-using Rename;
+using SpaceShooter;
 
-namespace Rename.Models
+namespace SpaceShooter.Models
 {
   public class DB
   {

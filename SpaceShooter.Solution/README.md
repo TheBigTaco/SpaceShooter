@@ -1,4 +1,4 @@
-# Rename
+# SpaceShooter
 ##### by Adam Titus
 
 ### Description

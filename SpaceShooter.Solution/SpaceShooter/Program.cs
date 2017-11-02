@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Rename
+namespace SpaceShooter
 {
   public class Program
   {
