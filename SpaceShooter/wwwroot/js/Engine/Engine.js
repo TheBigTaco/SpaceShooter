@@ -2,6 +2,7 @@
 var Game = {
   gameObjects: {},
   lastObjectId: 0,
+  sprites: {},
   objectsToBeDisposed: [],
   isRunning: false,
   drawDebugInfo: false,
@@ -94,14 +95,14 @@ class Viewport {
 }
 
 class GameObject {
-  constructor(gameObjectSprite) {
+  constructor() {
     this.id = null;
     this.type = "game-object";
     this.isDisposed = false;
-    this.sprite = gameObjectSprite;
+    this.sprite = null;
+    this.collisionBox = null;
     this.position = null;
     this.velocity = new Vector(0, 0);
-    this.collisionBox = null;
   }
   update(dT) {
     this.updatePosition(dT);
