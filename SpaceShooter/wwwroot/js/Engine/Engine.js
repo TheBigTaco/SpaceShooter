@@ -125,10 +125,11 @@ class GameObject {
 }
 
 class GameObjectSprite {
-  constructor(imgSrc, width, height) {
+  constructor(imgSrc, width, height, scale) {
     this.imgSrc = imgSrc;
-    this.width = width;
-    this.height = height;
+    this.scale = (scale || 1);
+    this.width = width * this.scale;
+    this.height = height * this.scale;
     this.img = new Image();
     this.img.src = imgSrc;
   }
