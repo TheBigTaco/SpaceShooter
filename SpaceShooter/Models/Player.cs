@@ -5,13 +5,13 @@ using MySql.Data.MySqlClient;
 
 namespace SpaceShooter.Models
 {
-  public class Player
-  {
-    public int Id {get; private set;}
-
-    public Player(int id = 0)
+    public class Player
     {
-      Id = id;
+        public int Id {get; private set;}
+
+        public Player(int id = 0)
+        {
+            Id = id;
+        }
     }
-  }
 }

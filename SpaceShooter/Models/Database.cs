@@ -4,30 +4,38 @@ using SpaceShooter;
 
 namespace SpaceShooter.Models
 {
-  public class DB
-  {
-    public static MySqlConnection Connection
+    public static class DB
     {
-      get
-      {
-        MySqlConnection conn = new MySqlConnection(DBConfiguration.ConnectionString);
-        return conn;
-      }
-    }
-    public static void ClearAll()
-    {
-      MySqlConnection conn = DB.Connection();
-      conn.Open();
+        private static MySqlConnection _currentConnection = null;
 
-      var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM players;";
-      cmd.ExecuteNonQuery();
+        public static MySqlCommand BeginCommand(string query)
+        {
+            if (_currentConnection != null)
+            {
+                throw new InvalidOperationException("Connection already in use")
+            }
+            _currentConnection = new MySqlConnection(DBConfiguration.ConnectionString);
+            _currentConnection.Open();
+            var cmd = _currentConnection.CreateCommand() as MySqlCommand;
+            cmd.CommandText = query;
+            return cmd;
+        }
 
-      conn.Close();
-      if (conn != null)
-      {
-        conn.Dispose();
-      }
+        public static void EndCommand()
+        {
+            _currentConnection.Close();
+            if (_currentConnection != null)
+            {
+                _currentConnection.Dispose();
+                _currentConnection = null;
+            }
+        }
+
+        public static void ClearAll()
+        {
+            BeginCommand(@"DELETE FROM players;");
+            cmd.ExecuteNonQuery();
+            EndCommand();
+        }
     }
-  }
 }
