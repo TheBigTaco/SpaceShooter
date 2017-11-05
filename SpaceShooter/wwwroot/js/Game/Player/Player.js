@@ -5,6 +5,8 @@ class Player extends GameObject {
     this.type = "player";
     this.sprite = Game.sprites["player"];
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
+    this.lastFireTime = 0;
+    this.fireInterval = 150;
     this.keyDown = {
       left: false,
       right: false,
@@ -13,7 +15,7 @@ class Player extends GameObject {
       fire: false,
       drawDebug: false,
     }
-    this.maxVelocity = 250;
+    this.maxVelocity = 350;
   }
   update(dT) {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
@@ -74,21 +76,26 @@ class Player extends GameObject {
     }
   }
   fire() {
-    var offset = new Vector(this.sprite.width, this.sprite.height / 2 - 1);
-    var spawnPosition = Vector.add(this.position, offset);
-    Game.spawnObject(new PlayerBullet(spawnPosition));
+    var currentTime = new Date().getTime();
+    if (currentTime - this.lastFireTime > this.fireInterval) {
+      var offset = new Vector(this.sprite.width, this.sprite.height / 2);
+      var spawnPosition = Vector.add(this.position, offset);
+      Game.spawnObject(new PlayerBullet(spawnPosition));
+      this.lastFireTime = currentTime;
+    }
   }
 }
 
-Game.sprites["player-bullet"] = new GameObjectSprite("img/player/bullet.png", 5, 2);
+Game.sprites["player-bullet-1"] = new GameObjectSprite("img/player/bullets/bullet-1.png", 37, 9);
 class PlayerBullet extends GameObject {
   constructor(position) {
     super();
     this.type = "player-projectile";
-    this.sprite = Game.sprites["player-bullet"];
-    this.collisionBox = new Rect(0, 0, 5, 2);
-    this.position = position;
-    this.velocity = new Vector(500, 0);
+    this.sprite = Game.sprites["player-bullet-1"];
+    this.collisionBox = new Rect(0, 0, this.sprite.width, this.sprite.height);
+    var offset = new Vector(0, -this.sprite.height/2);
+    this.position = Vector.add(position, offset);
+    this.velocity = new Vector(1000, 0);
   }
   update(dT) {
     if (this.position.x > Game.viewport.width) {
