@@ -1,21 +1,25 @@
-# SpaceShooter
-##### by Adam Titus
+# Space Shooter
 
-### Description
+#### _{Description of project}_
 
-### Installation Instructions
+## Authors
 
-### Technology Needed
+Rane Fields - [GitHub](https://github.com/LydianLights) / [GitLab](https://gitlab.com/LydianLights)
 
-### Specs
-|Behavior|Input|Output|
-|-|-|-|
-|Will...|||
+Brandon Kudo - [GitHub](#) {Need github link}
 
-### Known Bugs
+Adam Titus - [GitHub](https://github.com/TheBigTaco)
 
-### Contact Me
+Chris Turina - [GitHub](#) {Need github link}
 
-#### Legal
+## Description
+
+## Installation Instructions
+
+## Technology Needed
+
+## Known Bugs
+
+## Legal
 
 _If you find a way to monetize this please contact the author_
