@@ -5,30 +5,56 @@ using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.IO;
 using System.Text;
+using System.Numerics;
 
 namespace SpaceShooter.Models
 {
-    public class Login
-    {
-      public string Username {get;}
-      public string Hash {get;}
-      public string Salt {get;}
-      private static RandomNumberGenerator rng = RandomNumberGenerator.Create();
+  public class Login
+  {
+    public string Username {get;}
+    public string Hash {get;}
+    public string Salt {get;}
+    private static RandomNumberGenerator rng = RandomNumberGenerator.Create();
 
-      public Login (string username, string hash)
-      {
-        Username = username;
-        Hash = hash;
-        Salt = MakeSalt();
-      }
-      public static string MakeSalt()
-      {
-        byte[] rndArray = new byte[4];
-        rng.GetBytes(rndArray);
-        int number = BitConverter.ToInt32(rndArray, 0);
-        string result = number.ToString("X");
-        Console.WriteLine(result);
-        return result;
-      }
+    public Login (string username, string hash, string salt)
+    {
+      Username = username;
+      Salt = salt;
+      Hash = hash;
     }
+
+    public static string MakeSalt()
+    {
+      byte[] rndArray = new byte[4];
+      rng.GetBytes(rndArray);
+      int number = BitConverter.ToInt32(rndArray, 0);
+      string result = number.ToString("X");
+      Console.WriteLine(result);
+      return result;
+    }
+
+    public static string HashAlgorithm(string password, string salt)
+    {
+      byte[] h0 = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x01,  0x00, 0x00, 0x01, 0x01, 0x00, 0x00};
+      //TODO: create h1-h5
+      string combined = password + salt;
+      byte[] initialBytes = Encoding.ASCII.GetBytes(combined);
+      return password;
+    }
+
+    public static string ToBinaryString(BigInteger n)
+    {
+      byte[] bytes = n.ToByteArray();
+      string output = "";
+      for (int i = bytes.Length - 1; i >= 0; i--)
+      {
+        output += Convert.ToString(bytes[i], 2).PadLeft(8, '0');
+        if (i != 0)
+        {
+          output += "_";
+        }
+      }
+      return output;
+    }
+  }
 }
