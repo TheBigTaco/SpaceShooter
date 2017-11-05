@@ -1,10 +1,10 @@
-Game.sprites["player"] =  new GameObjectSprite("img/player/player.png", 32, 32);
+Game.sprites["player"] = new GameObjectSprite("img/player/player.png", 75, 112, .5);
 class Player extends GameObject {
   constructor() {
     super();
     this.type = "player";
     this.sprite = Game.sprites["player"];
-    this.collisionBox = new Rect(4, 8, 24, 16);
+    this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
     this.keyDown = {
       left: false,
       right: false,
@@ -68,27 +68,26 @@ class Player extends GameObject {
   getActionInput() {
     if (this.keyDown.fire === true) {
       this.fire();
-      this.keyDown.fire = false;
     }
     if (this.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
-      this.keyDown.drawDebug = false;
     }
   }
   fire() {
-    Game.spawnObject(new PlayerBullet(this.position));
+    var offset = new Vector(this.sprite.width, this.sprite.height / 2 - 1);
+    var spawnPosition = Vector.add(this.position, offset);
+    Game.spawnObject(new PlayerBullet(spawnPosition));
   }
 }
 
 Game.sprites["player-bullet"] = new GameObjectSprite("img/player/bullet.png", 5, 2);
 class PlayerBullet extends GameObject {
-  constructor(playerPosition) {
-    var offset = new Vector(32, 15);
+  constructor(position) {
     super();
     this.type = "player-projectile";
     this.sprite = Game.sprites["player-bullet"];
     this.collisionBox = new Rect(0, 0, 5, 2);
-    this.position = Vector.add(playerPosition, offset);
+    this.position = position;
     this.velocity = new Vector(500, 0);
   }
   update(dT) {
