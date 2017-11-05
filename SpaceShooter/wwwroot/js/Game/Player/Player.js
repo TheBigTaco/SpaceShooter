@@ -68,11 +68,9 @@ class Player extends GameObject {
   getActionInput() {
     if (this.keyDown.fire === true) {
       this.fire();
-      this.keyDown.fire = false;
     }
     if (this.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
-      this.keyDown.drawDebug = false;
     }
   }
   fire() {
