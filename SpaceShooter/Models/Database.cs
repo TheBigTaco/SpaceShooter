@@ -12,7 +12,7 @@ namespace SpaceShooter.Models
         {
             if (_currentConnection != null)
             {
-                throw new InvalidOperationException("Connection already in use")
+                throw new InvalidOperationException("Connection already in use");
             }
             _currentConnection = new MySqlConnection(DBConfiguration.ConnectionString);
             _currentConnection.Open();
@@ -33,7 +33,7 @@ namespace SpaceShooter.Models
 
         public static void ClearAll()
         {
-            BeginCommand(@"DELETE FROM players;");
+            var cmd = BeginCommand(@"DELETE FROM players;");
             cmd.ExecuteNonQuery();
             EndCommand();
         }

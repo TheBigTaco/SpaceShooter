@@ -11,16 +11,16 @@ namespace SpaceShooter.Models.Tests
     {
         public void Dispose()
         {
-            Player.ClearAll();
+            DB.ClearAll();
         }
         public PlayerTests()
         {
             DBConfiguration.ConnectionString = "server=localhost; user id=root; password=root; port=8889; database=space_shooter_test;";
         }
-        [TestMethod]
-        public void Method_Description_ExpectedValue()
-        {
-            Assert.AreEqual(var1, method(input));
-        }
+        // [TestMethod]
+        // public void Method_Description_ExpectedValue()
+        // {
+        //     Assert.AreEqual(var1, method(input));
+        // }
     }
 }

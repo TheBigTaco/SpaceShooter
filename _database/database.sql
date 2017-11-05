@@ -48,11 +48,11 @@ CREATE TABLE `friends` (
 --
 -- ---
 
-DROP TABLE IF EXISTS `player`;
+DROP TABLE IF EXISTS `players`;
 
 CREATE TABLE `player` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `screen_name` VARCHAR NULL DEFAULT NULL,
+  `screen_name` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
