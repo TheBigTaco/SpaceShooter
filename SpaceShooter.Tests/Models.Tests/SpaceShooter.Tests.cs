@@ -15,7 +15,7 @@ namespace SpaceShooter.Models.Tests
     }
     public PlayerTests()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=space_shooter_test;";
+      DBConfiguration.ConnectionString = "server=localhost; user id=root; password=root; port=8889; database=space_shooter_test;";
     }
     [TestMethod]
     public void Method_Description_ExpectedValue()
