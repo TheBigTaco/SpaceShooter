@@ -1,3 +1,126 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; }
+
 body {
-  font-family: sans-serif;
-}
+  height: 100%;
+  width: 100%; }
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.gamepage-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  position: relative; }
+
+.box {
+  min-height: 100px;
+  min-width: 200px; }
+
+.title {
+  display: flex;
+  justify-content: center;
+  transform: translateY(-100px); }
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.gamebox-placeholder {
+  width: 1000px;
+  height: 800px;
+  position: absolute;
+  top: 300px;
+  left: 100px; }
+
+.box {
+  border: 1px solid black; }
+
+.menu {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+
+.gamepage-title {
+  position: absolute;
+  left: 50%;
+  top: 200px; }
+
+.profile-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.profile-top {
+  display: flex;
+  flex-grow: 1; }
+
+.profile-col-1 {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
+
+.profile-pic {
+  width: 250px;
+  height: 250px; }
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  height: 250px; }
+
+.profile-col-2 {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
+
+.profile-info {
+  width: 600px;
+  height: 200px; }
+
+.profile-cube {
+  width: 600px;
+  height: 600px; }
+
+.profile-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 25vh; }
+
+.profile-friends {
+  display: flex;
+  justify-content: space-around;
+  width: 100%; }
+
+.profile-friend {
+  width: 100px;
+  height: 100px;
+  border: 2px solid lightcoral; }
+
+/*# sourceMappingURL=master.css.map */
