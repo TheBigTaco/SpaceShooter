@@ -17,10 +17,9 @@ class Player extends GameObject {
     }
     this.maxVelocity = 350;
   }
-  update(dT) {
+  update() {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
-    super.update(dT);
   }
   onCollision(collisionResult) {
     if (collisionResult.intersection.width < collisionResult.intersection.height) {
@@ -86,7 +85,7 @@ class Player extends GameObject {
   }
 }
 
-Game.sprites["player-bullet-1"] = new GameObjectSprite("img/player/bullets/bullet-1.png", 37, 9);
+Game.sprites["player-bullet-1"] = new GameObjectSprite("img/player/bullets/bullet-1.png", 37, 9, .5);
 class PlayerBullet extends GameObject {
   constructor(position) {
     super();
@@ -97,11 +96,10 @@ class PlayerBullet extends GameObject {
     this.position = Vector.add(position, offset);
     this.velocity = new Vector(1000, 0);
   }
-  update(dT) {
+  update() {
     if (this.position.x > Game.viewport.width) {
-      this.destroy();
+      this.despawn();
     }
-    super.update(dT);
   }
   onCollision(collisionResult) {
     if (collisionResult.collideTarget.type === "enemy") {

@@ -16,5 +16,9 @@ class BasicEnemy extends Enemy {
     super();
     this.sprite = Game.sprites["enemy-basic-enemy"];
     this.collisionBox = new Rect(4, 8, 24, 16);
+    this.velocity = new Vector(-200, 0);
+  }
+  update() {
+    // Left bounds check
   }
 }

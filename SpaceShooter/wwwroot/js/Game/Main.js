@@ -7,7 +7,7 @@ Game.initObjects = function() {
   Game.addScreenBounds();
 
   var testEnemy = new BasicEnemy();
-  testEnemy.position = new Vector(200, 100);
+  testEnemy.position = new Vector(Game.viewport.width, 100);
   Game.spawnObject(testEnemy);
 }
 

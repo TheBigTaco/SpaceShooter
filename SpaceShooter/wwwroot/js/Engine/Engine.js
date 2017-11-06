@@ -28,7 +28,8 @@ Game.main = function() {
 Game.updateGameObjects = function(dT) {
   if (Object.keys(Game.gameObjects).length > 0) {
     Object.keys(Game.gameObjects).forEach(function(key) {
-      Game.gameObjects[key].update(dT);
+      Game.gameObjects[key].update();
+      Game.gameObjects[key].physicsUpdate(dT);
     });
   }
 }
@@ -104,14 +105,17 @@ class GameObject {
     this.position = null;
     this.velocity = new Vector(0, 0);
   }
-  update(dT) {
-    this.updatePosition(dT);
+  update() {
+    
   }
-  updatePosition(dT) {
+  physicsUpdate(dT) {
     if (this.position != null) {
       var deltaPostion = Vector.scale(dT / 1000, this.velocity);
       this.position = Vector.add(this.position, deltaPostion);
     }
+  }
+  despawn() {
+    Game.markAsDisposed(this);
   }
   destroy() {
     Game.markAsDisposed(this);
