@@ -1,0 +1,45 @@
+// MENU CROSS
+@keyframes bar-one {
+  0% {}
+  100% {transform: translateY(8px) translateX(1px) rotate(90deg);}
+}
+
+@keyframes bar-three {
+  0% {}
+  100% {transform: translateY(-8px);}
+}
+// END MENU CROSS
+
+
+// MENU SINGLE LINE
+@keyframes bar-one-line {
+  0% {transform: translateY(8px);}
+  100% {transform: translateY(8px);}
+}
+
+@keyframes bar-three-line {
+  0% {transform: translateY(-8px);}
+  100% {transform: translateY(-8px);}
+}
+// END MENU SINGLE LINE
+
+
+// MENU X
+@keyframes bar-one-x {
+  0% {transform: translateY(8px);}
+  // 0% {transform: translateY(8px) translateX(1px) rotate(-90deg);}
+  // 100% {transform: translateY(8px) rotate(-45deg);}
+  100% {transform: translateY(9px) translateX(1px) rotate(135deg);}
+
+}
+
+@keyframes bar-two-x {
+  0% {}
+  100% {transform: rotate(135deg);}
+}
+
+@keyframes bar-three-x {
+  0% {transform: translateY(-8px);}
+  100% {transform:translateY(-8px) rotate(45deg);}
+}
+// END MENU X
