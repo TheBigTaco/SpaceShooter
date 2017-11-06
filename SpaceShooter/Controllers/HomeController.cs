@@ -12,5 +12,24 @@ namespace SpaceShooter.Controllers
         {
             return View();
         }
+
+        [HttpGet("/gamepage")]
+        public ActionResult Gamepage()
+        {
+            return View();
+        }
+
+        [HttpGet("/profile")]
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+        [HttpGet("/search")]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
     }
 }
