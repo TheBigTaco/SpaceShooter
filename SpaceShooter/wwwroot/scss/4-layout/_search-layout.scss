@@ -1,0 +1,24 @@
+.search-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result {
+  display: flex;
+  align-items: center;
+
+}
+.search-pic {
+  width: 100px;
+  height: 100px;
+}
+
+.search-name {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
