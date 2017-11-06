@@ -37,11 +37,10 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="711" y="399" name="login_info">
-<row name="player_id" null="1" autoincrement="0">
+</datatypes><table x="411" y="274" name="players">
+<row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="player" row="id" />
-</row>
+<default>NULL</default></row>
 <row name="login_name" null="1" autoincrement="0">
 <datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>
@@ -52,40 +51,35 @@
 <datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
+<part>id</part>
 </key>
 </table>
-<table x="696" y="172" name="scores">
+<table x="709" y="117" name="scores">
 <row name="player_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="player" row="id" />
+<default>NULL</default><relation table="players" row="id" />
 </row>
 <row name="score" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<key type="PRIMARY" name="">
-</key>
 </table>
 <table x="132" y="264" name="friends">
 <row name="player_1_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="player" row="id" />
+<default>NULL</default><relation table="players" row="id" />
 </row>
 <row name="player_2_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="player" row="id" />
+<default>NULL</default><relation table="players" row="id" />
 </row>
-<key type="PRIMARY" name="">
-</key>
 </table>
-<table x="443" y="276" name="player">
-<row name="id" null="1" autoincrement="1">
+<table x="722" y="362" name="profiles">
+<row name="player_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="players" row="id" />
+</row>
 <row name="screen_name" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
+<datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
 </table>
 </sql>

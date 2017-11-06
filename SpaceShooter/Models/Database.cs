@@ -33,7 +33,7 @@ namespace SpaceShooter.Models
 
         public static void ClearAll()
         {
-            var cmd = BeginCommand(@"DELETE FROM players;");
+            var cmd = BeginCommand(@"DELETE FROM profiles; DELETE FROM scores; DELETE FROM friends; DELETE FROM players;");
             cmd.ExecuteNonQuery();
             EndCommand();
         }
