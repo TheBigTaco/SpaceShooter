@@ -20,25 +20,18 @@ namespace SpaceShooter.Models.Tests
     [TestMethod]
     public void MakeSalt_MakeSaltForUser_Salt()
     {
-      Assert.AreNotEqual(0, Login.MakeSalt());
+      Assert.AreNotEqual(Login.MakeSalt(), Login.MakeSalt());
     }
     [TestMethod]
     public void MakeSalt_CheckSaltsDifferentPerUser_False()
     {
       string salt1 = Login.MakeSalt();
       string salt2 = Login.MakeSalt();
-      string hash1 = Login.HashAlgorithm("password", salt1);
-      string hash2 = Login.HashAlgorithm("password", salt2);
-      Login login1 = new Login("thebigtaco", hash1, salt1);
-      Login login2 = new Login("duhbigotaku", hash2, salt2);
+      Hash hash1 = new Hash("password", salt1);
+      Hash hash2 = new Hash("password", salt2);
+      Login login1 = new Login("thebigtaco", hash1.Result, salt1);
+      Login login2 = new Login("duhbigotaku", hash2.Result, salt2);
       Assert.AreNotEqual(login1.Salt, login2.Salt);
-    }
-    [TestMethod]
-    public void HashAlgorithm_HashPassword_String()
-    {
-      string salt = Login.MakeSalt();
-      string result = Login.HashAlgorithm("password", salt);
-      Assert.AreNotEqual(0, result);
     }
   }
 }
