@@ -6,17 +6,18 @@
 -- SET FOREIGN_KEY_CHECKS=0;
 
 -- ---
--- Table 'login_info'
+-- Table 'players'
 --
 -- ---
 
-DROP TABLE IF EXISTS `login_info`;
+DROP TABLE IF EXISTS `players`;
 
-CREATE TABLE `login_info` (
-  `player_id` INTEGER NULL DEFAULT NULL,
+CREATE TABLE `players` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `login_name` VARCHAR(255) NULL DEFAULT NULL,
   `password_hash` VARCHAR(255) NULL DEFAULT NULL,
-  `salt` VARCHAR(255) NULL DEFAULT NULL
+  `salt` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 );
 
 -- ---
@@ -44,45 +45,44 @@ CREATE TABLE `friends` (
 );
 
 -- ---
--- Table 'player'
+-- Table 'profiles'
 --
 -- ---
 
-DROP TABLE IF EXISTS `players`;
+DROP TABLE IF EXISTS `profiles`;
 
-CREATE TABLE `player` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `screen_name` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `profiles` (
+  `player_id` INTEGER NULL DEFAULT NULL,
+  `screen_name` VARCHAR(255) NULL DEFAULT NULL
 );
 
 -- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `login_info` ADD FOREIGN KEY (player_id) REFERENCES `player` (`id`);
-ALTER TABLE `scores` ADD FOREIGN KEY (player_id) REFERENCES `player` (`id`);
-ALTER TABLE `friends` ADD FOREIGN KEY (player_1_id) REFERENCES `player` (`id`);
-ALTER TABLE `friends` ADD FOREIGN KEY (player_2_id) REFERENCES `player` (`id`);
+ALTER TABLE `scores` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
+ALTER TABLE `friends` ADD FOREIGN KEY (player_1_id) REFERENCES `players` (`id`);
+ALTER TABLE `friends` ADD FOREIGN KEY (player_2_id) REFERENCES `players` (`id`);
+ALTER TABLE `profiles` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
 
 -- ---
 -- Table Properties
 -- ---
 
--- ALTER TABLE `login_info` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `players` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `scores` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `friends` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `player` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `profiles` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
 -- ---
 
--- INSERT INTO `login_info` (`player_id`,`login_name`,`password_hash`,`salt`) VALUES
+-- INSERT INTO `players` (`id`,`login_name`,`password_hash`,`salt`) VALUES
 -- ('','','','');
 -- INSERT INTO `scores` (`player_id`,`score`) VALUES
 -- ('','');
 -- INSERT INTO `friends` (`player_1_id`,`player_2_id`) VALUES
 -- ('','');
--- INSERT INTO `player` (`id`,`screen_name`) VALUES
+-- INSERT INTO `profiles` (`player_id`,`screen_name`) VALUES
 -- ('','');

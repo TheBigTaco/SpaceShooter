@@ -91,6 +91,11 @@ namespace SpaceShooter.Models
             h4 = (h4 + E) % bitCutter;
 
             string result = h0.ToString("x") + h1.ToString("x") + h2.ToString("x") + h3.ToString("x") + h4.ToString("x");
+            result = result.PadLeft(42, '0');
+            if (result.Length > 42)
+            {
+                result = result.Substring(result.Length - 42);
+            }
             return result;
         }
 
