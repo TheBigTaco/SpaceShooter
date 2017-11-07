@@ -148,16 +148,16 @@ namespace SpaceShooter.Models
             DB.EndCommand();
             return output;
         }
-        // Return true on successful login
-        public static bool Login(string username, string password)
+        // Return new session on successful login, else null
+        public static Session Login(string username, string password)
         {
             Player player = FindByUsername(username);
             Hash testHash = new Hash(password, player.Salt);
             if (player.Hash == testHash.Result)
             {
-                return true;
+                return new Session(player.Id);
             }
-            return false;
+            return null;
         }
     }
 }
