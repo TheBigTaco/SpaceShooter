@@ -6,11 +6,11 @@
 
 Rane Fields - [GitHub](https://github.com/LydianLights) / [GitLab](https://gitlab.com/LydianLights)
 
-Brandon Kudo - [GitHub](#) (https://github.com/brandonkudo)
+Brandon Kudo - [GitHub](https://github.com/brandonkudo)
 
 Adam Titus - [GitHub](https://github.com/TheBigTaco)
 
-Chris Turina - [GitHub](#) (https://github.com/chris-turina)
+Chris Turina - [GitHub](https://github.com/chris-turina)
 
 ## Asana Goals
 
