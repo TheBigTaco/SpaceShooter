@@ -1,4 +1,157 @@
-// MENU CROSS
+.menu-circle {
+  margin-right: 70px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid $black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 15px;
+  align-self: flex-end;
+
+  &:hover {
+    cursor: pointer;
+    .bar-one {
+      animation: bar-one .25s  1 linear;
+      transform-origin: top;
+      animation-fill-mode: forwards;
+    }
+    .bar-three {
+      animation: bar-three .25s  1 linear;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+.bar-one, .bar-two, .bar-three {
+  width: 20px;
+  height: 2px;
+  background-color: $black;
+}
+
+.search-form {
+  display: none;
+}
+
+.x-active {
+  color: $black;
+  .bar-one {
+    animation: bar-one-line .15s  1 linear;
+    animation-fill-mode: forwards;
+  }
+  .bar-three {
+    animation: bar-three-line .15s  1 linear;
+    animation-fill-mode: forwards;
+  }
+
+  .menu-game {
+    animation: menu-game .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards;
+    // background-color: green;
+  }
+  .menu-profile {
+    animation: menu-profile .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards;
+    // background-color: blue;
+  }
+  .menu-login {
+    animation: menu-login .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards;
+    // background-color: red;
+  }
+  .menu-leaderboard {
+    animation: menu-leaderboard .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards;
+    // background-color: orange;
+  }
+  .menu-register {
+    animation: menu-register .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards;
+    // background-color: purple;
+  }
+
+    &:hover {
+      .bar-one {
+        animation: bar-one-x .5s  linear;
+        animation-fill-mode: forwards;
+      }
+      .bar-two {
+        animation: bar-two-x .5s  1 linear;
+        animation-fill-mode: forwards;
+      }
+      .bar-three {
+        animation: bar-three-x .5s  1 linear;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    .search-form {
+      display: block;
+      animation: fadeIn 3s ease 3s 1;
+
+    }
+}
+
+.menu-game, .menu-profile, .menu-login, .menu-leaderboard, .menu-register {
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  display: none;
+  color: $text-1;
+
+}
+
+.menu-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  p {
+    text-shadow: 1px 1px 1px white;
+  }
+}
+
+
+
+.menu-game {
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.menu-profile {
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.menu-login {
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.menu-leaderboard {
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.menu-register {
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+// menu-circle CROSS
 @keyframes bar-one {
   0% {}
   100% {transform: translateY(8px) translateX(1px) rotate(90deg);}
@@ -8,10 +161,10 @@
   0% {}
   100% {transform: translateY(-8px);}
 }
-// END MENU CROSS
+// END menu-circle CROSS
 
 
-// MENU SINGLE LINE
+// menu-circle SINGLE LINE
 @keyframes bar-one-line {
   0% {transform: translateY(8px);}
   100% {transform: translateY(8px);}
@@ -21,10 +174,10 @@
   0% {transform: translateY(-8px);}
   100% {transform: translateY(-8px);}
 }
-// END MENU SINGLE LINE
+// END menu-circle SINGLE LINE
 
 
-// MENU X
+// menu-circle X
 @keyframes bar-one-x {
   0% {transform: translateY(8px);}
   // 0% {transform: translateY(8px) translateX(1px) rotate(-90deg);}
@@ -42,4 +195,29 @@
   0% {transform: translateY(-8px);}
   100% {transform:translateY(-8px) rotate(45deg);}
 }
-// END MENU X
+// END menu-circle X
+
+@keyframes menu-game {
+  0% {}
+  100% {left: -500px;}
+}
+
+@keyframes menu-profile {
+  0% {}
+  100% {left: -400px;}
+}
+
+@keyframes menu-login {
+  0% {}
+  100% { left: -300px;}
+}
+
+@keyframes menu-leaderboard {
+  0% {}
+  100% { left: -200px;}
+}
+
+@keyframes menu-register {
+  0% {}
+  100% { left: -100px;}
+}

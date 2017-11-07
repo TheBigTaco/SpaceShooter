@@ -1,3 +1,4 @@
+@import "6-themes/_space-theme.scss";
 @import "1-base/_base.scss";
 @import "1-base/_resets.scss";
 @import "2-components/_components.scss";
@@ -10,5 +11,6 @@
 @import "4-layout/_search-layout.scss";
 @import "5-animations/_title.scss";
 @import "5-animations/_startbuttons.scss";
-@import "6-themes/_space-theme.scss";
-@import "5-animations/_menubuttons.scss"
+@import "5-animations/_startbuttons.scss";
+@import "5-animations/menubars.scss";
+@import "2-components/_start-page-buttons.scss";

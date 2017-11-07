@@ -1,7 +1,22 @@
 .menu {
   position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  
+  top: 0;
+  width: 1200px;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu-circle {
+  position: absolute;
+  top: 25px;
+  left: 1100px;
+}
+
+.search-form {
+  position: absolute;
+  top: 35px;
+  left: 100px;
 }
