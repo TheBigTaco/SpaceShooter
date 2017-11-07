@@ -18,6 +18,10 @@ https://app.asana.com/0/469898844471581/board
 
 ## Description
 
+## Game Assets
+
+https://opengameart.org/content/space-shooter-redux
+
 ## Installation Instructions
 
 ## Technology Needed
