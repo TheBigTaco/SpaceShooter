@@ -31,10 +31,6 @@
   background-color: $black;
 }
 
-.search-form {
-  display: none;
-}
-
 .x-active {
   color: $black;
   .bar-one {
@@ -71,6 +67,10 @@
     animation-fill-mode: forwards;
     // background-color: purple;
   }
+  .search-form {
+    animation: search-drop .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards;
+  }
 
     &:hover {
       .bar-one {
@@ -87,11 +87,7 @@
       }
     }
 
-    .search-form {
-      display: block;
-      animation: fadeIn 3s ease 3s 1;
 
-    }
 }
 
 .menu-game, .menu-profile, .menu-login, .menu-leaderboard, .menu-register {
@@ -104,7 +100,14 @@
   border-radius: 100%;
   display: none;
   color: $text-1;
+}
 
+.search-form {
+  display: none;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  left: 0px;
 }
 
 .menu-flex {
@@ -114,7 +117,9 @@
   width: 100%;
   height: 100%;
   border-radius: 100%;
-  p {
+  a {
+    text-decoration: none;
+    color: white;
     text-shadow: 1px 1px 1px white;
   }
 }
@@ -199,25 +204,31 @@
 
 @keyframes menu-game {
   0% {}
-  100% {left: -500px;}
+  100% {left: -550px;}
 }
 
 @keyframes menu-profile {
   0% {}
-  100% {left: -400px;}
+  100% {left: -450px;}
 }
 
 @keyframes menu-login {
   0% {}
-  100% { left: -300px;}
+  100% { left: -350px;}
 }
 
 @keyframes menu-leaderboard {
   0% {}
-  100% { left: -200px;}
+  100% { left: -100px;}
 }
 
 @keyframes menu-register {
   0% {}
-  100% { left: -100px;}
+  100% { left: -250px;}
+}
+
+@keyframes search-drop {
+  0% {}
+  100% { top: 100px ;
+          left: -200px;}
 }

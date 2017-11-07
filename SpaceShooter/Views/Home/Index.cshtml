@@ -25,25 +25,64 @@
     </div>
 
   <div class="links">
-    <a href="/gamepage"><p class="links-start">Start</p></a>
+    <a class="links-start" href="/gamepage">Start</a>
     @if (Model.CurrentSession == null)
     {
-      <a href="/login"><p class="links-login">Login</p></a>
-      <a href="/register"><p class="links-register">Register</p></a>
+      <a class="links-login">Login</a>
+      <a class="links-register">Register</a>
     }
     else
     {
       <a href="/logout"><p class="links-login">Log Out</p></a>
     }
+    @* CSS no touch *@
   </div>
 
-@if (Model.CurrentSession != null)
-{
-  <p>Logged In User: @Model.CurrentSession.PlayerId</p>
-}
-else
-{
-  <p>No user logged in</p>
-}
+  <div class="login-form">
+
+    <form action="/login" method="post">
+      <label for="user-name"></label>
+      <input id="user-name" name="user-name" type="text" placeholder="Login Name">
+      <label for="user-password"></label>
+      <input id="user-password" name="user-password" type="password" placeholder="Password">
+      <button type="submit" name="submit-button">Login</button>
+    </form>
+    @* @if(Model.LoginSuccess)
+    {
+    <p>Logged In</p>
+  }
+  @if(Model.LoginFailed)
+  {
+  <p>Log Failed</p>
+} *@
+</div>
+<div class="register-form">
+  <form action="/register" method="post">
+    <label for="user-name"></label>
+    <input id="user-name" name="user-name" type="text" placeholder="New Login Name">
+    <label for="user-password"></label>
+    <input id="user-password" name="user-password" type="password" placeholder="New Password">
+    <button type="submit" name="submit-button">Register</button>
+  </form>
+  @* @if (Model.RegisterSuccess)
+  {
+    <br>
+    <p>Successfully registered @Model.RegisteredPlayer.Username!</p>
+  }
+  @if (Model.RegisterFailed)
+  {
+    <br>
+    <p>Username is already in use</p>
+  } *@
+    @* @if (Model.CurrentSession != null)
+  {
+    <p>Logged In User: @Model.CurrentSession.PlayerId</p>
+  }
+  else
+  {
+    <p>No user logged in</p>
+  } *@
+
+</div>
 
 </div>

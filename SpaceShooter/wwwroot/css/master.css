@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Orbitron|Passion+One");
 body {
+  background: url("../../img/space-bg.jpg");
   background-size: cover;
   font-family: 'Orbitron', sans-serif; }
 
@@ -7,10 +8,6 @@ body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box; }
-
-p {
-  color: white;
-}
 
 body {
   background-color: black;
@@ -21,7 +18,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 1200px;
-  height: 100vh;
+  height: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -207,9 +204,6 @@ h1:nth-child(10) {
   height: 2px;
   background-color: #fff; }
 
-.search-form {
-  display: none; }
-
 .x-active {
   color: #fff; }
   .x-active .bar-one {
@@ -233,6 +227,9 @@ h1:nth-child(10) {
   .x-active .menu-register {
     animation: menu-register .5s ease-in-out 0s 1;
     animation-fill-mode: forwards; }
+  .x-active .search-form {
+    animation: search-drop .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
   .x-active:hover .bar-one {
     animation: bar-one-x .5s  linear;
     animation-fill-mode: forwards; }
@@ -242,9 +239,6 @@ h1:nth-child(10) {
   .x-active:hover .bar-three {
     animation: bar-three-x .5s  1 linear;
     animation-fill-mode: forwards; }
-  .x-active .search-form {
-    display: block;
-    animation: fadeIn 3s ease 3s 1; }
 
 .menu-game, .menu-profile, .menu-login, .menu-leaderboard, .menu-register {
   position: absolute;
@@ -257,6 +251,13 @@ h1:nth-child(10) {
   display: none;
   color: #fff; }
 
+.search-form {
+  display: none;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  left: 0px; }
+
 .menu-flex {
   display: flex;
   justify-content: center;
@@ -264,7 +265,9 @@ h1:nth-child(10) {
   width: 100%;
   height: 100%;
   border-radius: 100%; }
-  .menu-flex p {
+  .menu-flex a {
+    text-decoration: none;
+    color: white;
     text-shadow: 1px 1px 1px white; }
 
 .menu-game:hover {
@@ -313,39 +316,45 @@ h1:nth-child(10) {
     transform: translateY(-8px) rotate(45deg); } }
 @keyframes menu-game {
   100% {
-    left: -500px; } }
+    left: -550px; } }
 @keyframes menu-profile {
   100% {
-    left: -400px; } }
+    left: -450px; } }
 @keyframes menu-login {
   100% {
-    left: -300px; } }
+    left: -350px; } }
 @keyframes menu-leaderboard {
   100% {
-    left: -200px; } }
+    left: -100px; } }
 @keyframes menu-register {
   100% {
-    left: -100px; } }
+    left: -250px; } }
+@keyframes search-drop {
+  100% {
+    top: 100px;
+    left: -200px; } }
 .links {
   transform: rotate(5deg) translate(50px, -75px); }
-  .links p {
+  .links a {
     font-size: 30px;
     text-transform: uppercase;
+    text-decoration: none;
     padding: 15px;
     margin-bottom: 1em;
-    color: #fff; }
-    .links p:hover {
+    color: #fff;
+    text-shadow: 1px 1px 1px white; }
+    .links a:hover {
       background-image: linear-gradient(90deg, black, transparent);
       cursor: pointer; }
-  .links p:first-child {
+  .links a:first-child {
     transform: translateX(75px);
     border-bottom: 2px solid #fff;
     border-left: 2px solid #fff; }
-  .links p:nth-child(2) {
+  .links a:nth-child(2) {
     transform: translateX(0);
     border-bottom: 2px solid #fff;
     border-left: 2px solid #fff; }
-  .links p:last-child {
+  .links a:last-child {
     transform: translateX(-75px);
     border-bottom: 2px solid #fff;
     border-left: 2px solid #fff; }
@@ -449,5 +458,38 @@ h1:nth-child(10) {
 @keyframes flyin {
   100% {
     transform: translateY(-30px); } }
+.login-form, .register-form {
+  width: 300px;
+  height: 200px;
+  display: none; }
+  .login-form form, .register-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .login-form form input, .register-form form input {
+      font-size: 30px;
+      font-family: 'Orbitron', sans-serif;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      margin-bottom: 10px;
+      color: #fff; }
+    .login-form form input::placeholder, .register-form form input::placeholder {
+      font-family: 'Orbitron', sans-serif;
+      color: grey; }
+    .login-form form input:focus, .register-form form input:focus {
+      background-color: rgba(0, 0, 0, 0.8); }
+    .login-form form button, .register-form form button {
+      font-size: 30px;
+      margin-top: 10px;
+      font-family: 'Orbitron', sans-serif;
+      border-radius: 5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 10px 10px 7px 10px;
+      background-color: rgba(150, 150, 150, 0.6); }
+    .login-form form button:active, .register-form form button:active {
+      background-color: rgba(150, 150, 150, 0.9); }
 
 /*# sourceMappingURL=master.css.map */

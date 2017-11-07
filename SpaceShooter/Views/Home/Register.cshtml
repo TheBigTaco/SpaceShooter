@@ -4,23 +4,3 @@
 @{
   Layout = "_Layout";
 }
-
-<form action="/register" method="post">
-  <label for="user-name"></label>
-  <input id="user-name" name="user-name" type="text">
-  <label for="user-password"></label>
-  <input id="user-password" name="user-password" type="password">
-  <button type="submit" name="submit-button">Register</button>
-</form>
-<a href="/">Back</a>
-
-@if (Model.RegisterSuccess)
-{
-  <br>
-  <p>Successfully registered @Model.RegisteredPlayer.Username!</p>
-}
-@if (Model.RegisterFailed)
-{
-  <br>
-  <p>Username is already in use</p>
-}
