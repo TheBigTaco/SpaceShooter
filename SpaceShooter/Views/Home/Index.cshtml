@@ -1,3 +1,6 @@
+@using SpaceShooter.ViewModels;
+@model IndexModel
+
 @{
   Layout = "_Layout";
 }
@@ -23,8 +26,15 @@
 
   <div class="links">
     <a class="links-start" href="/gamepage">Start</a>
-    <a class="links-login">Login</a>
-    <a class="links-register">Register</a>
+    @if (Model.CurrentSession == null)
+    {
+      <a class="links-login">Login</a>
+      <a class="links-register">Register</a>
+    }
+    else
+    {
+      <a href="/logout"><p class="links-login">Log Out</p></a>
+    }
     @* CSS no touch *@
   </div>
 
@@ -64,8 +74,15 @@
     <br>
     <p>Username is already in use</p>
   } *@
+    @* @if (Model.CurrentSession != null)
+  {
+    <p>Logged In User: @Model.CurrentSession.PlayerId</p>
+  }
+  else
+  {
+    <p>No user logged in</p>
+  } *@
 
 </div>
-
 
 </div>

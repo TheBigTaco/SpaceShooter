@@ -12,7 +12,10 @@ namespace SpaceShooter.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            return View();
+            var sessionId = Request.Cookies["sessionId"];
+            var model = new IndexModel(sessionId);
+
+            return View(model);
         }
         [HttpGet("/gamepage")]
         public ActionResult Gamepage()
@@ -61,7 +64,6 @@ namespace SpaceShooter.Controllers
         [HttpGet("/login")]
         public ActionResult Login()
         {
-            Console.WriteLine(Request.Cookies["test"]);
             var model = new LoginModel();
             return View(model);
         }
@@ -83,6 +85,14 @@ namespace SpaceShooter.Controllers
                 Response.Cookies.Append("sessionId", newSession.SessionId, cookieOptions);
                 return View("Login", model);
             }
+        }
+        [HttpGet("/logout")]
+        public ActionResult Logout()
+        {
+            var sessionId = Request.Cookies["sessionId"];
+            Session.DeleteById(sessionId);
+            Response.Cookies.Delete("sessionId");
+            return Redirect("/");
         }
     }
 }
