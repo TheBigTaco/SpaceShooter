@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+<form action="/login" method="post">
+  <label for="user-name"></label>
+  <input id="user-name" name="user-name" type="text">
+  <label for="user-password"></label>
+  <input id="user-password" name="user-password" type="password">
+  <button type="submit" name="submit-button">Login</button>
+</form>
+<a href="/">Back</a>
+@if(Model.LoginSuccess)
+{
+  <p>Logged In</p>
+}
+@if(Model.LoginFailed)
+{
+  <p>Log Failed</p>
+}

@@ -20,11 +20,13 @@ namespace SpaceShooter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
+            app.UseSession();
             app.UseDeveloperExceptionPage();
             app.UseMvc(routes =>
             {
