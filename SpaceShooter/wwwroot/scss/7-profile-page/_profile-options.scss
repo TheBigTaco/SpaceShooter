@@ -1,0 +1,38 @@
+.profile-sprites, .profile-themes, .profile-scores {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-sprites-hide, .profile-themes-hide, .profile-scores-hide, .sprites-prompt, .themes-prompt, .scores-prompt {
+  display: none;
+}
+
+.profile-quadrant {
+  width: 299px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  overflow: hidden;
+
+    p{
+      font-size: 30px;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      transform: translateY(130px);
+      animation: flyin 1s ease-in-out 0s 1;
+      animation-fill-mode: forwards;
+    }
+}
+
+@keyframes flyin {
+  0% {}
+  100% {
+    transform: translateY(-30px);
+  }
+
+}

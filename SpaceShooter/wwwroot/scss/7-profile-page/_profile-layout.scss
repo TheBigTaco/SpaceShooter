@@ -11,6 +11,7 @@
 .profile-top {
   display: flex;
   flex-grow: 1;
+  margin-top: 100px;
 }
 
 .profile-col-1 {
@@ -46,11 +47,14 @@
 .profile-info {
   width: 600px;
   height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-cube {
   width: 600px;
-  height: 600px;
+  height: 500px;
 }
 
 .profile-bottom {
