@@ -19,6 +19,8 @@ class BasicEnemy extends Enemy {
     this.velocity = new Vector(-200, 0);
   }
   update() {
-    // Left bounds check
+    if (this.position.x < -this.sprite.width) {
+      this.despawn();
+    }
   }
 }
