@@ -155,7 +155,9 @@ namespace SpaceShooter.Models
             Hash testHash = new Hash(password, player.Salt);
             if (player.Hash == testHash.Result)
             {
-                return new Session(player.Id);
+                Session newSession = new Session(player.Id);
+                newSession.Save();
+                return newSession;
             }
             return null;
         }
