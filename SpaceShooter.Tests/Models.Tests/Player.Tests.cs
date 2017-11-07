@@ -182,40 +182,40 @@ namespace SpaceShooter.Models.Tests
             Assert.AreEqual(test, result);
         }
         [TestMethod]
-        public void Login_PlayerEntersCorrectPassword_True()
+        public void Login_PlayerEntersCorrectPassword_Session()
         {
             string salt1 = Player.MakeSalt();
             Hash hash1 = new Hash("password", salt1);
             Player player1 = new Player("thebigtaco", hash1.Result, salt1);
             player1.Save();
 
-            bool result = Player.Login("thebigtaco", "password");
+            Session result = Player.Login("thebigtaco", "password");
 
-            Assert.AreEqual(true, result);
+            Assert.AreNotEqual(null, result);
         }
         [TestMethod]
-        public void Login_PlayerEntersWrongPassword_False()
+        public void Login_PlayerEntersWrongPassword_Null()
         {
             string salt1 = Player.MakeSalt();
             Hash hash1 = new Hash("password", salt1);
             Player player1 = new Player("thebigtaco", hash1.Result, salt1);
             player1.Save();
 
-            bool result = Player.Login("thebigtaco", "passwords");
+            Session result = Player.Login("thebigtaco", "passwords");
 
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(null, result);
         }
         [TestMethod]
-        public void Login_PlayerEntersWrongUsername_False()
+        public void Login_PlayerEntersWrongUsername_Null()
         {
             string salt1 = Player.MakeSalt();
             Hash hash1 = new Hash("password", salt1);
             Player player1 = new Player("thebigtaco", hash1.Result, salt1);
             player1.Save();
 
-            bool result = Player.Login("thebigtac0", "password");
+            Session result = Player.Login("thebigtac0", "password");
 
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(null, result);
         }
     }
 }

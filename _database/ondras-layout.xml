@@ -82,4 +82,13 @@
 <datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>
 </table>
+<table x="133" y="428" name="sessions">
+<row name="session_id" null="1" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default>NULL</default></row>
+<row name="player_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="players" row="id" />
+</row>
+</table>
 </sql>
