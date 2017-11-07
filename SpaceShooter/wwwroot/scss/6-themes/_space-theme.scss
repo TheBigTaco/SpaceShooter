@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron|Passion+One');
+
 body {
-  // background: url("../../img/space-bg.jpg");
+  background: url("../../img/space-bg.jpg");
   background-size: cover;
+  font-family: 'Orbitron', sans-serif;
 }
+
+$black: #fff;
+$text-1: #fff;
+$start-button-background: linear-gradient(5deg,rgba(0,0,0,0.5),rgba(0,0,0,0.2));

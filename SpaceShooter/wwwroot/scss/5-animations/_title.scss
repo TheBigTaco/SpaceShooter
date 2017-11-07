@@ -19,7 +19,10 @@
 h1 {
   font-size: 200px;
   animation: glow 5s ease-in-out infinite;
+  // text-transform: uppercase;
   position: absolute;
+  text-decoration: overline underline;
+  // text-decoration: underline;
 }
 
 
@@ -37,7 +40,7 @@ h1 {
     transform: scale(0) translateY(0);
   }
   100% {
-    transform: scale(1) translateY(-300px);
+    transform: scale(1) translateY(-150px);
   }
 }
 

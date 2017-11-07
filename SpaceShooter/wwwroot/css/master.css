@@ -1,56 +1,413 @@
-/*
-Error: File to import not found or unreadable: 5-animations/_menubuttons.scss.
-       Load path: /Users/Guest/Desktop/SpaceShooter/SpaceShooter/wwwroot/scss
-        on line 14 of scss/master.scss
+@import url("https://fonts.googleapis.com/css?family=Orbitron|Passion+One");
+body {
+  background: url("../../img/space-bg.jpg");
+  background-size: cover;
+  font-family: 'Orbitron', sans-serif; }
 
-9: @import "4-layout/_profile-layout.scss";
-10: @import "4-layout/_search-layout.scss";
-11: @import "5-animations/_title.scss";
-12: @import "5-animations/_startbuttons.scss";
-13: @import "6-themes/_space-theme.scss";
-14: @import "5-animations/_menubuttons.scss"
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; }
 
-Backtrace:
-scss/master.scss:14
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:67:in `rescue in import'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:45:in `import'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:28:in `imported_file'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/import_node.rb:37:in `css_import?'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:313:in `visit_import'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `block in with_base'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/stack.rb:115:in `with_frame'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `with_base'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `map'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:159:in `visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/root_node.rb:36:in `css_tree'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/engine.rb:381:in `_render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/engine.rb:298:in `render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `each'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:331:in `block in watch'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/vendor/listen/lib/listen/adapter.rb:254:in `report_changes'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/vendor/listen/lib/listen/adapter.rb:323:in `poll_changed_directories'
-/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.4.23/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: 5-animations/_menubuttons.scss.\A        Load path: /Users/Guest/Desktop/SpaceShooter/SpaceShooter/wwwroot/scss\A         on line 14 of scss/master.scss\A \A 9: @import \"4-layout/_profile-layout.scss\";\A 10: @import \"4-layout/_search-layout.scss\";\A 11: @import \"5-animations/_title.scss\";\A 12: @import \"5-animations/_startbuttons.scss\";\A 13: @import \"6-themes/_space-theme.scss\";\A 14: @import \"5-animations/_menubuttons.scss\""; }
+body {
+  height: 100%;
+  width: 100%; }
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.gamepage-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  position: relative; }
+
+.box {
+  min-height: 100px;
+  min-width: 200px; }
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.gamebox-placeholder {
+  width: 1000px;
+  height: 800px;
+  position: absolute;
+  top: 300px;
+  left: 100px; }
+
+.box {
+  border: 1px solid black; }
+
+.menu {
+  position: fixed;
+  top: 0;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.menu-circle {
+  position: absolute;
+  top: 25px;
+  left: 1100px; }
+
+.search-form {
+  position: absolute;
+  top: 35px;
+  left: 100px; }
+
+.gamepage-title {
+  position: absolute;
+  left: 50%;
+  top: 200px; }
+
+.profile-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.profile-top {
+  display: flex;
+  flex-grow: 1; }
+
+.profile-col-1 {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
+
+.profile-pic {
+  width: 250px;
+  height: 250px; }
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 250px;
+  height: 250px; }
+
+.profile-col-2 {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
+
+.profile-info {
+  width: 600px;
+  height: 200px; }
+
+.profile-cube {
+  width: 600px;
+  height: 600px; }
+
+.profile-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 25vh; }
+
+.profile-friends {
+  display: flex;
+  justify-content: space-around;
+  width: 100%; }
+
+.profile-friend {
+  width: 100px;
+  height: 100px;
+  border: 2px solid lightcoral; }
+
+.search-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
+
+.search-result {
+  display: flex;
+  align-items: center; }
+
+.search-pic {
+  width: 100px;
+  height: 100px; }
+
+.search-name {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; }
+
+#title {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+  animation: pop 3s ease 1;
+  animation-fill-mode: forwards; }
+
+.title {
+  display: flex;
+  justify-content: center;
+  transform: rotate3d(-1, 1, 0, 30deg);
+  transform-origin: center center;
+  transform-style: preserve-3d; }
+
+h1 {
+  font-size: 200px;
+  animation: glow 5s ease-in-out infinite;
+  position: absolute;
+  text-decoration: overline underline; }
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 30px royalblue; }
+  25% {
+    text-shadow: 0 0 30px honeydew; }
+  50% {
+    text-shadow: 0 0 30px hotpink; }
+  75% {
+    text-shadow: 0 0 30px limegreen; }
+  100% {
+    text-shadow: 0 0 30px royalblue; } }
+@keyframes pop {
+  0% {
+    transform: scale(0) translateY(0); }
+  100% {
+    transform: scale(1) translateY(-150px); } }
+h1:nth-child(2) {
+  transform: translateZ(5px); }
+
+h1:nth-child(3) {
+  transform: translateZ(10px); }
+
+h1:nth-child(4) {
+  transform: translateZ(15px); }
+
+h1:nth-child(5) {
+  transform: translateZ(20px); }
+
+h1:nth-child(6) {
+  transform: translateZ(25px); }
+
+h1:nth-child(7) {
+  transform: translateZ(30px); }
+
+h1:nth-child(8) {
+  transform: translateZ(35px); }
+
+h1:nth-child(9) {
+  transform: translateZ(40px); }
+
+h1:nth-child(10) {
+  transform: translateZ(45px); }
+
+.links {
+  animation: fadeIn 3s ease 3s 1;
+  opacity: 0;
+  animation-fill-mode: forwards; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.links {
+  animation: fadeIn 3s ease 3s 1;
+  opacity: 0;
+  animation-fill-mode: forwards; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.menu-circle {
+  margin-right: 70px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 15px;
+  align-self: flex-end; }
+  .menu-circle:hover {
+    cursor: pointer; }
+    .menu-circle:hover .bar-one {
+      animation: bar-one .25s  1 linear;
+      transform-origin: top;
+      animation-fill-mode: forwards; }
+    .menu-circle:hover .bar-three {
+      animation: bar-three .25s  1 linear;
+      animation-fill-mode: forwards; }
+
+.bar-one, .bar-two, .bar-three {
+  width: 20px;
+  height: 2px;
+  background-color: #fff; }
+
+.search-form {
+  display: none; }
+
+.x-active {
+  color: #fff; }
+  .x-active .bar-one {
+    animation: bar-one-line .15s  1 linear;
+    animation-fill-mode: forwards; }
+  .x-active .bar-three {
+    animation: bar-three-line .15s  1 linear;
+    animation-fill-mode: forwards; }
+  .x-active .menu-game {
+    animation: menu-game .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .x-active .menu-profile {
+    animation: menu-profile .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .x-active .menu-login {
+    animation: menu-login .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .x-active .menu-leaderboard {
+    animation: menu-leaderboard .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .x-active .menu-register {
+    animation: menu-register .5s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .x-active:hover .bar-one {
+    animation: bar-one-x .5s  linear;
+    animation-fill-mode: forwards; }
+  .x-active:hover .bar-two {
+    animation: bar-two-x .5s  1 linear;
+    animation-fill-mode: forwards; }
+  .x-active:hover .bar-three {
+    animation: bar-three-x .5s  1 linear;
+    animation-fill-mode: forwards; }
+  .x-active .search-form {
+    display: block;
+    animation: fadeIn 3s ease 3s 1; }
+
+.menu-game, .menu-profile, .menu-login, .menu-leaderboard, .menu-register {
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  display: none;
+  color: #fff; }
+
+.menu-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%; }
+  .menu-flex p {
+    text-shadow: 1px 1px 1px white; }
+
+.menu-game:hover {
+  transform: scale(1.5); }
+
+.menu-profile:hover {
+  transform: scale(1.5); }
+
+.menu-login:hover {
+  transform: scale(1.5); }
+
+.menu-leaderboard:hover {
+  transform: scale(1.5); }
+
+.menu-register:hover {
+  transform: scale(1.5); }
+
+@keyframes bar-one {
+  100% {
+    transform: translateY(8px) translateX(1px) rotate(90deg); } }
+@keyframes bar-three {
+  100% {
+    transform: translateY(-8px); } }
+@keyframes bar-one-line {
+  0% {
+    transform: translateY(8px); }
+  100% {
+    transform: translateY(8px); } }
+@keyframes bar-three-line {
+  0% {
+    transform: translateY(-8px); }
+  100% {
+    transform: translateY(-8px); } }
+@keyframes bar-one-x {
+  0% {
+    transform: translateY(8px); }
+  100% {
+    transform: translateY(9px) translateX(1px) rotate(135deg); } }
+@keyframes bar-two-x {
+  100% {
+    transform: rotate(135deg); } }
+@keyframes bar-three-x {
+  0% {
+    transform: translateY(-8px); }
+  100% {
+    transform: translateY(-8px) rotate(45deg); } }
+@keyframes menu-game {
+  100% {
+    left: -500px; } }
+@keyframes menu-profile {
+  100% {
+    left: -400px; } }
+@keyframes menu-login {
+  100% {
+    left: -300px; } }
+@keyframes menu-leaderboard {
+  100% {
+    left: -200px; } }
+@keyframes menu-register {
+  100% {
+    left: -100px; } }
+.links {
+  transform: rotate(5deg) translate(50px, -75px); }
+  .links p {
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 15px;
+    margin-bottom: 1em;
+    color: #fff; }
+    .links p:hover {
+      background-image: linear-gradient(90deg, black, transparent);
+      cursor: pointer; }
+  .links p:first-child {
+    transform: translateX(75px);
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff; }
+  .links p:nth-child(2) {
+    transform: translateX(0);
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff; }
+  .links p:last-child {
+    transform: translateX(-75px);
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff; }
+
+/*# sourceMappingURL=master.css.map */
