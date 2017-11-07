@@ -61,5 +61,32 @@ namespace SpaceShooter.Models
             DB.EndCommand();
             return output;
         }
+        public static Session FindById(string searchId)
+        {
+            var cmd = DB.BeginCommand("SELECT * FROM sessions WHERE session_id = @SessionId;");
+            cmd.Parameters.Add(new MySqlParameter("@SessionId", searchId));
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            string sessionId = "";
+            int playerId = 0;
+            while (rdr.Read())
+            {
+                sessionId = rdr.GetString(0);
+                playerId = rdr.GetInt32(1);
+            }
+            var output = new Session(playerId, sessionId);
+            if (output.PlayerId == 0 && sessionId == "")
+            {
+                output = null;
+            }
+            DB.EndCommand();
+            return output;
+        }
+        public static void DeleteById(string searchId)
+        {
+            var cmd = DB.BeginCommand("DELETE FROM sessions WHERE session_id = @SessionId;");
+            cmd.Parameters.Add(new MySqlParameter("@SessionId", searchId));
+            cmd.ExecuteNonQuery();
+            DB.EndCommand();
+        }
     }
 }
