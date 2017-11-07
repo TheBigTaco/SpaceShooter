@@ -1,28 +1,30 @@
 .links {
   // border: 1px solid black;
   transform: rotate(5deg) translate(50px, -75px);
-  p {
+  a {
     font-size: 30px;
     text-transform: uppercase;
+    text-decoration: none;
     padding: 15px;
     margin-bottom: 1em;
     color: $text-1;
+    text-shadow: 1px 1px 1px white;
     &:hover {
       background-image: linear-gradient(90deg,rgba(0,0,0,1),rgba(0,0,0,0));
       cursor:pointer;
     }
   }
-  p:first-child {
+  a:first-child {
     transform: translateX(75px);
     border-bottom: 2px solid $black;
     border-left: 2px solid $black;
   }
-  p:nth-child(2) {
+  a:nth-child(2) {
     transform: translateX(0);
     border-bottom: 2px solid $black;
     border-left: 2px solid $black;
   }
-  p:last-child {
+  a:last-child {
     transform: translateX(-75px);
     border-bottom: 2px solid $black;
     border-left: 2px solid $black;
