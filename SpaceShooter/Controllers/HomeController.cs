@@ -32,23 +32,17 @@ namespace SpaceShooter.Controllers
         {
             return View();
         }
-        [HttpGet("/register")]
-        public ActionResult Register()
-        {
-            var model = new RegisterModel();
-            return View(model);
-        }
         [HttpPost("/register")]
         public ActionResult RegisterNewUser()
         {
-            var model = new RegisterModel();
+            var model = new IndexModel();
 
             string username = Request.Form["user-name"];
             string password = Request.Form["user-password"];
             if (Player.DoesUsernameExist(username))
             {
                 model.RegisterFailed = true;
-                return View("Register", model);
+                return View("Index", model);
             }
             else
             {
@@ -58,32 +52,27 @@ namespace SpaceShooter.Controllers
                 newPlayer.Save();
                 model.RegisterSuccess = true;
                 model.RegisteredPlayer = newPlayer;
-                return View("Register", model);
+                return View("Index", model);
             }
-        }
-        [HttpGet("/login")]
-        public ActionResult Login()
-        {
-            var model = new LoginModel();
-            return View(model);
         }
         [HttpPost("/login")]
         public ActionResult LoginUser()
         {
-            var model = new LoginModel();
             Session newSession = Player.Login(Request.Form["user-name"], Request.Form["user-password"]);
             if(newSession == null)
             {
+                var model = new IndexModel();
                 model.LoginFailed = true;
-                return View("Login", model);
+                return View("Index", model);
             }
             else
             {
-                model.LoginSuccess = true;
                 var cookieOptions = new CookieOptions();
                 cookieOptions.Expires = DateTime.Now.AddDays(1);
                 Response.Cookies.Append("sessionId", newSession.SessionId, cookieOptions);
-                return View("Login", model);
+                var model = new IndexModel(newSession.SessionId);
+                model.LoginSuccess = true;
+                return View("Index", model);
             }
         }
         [HttpGet("/logout")]
