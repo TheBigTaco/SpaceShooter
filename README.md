@@ -28,6 +28,8 @@ https://opengameart.org/content/space-shooter-redux
 
 ## Known Bugs
 
+Search bar lingers
+
 ## Legal
 
 _If you find a way to monetize this please contact the author_

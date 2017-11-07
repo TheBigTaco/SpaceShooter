@@ -6,7 +6,17 @@ $(document).ready(function() {
     $(".menu-login").toggle();
     $(".menu-leaderboard").toggle();
     $(".menu-register").toggle();
-    $(".search-form").fadeToggle();
+    // $(".search-form").fadeToggle();
+  });
+
+  $(".links-register").click(function() {
+    $(".links").hide();
+    $(".register-form").show();
+  });
+
+  $(".links-login").click(function() {
+    $(".links").hide();
+    $(".login-form").show();
   });
 
   $("#sprite-button").click(function() {
