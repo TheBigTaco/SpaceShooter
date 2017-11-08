@@ -4,3 +4,20 @@
     height: 100%;
   }
 }
+
+#profile-username {
+  font-size: 35px;
+  text-shadow: 2px 2px 2px grey;
+}
+
+#sprite-button, #theme-button, #friend-button {
+  border-left: 2px solid grey;
+  border-bottom: 2px solid grey;
+  padding: 10px;
+  font-size: 25px;
+  width: 125px;
+  &:hover {
+    background-image: linear-gradient(90deg,rgba(0,0,0,1),rgba(0,0,0,0));
+    cursor:pointer;
+  }
+}
