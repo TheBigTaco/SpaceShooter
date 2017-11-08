@@ -2,15 +2,19 @@
 var Game = {
   gameObjects: {},
   lastObjectId: 0,
+  textObjects: {},
+  lastTextObjectId: 0,
   sprites: {},
   objectsToBeDisposed: [],
   isRunning: false,
-  drawDebugInfo: false,
+  startTime: null,
   tickNumber: 0,
   viewport: null,
+  drawDebugInfo: false,
 };
 Game.start = function(canvas) {
   Game.isRunning = true;
+  Game.startTime = new Date().getTime();
   Game.viewport = new Viewport(canvas);
   Game.main();
 }
@@ -26,11 +30,13 @@ Game.main = function() {
   }, 10);
 }
 Game.updateGameObjects = function(dT) {
-  if (Object.keys(Game.gameObjects).length > 0) {
-    Object.keys(Game.gameObjects).forEach(function(key) {
-      Game.gameObjects[key].update();
-      Game.gameObjects[key].physicsUpdate(dT);
-    });
+  if (Game.isRunning === true) {
+    if (Object.keys(Game.gameObjects).length > 0) {
+      Object.keys(Game.gameObjects).forEach(function(key) {
+        Game.gameObjects[key].update();
+        Game.gameObjects[key].physicsUpdate(dT);
+      });
+    }
   }
 }
 // TODO: be more efficient
@@ -54,6 +60,14 @@ Game.spawnObject = function(gameObject) {
   gameObject.id = Game.lastObjectId;
   Game.gameObjects[gameObject.id] = gameObject;
 }
+Game.spawnText = function(textObject) {
+  Game.lastTextObjectId++;
+  textObject.id = Game.lastTextObjectId;
+  Game.textObjects[textObject.id] = textObject;
+}
+Game.removeText = function(textObject) {
+  delete Game.textObjects[textObject.id];
+}
 Game.markAsDisposed = function(gameObject) {
   gameObject.isDisposed = true;
   Game.objectsToBeDisposed.push(gameObject);
@@ -61,6 +75,7 @@ Game.markAsDisposed = function(gameObject) {
 Game.deleteDisposedObjects = function() {
   Game.objectsToBeDisposed.forEach(function(gameObject) {
     delete Game.gameObjects[gameObject.id];
+    Game.gameObjects;
   });
 Game.objectsToBeDisposed = [];
 }
@@ -89,6 +104,17 @@ class Viewport {
           ctx.fillRect(Game.gameObjects[key].getCollisionBoxPosition().x, Game.gameObjects[key].getCollisionBoxPosition().y, Game.gameObjects[key].collisionBox.width, Game.gameObjects[key].collisionBox.height);
         }
       }.bind(this));
+
+      Object.keys(Game.textObjects).forEach(function(key) {
+        // draw text
+        var textObject = Game.textObjects[key];
+        ctx.textAlign = textObject.alignment;
+        ctx.textBaseline = textObject.baseline;
+        ctx.fillStyle = textObject.fillStyle;
+        ctx.font = textObject.font;
+        ctx.fillText(textObject.text, textObject.position.x, textObject.position.y);
+      }.bind(this));
+
       ctx.restore();
       window.requestAnimationFrame(this.draw.bind(this));
     }
@@ -101,12 +127,13 @@ class GameObject {
     this.type = "game-object";
     this.isDisposed = false;
     this.sprite = null;
-    this.collisionBox = null;
+    this.collisionBox = null
+    this.collidesWith = [];
     this.position = null;
     this.velocity = new Vector(0, 0);
   }
   update() {
-    
+
   }
   physicsUpdate(dT) {
     if (this.position != null) {
@@ -124,7 +151,39 @@ class GameObject {
     return (this.collisionBox != null) ? this.collisionBox.addOffsetVector(this.position) : null;
   }
   onCollision(collisionResult) {
+    if (this.collidesWith.includes(collisionResult.collideTarget.type)) {
+      this.doCollisionPhysics(collisionResult);
+    }
+  }
+  doCollisionPhysics(collisionResult) {
+    if (collisionResult.intersection.width < collisionResult.intersection.height) {
+      if (this.getCollisionBoxPosition().x + this.collisionBox.width < collisionResult.collideTarget.getCollisionBoxPosition().x + collisionResult.collideTarget.collisionBox.width) {
+        this.position.x -= collisionResult.intersection.width;
+      }
+      else if (this.getCollisionBoxPosition().x > collisionResult.collideTarget.getCollisionBoxPosition().x) {
+        this.position.x += collisionResult.intersection.width;
+      }
+    }
+    else {
+      if (this.getCollisionBoxPosition().y + this.collisionBox.height < collisionResult.collideTarget.getCollisionBoxPosition().y + collisionResult.collideTarget.collisionBox.height) {
+        this.position.y -= collisionResult.intersection.height;
+      }
+      else if (this.getCollisionBoxPosition().y > collisionResult.collideTarget.getCollisionBoxPosition().y) {
+        this.position.y += collisionResult.intersection.height;
+      }
+    }
+  }
+}
 
+class TextObject {
+  constructor(text, position, textOptions) {
+    this.text = text;
+    this.position = position || new Vector(0, 0);
+    this.textOptions = textOptions || {};
+    this.font = this.textOptions.font || "20px sans-serif";
+    this.fillStyle = this.textOptions.fillStyle || "rgb(0,0,0)";
+    this.alignment = this.textOptions.alignment || "left";
+    this.baseline = this.textOptions.baseline || "top";
   }
 }
 

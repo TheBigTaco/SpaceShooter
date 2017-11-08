@@ -4,7 +4,14 @@ class Player extends GameObject {
     super();
     this.type = "player";
     this.sprite = Game.sprites["player"];
+    this.spawnPosition = new Vector(50, 50);
+    this.respawnInvincibilityTime = 1000;
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
+    this.collidesWith = ["bounds"];
+    this.score = 0;
+    this.numEnemiesDestroyed = 0;
+    this.lives = 3;
+    this.isInvincible = false;
     this.lastFireTime = 0;
     this.fireInterval = 150;
     this.keyDown = {
@@ -20,24 +27,30 @@ class Player extends GameObject {
   update() {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
+    this.getDebugInput();
   }
   onCollision(collisionResult) {
-    if (collisionResult.intersection.width < collisionResult.intersection.height) {
-      if (this.getCollisionBoxPosition().x + this.collisionBox.width < collisionResult.collideTarget.getCollisionBoxPosition().x + collisionResult.collideTarget.collisionBox.width) {
-        this.position.x -= collisionResult.intersection.width;
-      }
-      else if (this.getCollisionBoxPosition().x > collisionResult.collideTarget.getCollisionBoxPosition().x) {
-        this.position.x += collisionResult.intersection.width;
-      }
+    if (!this.isInvincible && collisionResult.collideTarget.type === "enemy") {
+      this.takeDamage();
+    }
+    super.onCollision(collisionResult);
+  }
+  takeDamage() {
+    this.lives--;
+    if (this.lives >= 0) {
+      this.deathRespawn();
     }
     else {
-      if (this.getCollisionBoxPosition().y + this.collisionBox.height < collisionResult.collideTarget.getCollisionBoxPosition().y + collisionResult.collideTarget.collisionBox.height) {
-        this.position.y -= collisionResult.intersection.height;
-      }
-      else if (this.getCollisionBoxPosition().y > collisionResult.collideTarget.getCollisionBoxPosition().y) {
-        this.position.y += collisionResult.intersection.height;
-      }
+      this.destroy();
+      Game.gameOver();
     }
+  }
+  deathRespawn() {
+    this.isInvincible = true;
+    this.position = this.spawnPosition;
+    setTimeout(function() {
+      this.isInvincible = false;
+    }.bind(this), this.respawnInvincibilityTime);
   }
   getMovementInput() {
     var output = new Vector(0, 0);
@@ -70,8 +83,11 @@ class Player extends GameObject {
     if (this.keyDown.fire === true) {
       this.fire();
     }
+  }
+  getDebugInput() {
     if (this.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
+      this.keyDown["drawDebug"] = false;
     }
   }
   fire() {
@@ -105,5 +121,6 @@ class PlayerBullet extends GameObject {
     if (collisionResult.collideTarget.type === "enemy") {
       this.destroy();
     }
+    super.onCollision(collisionResult);
   }
 }
