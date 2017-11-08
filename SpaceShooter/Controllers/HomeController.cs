@@ -22,6 +22,22 @@ namespace SpaceShooter.Controllers
         {
             return View();
         }
+        [HttpPost("/gamepage/submit-stats")]
+        public ActionResult GameStats()
+        {
+            var sessionId = Request.Cookies["sessionId"];
+            var session = Session.FindById(sessionId);
+            if (session != null)
+            {
+                long score = Int64.Parse(Request.Form["score"]);
+                int enemiesDestroyed = Int32.Parse(Request.Form["enemiesDestroyed"]);
+                long playTime = Int64.Parse(Request.Form["playTime"]);
+                GameStats stats = new GameStats(session.PlayerId, score, enemiesDestroyed, playTime, DateTime.Now);
+                stats.Save();
+            }
+
+            return new EmptyResult();
+        }
         [HttpGet("/profile")]
         public ActionResult Profile()
         {
