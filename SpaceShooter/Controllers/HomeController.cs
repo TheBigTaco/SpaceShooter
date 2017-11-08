@@ -20,7 +20,9 @@ namespace SpaceShooter.Controllers
         [HttpGet("/gamepage")]
         public ActionResult Gamepage()
         {
-            return View();
+            var sessionId = Request.Cookies["sessionId"];
+            var model = new IndexModel(sessionId);
+            return View(model);
         }
         [HttpPost("/gamepage/submit-stats")]
         public ActionResult GameStats()
@@ -38,10 +40,12 @@ namespace SpaceShooter.Controllers
 
             return new EmptyResult();
         }
-        [HttpGet("/profile")]
-        public ActionResult Profile()
+        [HttpGet("/profile/{id}")]
+        public ActionResult Profile(int id)
         {
-            return View();
+            var sessionId = Request.Cookies["sessionId"];
+            var model = new ProfileModel(id, sessionId);
+            return View(model);
         }
         [HttpGet("/search")]
         public ActionResult Search()
