@@ -5,12 +5,14 @@ var Game = {
   sprites: {},
   objectsToBeDisposed: [],
   isRunning: false,
-  drawDebugInfo: false,
+  startTime: null,
   tickNumber: 0,
   viewport: null,
+  drawDebugInfo: false,
 };
 Game.start = function(canvas) {
   Game.isRunning = true;
+  Game.startTime = new Date().getTime();
   Game.viewport = new Viewport(canvas);
   Game.main();
 }
@@ -106,7 +108,7 @@ class GameObject {
     this.velocity = new Vector(0, 0);
   }
   update() {
-    
+
   }
   physicsUpdate(dT) {
     if (this.position != null) {

@@ -5,6 +5,8 @@ class Player extends GameObject {
     this.type = "player";
     this.sprite = Game.sprites["player"];
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
+    this.score = 0;
+    this.numEnemiesDestroyed = 0;
     this.lastFireTime = 0;
     this.fireInterval = 150;
     this.keyDown = {
@@ -20,6 +22,7 @@ class Player extends GameObject {
   update() {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
+    this.getDebugInput();
   }
   onCollision(collisionResult) {
     if (collisionResult.intersection.width < collisionResult.intersection.height) {
@@ -70,8 +73,11 @@ class Player extends GameObject {
     if (this.keyDown.fire === true) {
       this.fire();
     }
+  }
+  getDebugInput() {
     if (this.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
+      this.keyDown["drawDebug"] = false;
     }
   }
   fire() {
