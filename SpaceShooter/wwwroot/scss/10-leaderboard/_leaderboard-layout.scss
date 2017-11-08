@@ -1,0 +1,84 @@
+.leaderboard-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-wrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.leaderboard-header {
+  margin-top: 100px;
+  font-size: 70px;
+  color: $black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboard-results-wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.leaderboard-result {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  border: 2px solid grey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  &:hover {
+    background-color: rgba(150,150,150,0.5);
+    cursor: pointer;
+  }
+}
+.leaderboard-pic {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.leaderboard-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.leaderboard-profile-name {
+  margin-left: 40px;
+  p {
+    font-size: 25px;
+    color: $black;
+  }
+}
+
+.leaderboard-profile-rank {
+  width: 350px;
+  text-align: center;
+  margin-right: 20px;
+  p:last-child {
+    color: $black;
+    font-size: 20px;
+  }
+}
