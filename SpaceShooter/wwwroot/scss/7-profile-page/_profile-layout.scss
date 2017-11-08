@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: space-between;
   color: $black;
+  position: relative;
 }
 
 .profile-top {
@@ -24,8 +25,9 @@
 }
 
 .profile-pic {
-  width: 250px;
-  height: 250px;
+  margin-top: 40px;
+  width: 150px;
+  height: 150px;
 }
 
 .profile-links {
@@ -82,7 +84,7 @@
 .profile-bottom {
   display: flex;
   justify-content: space-around;
-align-items: center;
+  align-items: center;
   flex-direction: column;
   height: 25%;
 }
@@ -118,6 +120,7 @@ align-items: center;
 .scoreboard-highlight {
   // background-color: rgba(150,150,150,0.5);
   border: 3px solid $black;
+  box-shadow: 0 0 5px 1px white;
 }
 
 .scoreboard-score {

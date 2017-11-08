@@ -1,0 +1,22 @@
+.gamepage-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 1200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamebox-placeholder {
+  background-color: rgba(0, 0, 0, .5);
+  border: 3px solid grey;
+  border-radius: 5px;
+}
+
+.change-background {
+  margin-top: 20px;
+  color: white;
+}
