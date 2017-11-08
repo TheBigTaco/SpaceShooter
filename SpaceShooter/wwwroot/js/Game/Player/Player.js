@@ -4,10 +4,14 @@ class Player extends GameObject {
     super();
     this.type = "player";
     this.sprite = Game.sprites["player"];
+    this.spawnPosition = new Vector(50, 50);
+    this.respawnInvincibilityTime = 1000;
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
+    this.collidesWith = ["bounds"];
     this.score = 0;
     this.numEnemiesDestroyed = 0;
     this.lives = 3;
+    this.isInvincible = false;
     this.lastFireTime = 0;
     this.fireInterval = 150;
     this.keyDown = {
@@ -26,7 +30,27 @@ class Player extends GameObject {
     this.getDebugInput();
   }
   onCollision(collisionResult) {
-    this.doCollisionPhysics(collisionResult);
+    if (!this.isInvincible && collisionResult.collideTarget.type === "enemy") {
+      this.takeDamage();
+    }
+    super.onCollision(collisionResult);
+  }
+  takeDamage() {
+    this.lives--;
+    if (this.lives >= 0) {
+      this.deathRespawn();
+    }
+    else {
+      this.destroy();
+      Game.gameOver();
+    }
+  }
+  deathRespawn() {
+    this.isInvincible = true;
+    this.position = this.spawnPosition;
+    setTimeout(function() {
+      this.isInvincible = false;
+    }.bind(this), this.respawnInvincibilityTime);
   }
   getMovementInput() {
     var output = new Vector(0, 0);
@@ -97,5 +121,6 @@ class PlayerBullet extends GameObject {
     if (collisionResult.collideTarget.type === "enemy") {
       this.destroy();
     }
+    super.onCollision(collisionResult);
   }
 }

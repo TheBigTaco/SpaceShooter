@@ -1,12 +1,27 @@
 Game.initObjects = function() {
-  // TODO: Add spawner
   Game.player = new Player();
-  Game.player.position = new Vector(50, 50);
+  Game.player.position = Game.player.spawnPosition;
   Game.spawnObject(Game.player);
 
   Game.spawnObject(new EnemySpawner());
 
   Game.addScreenBounds();
+}
+
+Game.gameOver = function() {
+  var playTime = new Date().getTime() - Game.startTime;
+  console.log(Game.player.score, Game.player.numEnemiesDestroyed, playTime);
+  Game.isRunning = false;
+
+  var testTextOptions = {
+    font: "72px sans-serif",
+    fillStyle: "rgb(255,255,255)",
+    alignment: "center",
+    baseline: "middle",
+  }
+  var testTextPosition = new Vector(Game.viewport.width / 2, Game.viewport.height / 2);
+  var testText = new TextObject("GAME OVER", testTextPosition, testTextOptions);
+  Game.spawnText(testText);
 }
 
 // TODO: Be less hacky

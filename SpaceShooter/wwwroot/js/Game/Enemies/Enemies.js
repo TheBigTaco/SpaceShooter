@@ -8,9 +8,9 @@ class Enemy extends GameObject {
     if (collisionResult.collideTarget.type === "player-projectile") {
       Game.player.score += this.scoreValue;
       Game.player.numEnemiesDestroyed += 1;
-      console.log(Game.player.score, Game.player.numEnemiesDestroyed);
       this.destroy();
     }
+    super.onCollision(collisionResult);
   }
 }
 
