@@ -141,7 +141,8 @@ h1:nth-child(10) {
 .menubar-username {
   position: absolute;
   top: 20px;
-  left: -250px; }
+  right: 100px;
+  text-align: right; }
   .menubar-username a {
     color: #fff;
     text-decoration: none;
@@ -280,13 +281,13 @@ h1:nth-child(10) {
     transform: translateY(-8px) rotate(45deg); } }
 @keyframes menu-game {
   100% {
-    left: -500px; } }
+    left: -400px; } }
 @keyframes menu-profile {
   100% {
-    left: -400px; } }
+    left: -600px; } }
 @keyframes menu-main {
   100% {
-    left: -600px; } }
+    left: -500px; } }
 @keyframes menu-search {
   100% {
     left: -300px; } }
