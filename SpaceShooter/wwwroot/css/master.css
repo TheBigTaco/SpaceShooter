@@ -398,7 +398,7 @@ h1:nth-child(10) {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  height: 25vh; }
+  height: 25%; }
 
 .profile-scores {
   display: flex;
