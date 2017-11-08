@@ -329,7 +329,7 @@ h1:nth-child(10) {
   margin-left: auto;
   margin-right: auto;
   width: 1200px;
-  height: 100vh;
+  height: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -375,6 +375,8 @@ h1:nth-child(10) {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   border: 1px solid grey; }
+  .profile-info p {
+    font-size: 50px; }
 
 .friends-prompt {
   text-align: center;
@@ -419,10 +421,11 @@ h1:nth-child(10) {
   padding: 10px;
   margin: 5px; }
   .profile-score:hover {
+    background-color: rgba(150, 150, 150, 0.5);
     cursor: pointer; }
 
 .scoreboard-highlight {
-  background-color: rgba(150, 150, 150, 0.5); }
+  border: 3px solid #fff; }
 
 .scoreboard-score p {
   font-size: 50px;
@@ -443,14 +446,21 @@ h1:nth-child(10) {
   text-shadow: 2px 2px 2px grey; }
 
 #sprite-button, #theme-button, #friend-button {
-  border-left: 2px solid grey;
-  border-bottom: 2px solid grey;
   padding: 10px;
   font-size: 25px;
   width: 125px; }
   #sprite-button:hover, #theme-button:hover, #friend-button:hover {
     background-image: linear-gradient(90deg, black, transparent);
     cursor: pointer; }
+
+.button-border {
+  border-left: 2px solid grey;
+  border-bottom: 2px solid grey; }
+
+.profile-button-click {
+  background-image: linear-gradient(90deg, black, transparent);
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff; }
 
 .profile-sprites, .profile-themes, .profile-friends {
   display: flex;
@@ -485,6 +495,9 @@ h1:nth-child(10) {
 .profile-quadrant:hover {
   background-color: rgba(150, 150, 150, 0.5);
   cursor: pointer; }
+
+.profile-quadrant-click {
+  border: 3px solid #fff; }
 
 @keyframes flyin {
   100% {
