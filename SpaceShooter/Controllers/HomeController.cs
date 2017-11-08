@@ -50,11 +50,16 @@ namespace SpaceShooter.Controllers
         [HttpGet("/search")]
         public ActionResult Search()
         {
-            return View();
-        }[HttpGet("/leaderboard")]
+            var sessionId = Request.Cookies["sessionId"];
+            var model = new IndexModel(sessionId);
+            return View(model);
+        }
+        [HttpGet("/leaderboard")]
         public ActionResult Leaderboard()
         {
-            return View();
+            var sessionId = Request.Cookies["sessionId"];
+            var model = new IndexModel(sessionId);
+            return View(model);
         }
         [HttpPost("/register")]
         public ActionResult RegisterNewUser()

@@ -5,9 +5,12 @@
 
 
   <div class="menu-circle">
-    <div class="menubar-username">
-      <a href="/profile">Username</a>
-    </div>
+    @if (@Model.CurrentSession != null)
+    {
+      <div class="menubar-username">
+        <a href="/profile/@Model.CurrentSession.PlayerId">Welcome, @Model.CurrentPlayerName</a>
+      </div>
+    }
     <div class="bar-one"></div>
     <div class="bar-two"></div>
     <div class="bar-three"></div>
