@@ -9,19 +9,64 @@ Game.initObjects = function() {
 }
 
 Game.gameOver = function() {
-  var playTime = new Date().getTime() - Game.startTime;
-  console.log(Game.player.score, Game.player.numEnemiesDestroyed, playTime);
-  Game.isRunning = false;
 
-  var testTextOptions = {
-    font: "72px sans-serif",
-    fillStyle: "rgb(255,255,255)",
-    alignment: "center",
-    baseline: "middle",
-  }
-  var testTextPosition = new Vector(Game.viewport.width / 2, Game.viewport.height / 2);
-  var testText = new TextObject("GAME OVER", testTextPosition, testTextOptions);
-  Game.spawnText(testText);
+  Game.isRunning = false;
+  Game.showGameOverScreen();
+  Game.submitStats();
+}
+Game.showGameOverScreen = function() {
+  Game.spawnText(new TextObject(
+    "GAME OVER",
+    new Vector(Game.viewport.width / 2, 50),
+    {
+      font: "72px sans-serif",
+      fillStyle: "rgb(255,255,255)",
+      alignment: "center",
+    }));
+
+  Game.spawnText(new TextObject(
+    "Score: " + Game.player.score,
+    new Vector(Game.viewport.width / 2, 150),
+    {
+      font: "35px sans-serif",
+      fillStyle: "rgb(255,255,255)",
+      alignment: "center",
+    }));
+  Game.spawnText(new TextObject(
+    "Enemies Destroyed: " + Game.player.numEnemiesDestroyed,
+    new Vector(Game.viewport.width / 2, 200),
+    {
+      font: "35px sans-serif",
+      fillStyle: "rgb(255,255,255)",
+      alignment: "center",
+    }));
+    // TODO: Do time conversion
+  var playTime = Math.floor((new Date().getTime() - Game.startTime) / 1000);
+  Game.spawnText(new TextObject(
+    "Play Time: " + playTime + "s",
+    new Vector(Game.viewport.width / 2, 250),
+    {
+      font: "35px sans-serif",
+      fillStyle: "rgb(255,255,255)",
+      alignment: "center",
+    }));
+  Game.spawnText(new TextObject(
+    "Press 'r' to restart",
+    new Vector(Game.viewport.width / 2, 300),
+    {
+      font: "35px sans-serif",
+      fillStyle: "rgb(255,255,255)",
+      alignment: "center",
+    }));
+}
+Game.submitStats = function() {
+  // TODO: error handling
+  var stats = {
+    score: Game.player.score,
+    enemiesDestroyed: Game.player.numEnemiesDestroyed,
+    playTime: new Date().getTime() - Game.startTime
+  };
+  $.post("/gamepage/submit-stats", stats);
 }
 
 // TODO: Be less hacky

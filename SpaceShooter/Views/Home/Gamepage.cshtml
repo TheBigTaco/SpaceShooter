@@ -6,6 +6,7 @@
 <div class="gamepage-container">
   @Html.Partial("_menubar")
 
+
   <div id="gamepage-title">
       <div class="gamepage-title">
         <h1>stjörnu</h1>
@@ -24,7 +25,7 @@
 
 
   <div class="gamebox-placeholder">
-    <canvas id="game-window" width="640" height="480"></canvas>
+     @Html.Partial("_game")
   </div>
 
   <p class="change-background">Change background</p>
