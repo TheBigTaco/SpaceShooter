@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  $(".change-background").click(function() {
+    $("body").addClass("x-background");
+  });
+
   $(".menu-circle").click(function() {
     $(".menu-circle").toggleClass("x-active");
     $(".menu-game").toggle();

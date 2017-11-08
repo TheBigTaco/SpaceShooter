@@ -1,4 +1,32 @@
+.menu {
+  position: fixed;
+  top: 0;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.login-result {
+  color: white;
+}
+
+.menubar-username {
+  position: absolute;
+  top: 20px;
+  left: -250px;
+
+    a{
+      color: $black;
+      text-decoration: none;
+      font-size: 25px;
+      }
+}
+
 .menu-circle {
+  position: absolute;
+  top: 25px;
+  left: 1100px;
   margin-right: 70px;
   width: 50px;
   height: 50px;
@@ -7,7 +35,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   padding: 15px;
   align-self: flex-end;
 
@@ -33,6 +60,11 @@
 
 .x-active {
   color: $black;
+
+  .menubar-username {
+    display: none;
+  }
+
   .bar-one {
     animation: bar-one-line .15s  1 linear;
     animation-fill-mode: forwards;
@@ -193,17 +225,17 @@
 
 @keyframes menu-game {
   0% {}
-  100% {left: -600px;}
+  100% {left: -500px;}
 }
 
 @keyframes menu-profile {
   0% {}
-  100% {left: -500px;}
+  100% {left: -400px;}
 }
 
 @keyframes menu-main {
   0% {}
-  100% { left: -400px;}
+  100% { left: -600px;}
 }
 
 @keyframes menu-search {

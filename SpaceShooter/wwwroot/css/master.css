@@ -4,6 +4,10 @@ body {
   background-size: cover;
   font-family: 'Orbitron', sans-serif; }
 
+.x-background {
+  background-image: url("../../img/background.jpg");
+  background-size: cover; }
+
 * {
   margin: 0px;
   padding: 0px;
@@ -23,13 +27,6 @@ body {
   align-items: center;
   justify-content: center; }
 
-.gamepage-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 1200px;
-  height: 100vh;
-  position: relative; }
-
 .box {
   min-height: 100px;
   min-width: 200px; }
@@ -39,30 +36,8 @@ body {
   flex-direction: column;
   align-items: center; }
 
-.gamebox-placeholder {
-  width: 1000px;
-  height: 800px;
-  position: absolute;
-  top: 300px;
-  left: 100px; }
-
 .box {
   border: 1px solid black; }
-
-.menu {
-  position: fixed;
-  top: 0;
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.menu-circle {
-  position: absolute;
-  top: 25px;
-  left: 1100px; }
-
-.login-result {
-  color: white; }
 
 .gamepage-title {
   position: absolute;
@@ -153,7 +128,29 @@ h1:nth-child(10) {
     opacity: 0; }
   100% {
     opacity: 1; } }
+.menu {
+  position: fixed;
+  top: 0;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.login-result {
+  color: white; }
+
+.menubar-username {
+  position: absolute;
+  top: 20px;
+  left: -250px; }
+  .menubar-username a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 25px; }
+
 .menu-circle {
+  position: absolute;
+  top: 25px;
+  left: 1100px;
   margin-right: 70px;
   width: 50px;
   height: 50px;
@@ -162,7 +159,6 @@ h1:nth-child(10) {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   padding: 15px;
   align-self: flex-end; }
   .menu-circle:hover {
@@ -182,6 +178,8 @@ h1:nth-child(10) {
 
 .x-active {
   color: #fff; }
+  .x-active .menubar-username {
+    display: none; }
   .x-active .bar-one {
     animation: bar-one-line .15s  1 linear;
     animation-fill-mode: forwards; }
@@ -282,13 +280,13 @@ h1:nth-child(10) {
     transform: translateY(-8px) rotate(45deg); } }
 @keyframes menu-game {
   100% {
-    left: -600px; } }
+    left: -500px; } }
 @keyframes menu-profile {
   100% {
-    left: -500px; } }
+    left: -400px; } }
 @keyframes menu-main {
   100% {
-    left: -400px; } }
+    left: -600px; } }
 @keyframes menu-search {
   100% {
     left: -300px; } }
@@ -333,7 +331,8 @@ h1:nth-child(10) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #fff; }
+  color: #fff;
+  position: relative; }
 
 .profile-top {
   display: flex;
@@ -348,8 +347,9 @@ h1:nth-child(10) {
   justify-content: space-around; }
 
 .profile-pic {
-  width: 250px;
-  height: 250px; }
+  margin-top: 40px;
+  width: 150px;
+  height: 150px; }
 
 .profile-links {
   display: flex;
@@ -425,7 +425,8 @@ h1:nth-child(10) {
     cursor: pointer; }
 
 .scoreboard-highlight {
-  border: 3px solid #fff; }
+  border: 3px solid #fff;
+  box-shadow: 0 0 5px 1px white; }
 
 .scoreboard-score p {
   font-size: 50px;
@@ -462,13 +463,30 @@ h1:nth-child(10) {
   border-left: 3px solid #fff;
   border-bottom: 3px solid #fff; }
 
+#profile-title {
+  height: 200px;
+  position: absolute;
+  top: 60px;
+  left: 15px; }
+
+.profile-title {
+  transform: rotate3d(-1, 1, 0, 30deg);
+  transform-origin: center center;
+  transform-style: preserve-3d; }
+  .profile-title h1 {
+    font-size: 100px;
+    animation: glow 5s ease-in-out infinite;
+    position: absolute;
+    text-decoration: underline;
+    color: black; }
+
 .profile-sprites, .profile-themes, .profile-friends {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap; }
 
-.profile-sprites-hide, .profile-themes-hide, .profile-friends-hide, .sprites-prompt, .themes-prompt, .friends-prompt {
+.profile-themes-hide, .profile-friends-hide, .themes-prompt, .friends-prompt {
   display: none; }
 
 .profile-quadrant {
@@ -497,7 +515,8 @@ h1:nth-child(10) {
   cursor: pointer; }
 
 .profile-quadrant-click {
-  border: 3px solid #fff; }
+  border: 3px solid #fff;
+  box-shadow: 0 0 5px 1px white; }
 
 @keyframes flyin {
   100% {
@@ -813,5 +832,41 @@ h1:nth-child(10) {
   .leaderboard-profile-rank p:last-child {
     color: #fff;
     font-size: 20px; }
+
+.gamepage-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  height: 1200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.gamebox-placeholder {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 3px solid grey;
+  border-radius: 5px; }
+
+.change-background {
+  margin-top: 20px;
+  color: white; }
+
+#gamepage-title {
+  height: 200px;
+  position: absolute;
+  top: -141px;
+  left: 13px; }
+
+.gamepage-title {
+  transform: rotate3d(-1, 1, 0, 30deg);
+  transform-origin: center center;
+  transform-style: preserve-3d; }
+  .gamepage-title h1 {
+    font-size: 100px;
+    animation: glow 5s ease-in-out infinite;
+    position: absolute;
+    text-decoration: underline; }
 
 /*# sourceMappingURL=master.css.map */

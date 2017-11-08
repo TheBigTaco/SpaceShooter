@@ -1,0 +1,18 @@
+#gamepage-title {
+  height: 200px;
+  position: absolute;
+  top: -141px;
+  left: 13px;
+}
+
+.gamepage-title {
+  transform:rotate3d(-1,1,0,30deg);
+  transform-origin: center center;
+  transform-style: preserve-3d;
+    h1 {
+      font-size: 100px;
+      animation: glow 5s ease-in-out infinite;
+      position: absolute;
+      text-decoration: underline;
+    }
+  }

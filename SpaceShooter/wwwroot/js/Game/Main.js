@@ -9,6 +9,7 @@ Game.initObjects = function() {
 }
 
 Game.gameOver = function() {
+
   Game.isRunning = false;
   Game.showGameOverScreen();
   Game.submitStats();
