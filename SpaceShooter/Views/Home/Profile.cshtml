@@ -1,3 +1,6 @@
+@using SpaceShooter.ViewModels;
+@model ProfileModel
+
 @{
   Layout = "_Layout";
 }
@@ -11,7 +14,7 @@
       <div class="profile-pic">
         <img src="../../img/profile-pic.png" alt="">
       </div>
-      <p id="profile-username">Username</p>
+      <p id="profile-username">@Model.LoginName</p>
       <div class="profile-links">
         <p id="sprite-button" class="button-border">Ships</p>
         <p id="theme-button" class="button-border">Theme</p>
@@ -110,11 +113,12 @@
         </div>
       </div>
       <div class="scoreboard-score">
-        <p class="high-score-score">456378923</p>
-        <p class="enemies-defeated-score">23490583420958</p>
-        <p class="time-played-score">987908324875</p>
-        <p class="total-scores-score">9023984</p>
-        <p class="last-play-score">12328947</p>
+        <p class="high-score-score">@Model.Highscore</p>
+        <p class="enemies-defeated-score">@Model.TotalEnemiesDestroyed</p>
+        <p class="time-played-score">@Model.TotalPlayTime</p>
+        <p class="total-scores-score">@Model.TotalScore</p>
+        <p class="last-play-score">@Model.MostRecentStats.Score</p>
+        <p>@Model.MostRecentStats.DatePlayed</p>
       </div>
     @* </div> *@
   </div>

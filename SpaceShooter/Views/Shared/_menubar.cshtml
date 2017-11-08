@@ -1,3 +1,6 @@
+@using SpaceShooter.ViewModels;
+@model HomeModel
+
 <div class="menu box">
 
 
@@ -18,7 +21,7 @@
     </div>
     <div class="menu-profile">
       <div class="menu-flex">
-        <a href="/profile">Profile</a>
+        <a href="/profile/@Model.CurrentSession.PlayerId">Profile</a>
       </div>
     </div>
     <div class="menu-search">
