@@ -14,7 +14,8 @@
 .menubar-username {
   position: absolute;
   top: 20px;
-  left: -250px;
+  right: 100px;
+  text-align: right;
 
     a{
       color: $black;
@@ -225,17 +226,17 @@
 
 @keyframes menu-game {
   0% {}
-  100% {left: -500px;}
+  100% {left: -400px;}
 }
 
 @keyframes menu-profile {
   0% {}
-  100% {left: -400px;}
+  100% {left: -600px;}
 }
 
 @keyframes menu-main {
   0% {}
-  100% { left: -600px;}
+  100% { left: -500px;}
 }
 
 @keyframes menu-search {
