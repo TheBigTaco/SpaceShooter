@@ -68,6 +68,10 @@
   border: 2px solid grey;
   border-radius: 5px;
   margin-bottom: 10px;
+  &:hover {
+    background-color: rgba(150,150,150,0.5);
+    cursor: pointer;
+  }
 }
 .search-pic {
   width: 100px;
