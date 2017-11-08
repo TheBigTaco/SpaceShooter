@@ -34,7 +34,7 @@
     else
     {
       //TODO: CHANGE THIS P TAGS CLASS SO THAT IT DOESN'T HAVE THE LOGIN FORM POPUP
-      <a href="/logout"><p class="links-login">Log Out</p></a>
+      <a href="/logout"><p class="links-logout">Log Out</p></a>
     }
     @* CSS no touch *@
   </div>
@@ -72,17 +72,22 @@
   }
 
 </div>
+
 @if (Model.RegisterFailed)
 {
   <br>
   <p>Username is already in use</p>
 }
-@if (Model.CurrentSession != null)
-{
-  <p>Logged In User: @Model.CurrentSession.PlayerId</p>
-}
-else
-{
-  <p>No user logged in</p>
-}
+
+<div class="login-result">
+
+  @if (Model.CurrentSession != null)
+  {
+    <p>Logged In User: @Model.CurrentSession.PlayerId</p>
+  }
+  else
+  {
+    <p>No user logged in</p>
+  }
+</div>
 </div>

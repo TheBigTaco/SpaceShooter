@@ -10,7 +10,6 @@ body {
   box-sizing: border-box; }
 
 body {
-  background-color: black;
   height: 100%;
   width: 100%; }
 
@@ -66,6 +65,9 @@ body {
   position: absolute;
   top: 35px;
   left: 100px; }
+
+.login-result {
+  color: white; }
 
 .gamepage-title {
   position: absolute;
@@ -366,7 +368,8 @@ h1:nth-child(10) {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  color: #fff; }
 
 .profile-top {
   display: flex;
@@ -404,7 +407,21 @@ h1:nth-child(10) {
   height: 200px;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 1px solid grey; }
+
+.friends-prompt {
+  text-align: center;
+  display: flex; }
+  .friends-prompt p {
+    font-size: 50px;
+    margin: 15px; }
+  .friends-prompt a {
+    text-decoration: none;
+    color: grey;
+    font-size: 20px; }
 
 .profile-cube {
   width: 600px;
@@ -412,40 +429,86 @@ h1:nth-child(10) {
 
 .profile-bottom {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   height: 25vh; }
 
-.profile-friends {
+.profile-scores {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-direction: column;
   width: 100%; }
 
-.profile-friend {
-  width: 100px;
-  height: 100px;
-  border: 2px solid lightcoral; }
+.scoreboard-titles {
+  display: flex;
+  width: 100%; }
+
+.profile-score {
+  width: 20%;
+  border: 2px solid grey;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  padding: 10px;
+  margin: 5px; }
+  .profile-score:hover {
+    cursor: pointer; }
+
+.scoreboard-highlight {
+  background-color: rgba(150, 150, 150, 0.5); }
+
+.scoreboard-score p {
+  font-size: 50px;
+  margin-bottom: 15px; }
+
+.high-score-score {
+  display: block; }
+
+.enemies-defeated-score, .time-played-score, .total-scores-score, .last-play-score {
+  display: none; }
 
 .profile-pic img {
   width: 100%;
   height: 100%; }
 
-.profile-sprites, .profile-themes, .profile-scores {
+#profile-username {
+  font-size: 35px;
+  text-shadow: 2px 2px 2px grey; }
+
+#sprite-button, #theme-button, #friend-button {
+  border-left: 2px solid grey;
+  border-bottom: 2px solid grey;
+  padding: 10px;
+  font-size: 25px;
+  width: 125px; }
+  #sprite-button:hover, #theme-button:hover, #friend-button:hover {
+    background-image: linear-gradient(90deg, black, transparent);
+    cursor: pointer; }
+
+.profile-sprites, .profile-themes, .profile-friends {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap; }
 
-.profile-sprites-hide, .profile-themes-hide, .profile-scores-hide, .sprites-prompt, .themes-prompt, .scores-prompt {
+.profile-sprites-hide, .profile-themes-hide, .profile-friends-hide, .sprites-prompt, .themes-prompt, .friends-prompt {
   display: none; }
 
 .profile-quadrant {
-  width: 299px;
-  height: 250px;
+  width: 289px;
+  height: 240px;
+  margin: 5px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  overflow: hidden; }
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid grey;
+  border-radius: 5px; }
   .profile-quadrant p {
     font-size: 30px; }
   .profile-quadrant img {
@@ -454,6 +517,10 @@ h1:nth-child(10) {
     transform: translateY(130px);
     animation: flyin 1s ease-in-out 0s 1;
     animation-fill-mode: forwards; }
+
+.profile-quadrant:hover {
+  background-color: rgba(150, 150, 150, 0.5);
+  cursor: pointer; }
 
 @keyframes flyin {
   100% {
