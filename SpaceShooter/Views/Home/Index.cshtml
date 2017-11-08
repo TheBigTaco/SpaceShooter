@@ -43,9 +43,9 @@
 
     <form action="/login" method="post">
       <label for="user-name"></label>
-      <input id="user-name" name="user-name" type="text" placeholder="Login Name">
+      <input id="user-name" name="user-name" type="text" required placeholder="Login Name">
       <label for="user-password"></label>
-      <input id="user-password" name="user-password" type="password" placeholder="Password">
+      <input id="user-password" name="user-password" type="password" required placeholder="Password">
       <button type="submit" name="submit-button">Login</button>
     </form>
     @if(Model.LoginSuccess)
@@ -60,9 +60,9 @@
 <div class="register-form">
   <form action="/register" method="post">
     <label for="user-name"></label>
-    <input id="user-name" name="user-name" type="text" placeholder="New Login Name">
+    <input id="user-name" name="user-name" type="text" required placeholder="New Login Name">
     <label for="user-password"></label>
-    <input id="user-password" name="user-password" type="password" placeholder="New Password">
+    <input id="user-password" name="user-password" type="password" required placeholder="New Password">
     <button type="submit" name="submit-button">Register</button>
   </form>
   @if (Model.RegisterSuccess)

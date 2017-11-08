@@ -2,19 +2,49 @@
   Layout = "_Layout";
 }
 
-@Html.Partial("_menubar")
 
 
-<div class="search-container box">
-  
-  <div class="search-result box">
-    <div class="search-pic box">
-      <p>pic</p>
+<div class="search-container">
+  @Html.Partial("_menubar")
+  <div class="search-wrapper">
 
-    </div>
-    <div class="search-name box">
-      <p>sup</p>
+    <div id="search-title">
+        <div class="search-title">
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        	<h1>stjörnu</h1>
+        </div>
+      </div>
+
+    <form class="search-form" action="index.html" method="post">
+      <input type="text" name="search-input" id="search-input" placeholder="Search">
+      <button type="button" name="search-input">Go</button>
+    </form>
+
+    <div class="search-results-wrapper">
+
+      <div class="search-result">
+        <div class="search-pic">
+          <img src="../../img/profile-pic.png">
+        </div>
+        <div class="search-name">
+          <div class="search-profile-name">
+            <p>Name</p>
+          </div>
+          <div class="search-profile-rank">
+            <p>High Score</p>
+            <p>10000000000</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>

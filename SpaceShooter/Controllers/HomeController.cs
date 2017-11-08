@@ -31,6 +31,10 @@ namespace SpaceShooter.Controllers
         public ActionResult Search()
         {
             return View();
+        }[HttpGet("/leaderboard")]
+        public ActionResult Leaderboard()
+        {
+            return View();
         }
         [HttpPost("/register")]
         public ActionResult RegisterNewUser()

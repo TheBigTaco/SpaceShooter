@@ -52,8 +52,8 @@
     animation-fill-mode: forwards;
     // background-color: blue;
   }
-  .menu-login {
-    animation: menu-login .5s ease-in-out 0s 1;
+  .menu-main {
+    animation: menu-main .5s ease-in-out 0s 1;
     animation-fill-mode: forwards;
     // background-color: red;
   }
@@ -62,14 +62,10 @@
     animation-fill-mode: forwards;
     // background-color: orange;
   }
-  .menu-register {
-    animation: menu-register .5s ease-in-out 0s 1;
+  .menu-search {
+    animation: menu-search .5s ease-in-out 0s 1;
     animation-fill-mode: forwards;
     // background-color: purple;
-  }
-  .search-form {
-    animation: search-drop .5s ease-in-out 0s 1;
-    animation-fill-mode: forwards;
   }
 
     &:hover {
@@ -90,7 +86,7 @@
 
 }
 
-.menu-game, .menu-profile, .menu-login, .menu-leaderboard, .menu-register {
+.menu-game, .menu-profile, .menu-main, .menu-leaderboard, .menu-search {
   position: absolute;
   text-align: center;
   top: 0px;
@@ -102,13 +98,6 @@
   color: $text-1;
 }
 
-.search-form {
-  display: none;
-  position: absolute;
-  text-align: center;
-  top: 0px;
-  left: 0px;
-}
 
 .menu-flex {
   display: flex;
@@ -138,7 +127,7 @@
   }
 }
 
-.menu-login {
+.menu-main {
   &:hover {
     transform: scale(1.5);
   }
@@ -150,7 +139,7 @@
   }
 }
 
-.menu-register {
+.menu-search {
   &:hover {
     transform: scale(1.5);
   }
@@ -204,28 +193,29 @@
 
 @keyframes menu-game {
   0% {}
-  100% {left: -550px;}
+  100% {left: -600px;}
 }
 
 @keyframes menu-profile {
   0% {}
-  100% {left: -450px;}
+  100% {left: -500px;}
 }
 
-@keyframes menu-login {
+@keyframes menu-main {
   0% {}
-  100% { left: -350px;}
+  100% { left: -400px;}
+}
+
+@keyframes menu-search {
+  0% {}
+  100% { left: -300px;}
 }
 
 @keyframes menu-leaderboard {
   0% {}
-  100% { left: -100px;}
+  100% { left: -150px;}
 }
 
-@keyframes menu-register {
-  0% {}
-  100% { left: -250px;}
-}
 
 @keyframes search-drop {
   0% {}

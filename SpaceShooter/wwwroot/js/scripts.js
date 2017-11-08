@@ -3,9 +3,9 @@ $(document).ready(function() {
     $(".menu-circle").toggleClass("x-active");
     $(".menu-game").toggle();
     $(".menu-profile").toggle();
-    $(".menu-login").toggle();
+    $(".menu-main").toggle();
     $(".menu-leaderboard").toggle();
-    $(".menu-register").toggle();
+    $(".menu-search").toggle();
     // $(".search-form").fadeToggle();
   });
 
@@ -103,7 +103,7 @@ $(document).ready(function() {
     $(".enemies-defeated").removeClass("scoreboard-highlight");
     $(".time-played").removeClass("scoreboard-highlight");
     $(".total-scores").removeClass("scoreboard-highlight");
-    $(".last-play").addClass("scoreboard-highlight");    
+    $(".last-play").addClass("scoreboard-highlight");
     $(".high-score-score").hide();
     $(".enemies-defeated-score").hide();
     $(".time-played-score").hide();
