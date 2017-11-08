@@ -54,9 +54,9 @@ namespace SpaceShooter.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
-                string SessionId = rdr.GetString(0);
-                int PlayerId = rdr.GetInt32(1);
-                output.Add(new Session(PlayerId, SessionId));
+                string sessionId = rdr.GetString(0);
+                int playerId = rdr.GetInt32(1);
+                output.Add(new Session(playerId, sessionId));
             }
             DB.EndCommand();
             return output;

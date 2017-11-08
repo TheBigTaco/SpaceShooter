@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="411" y="274" name="players">
+</datatypes><table x="460" y="452" name="players">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -54,16 +54,25 @@
 <part>id</part>
 </key>
 </table>
-<table x="709" y="117" name="scores">
+<table x="814" y="206" name="game_stats">
 <row name="player_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="players" row="id" />
 </row>
 <row name="score" null="1" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default></row>
+<row name="enemies_destroyed" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="game_time" null="1" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default></row>
+<row name="date_played" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
 </table>
-<table x="132" y="264" name="friends">
+<table x="202" y="273" name="friends">
 <row name="player_1_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="players" row="id" />
@@ -73,7 +82,7 @@
 <default>NULL</default><relation table="players" row="id" />
 </row>
 </table>
-<table x="722" y="362" name="profiles">
+<table x="801" y="452" name="profiles">
 <row name="player_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="players" row="id" />
@@ -82,7 +91,7 @@
 <datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>
 </table>
-<table x="133" y="428" name="sessions">
+<table x="181" y="429" name="sessions">
 <row name="session_id" null="1" autoincrement="0">
 <datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>

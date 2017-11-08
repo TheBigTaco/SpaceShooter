@@ -21,15 +21,18 @@ CREATE TABLE `players` (
 );
 
 -- ---
--- Table 'scores'
+-- Table 'game_stats'
 --
 -- ---
 
-DROP TABLE IF EXISTS `scores`;
+DROP TABLE IF EXISTS `game_stats`;
 
-CREATE TABLE `scores` (
+CREATE TABLE `game_stats` (
   `player_id` INTEGER NULL DEFAULT NULL,
-  `score` INTEGER NULL DEFAULT NULL
+  `score` BIGINT NULL DEFAULT NULL,
+  `enemies_destroyed` INTEGER NULL DEFAULT NULL,
+  `game_time` BIGINT NULL DEFAULT NULL,
+  `date_played` DATETIME NULL DEFAULT NULL
 );
 
 -- ---
@@ -72,7 +75,7 @@ CREATE TABLE `sessions` (
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `scores` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
+ALTER TABLE `game_stats` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (player_1_id) REFERENCES `players` (`id`);
 ALTER TABLE `friends` ADD FOREIGN KEY (player_2_id) REFERENCES `players` (`id`);
 ALTER TABLE `profiles` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
@@ -83,7 +86,7 @@ ALTER TABLE `sessions` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
 -- ---
 
 -- ALTER TABLE `players` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `scores` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `game_stats` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `friends` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `profiles` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `sessions` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -94,8 +97,8 @@ ALTER TABLE `sessions` ADD FOREIGN KEY (player_id) REFERENCES `players` (`id`);
 
 -- INSERT INTO `players` (`id`,`login_name`,`password_hash`,`salt`) VALUES
 -- ('','','','');
--- INSERT INTO `scores` (`player_id`,`score`) VALUES
--- ('','');
+-- INSERT INTO `game_stats` (`player_id`,`score`,`enemies_destroyed`,`game_time`,`date_played`) VALUES
+-- ('','','','','');
 -- INSERT INTO `friends` (`player_1_id`,`player_2_id`) VALUES
 -- ('','');
 -- INSERT INTO `profiles` (`player_id`,`screen_name`) VALUES
