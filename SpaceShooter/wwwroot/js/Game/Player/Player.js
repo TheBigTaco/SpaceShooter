@@ -5,6 +5,9 @@ class Player extends GameObject {
     this.type = "player";
     this.sprite = Game.sprites["player"];
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
+    this.score = 0;
+    this.numEnemiesDestroyed = 0;
+    this.lives = 3;
     this.lastFireTime = 0;
     this.fireInterval = 150;
     this.keyDown = {
@@ -20,24 +23,10 @@ class Player extends GameObject {
   update() {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
+    this.getDebugInput();
   }
   onCollision(collisionResult) {
-    if (collisionResult.intersection.width < collisionResult.intersection.height) {
-      if (this.getCollisionBoxPosition().x + this.collisionBox.width < collisionResult.collideTarget.getCollisionBoxPosition().x + collisionResult.collideTarget.collisionBox.width) {
-        this.position.x -= collisionResult.intersection.width;
-      }
-      else if (this.getCollisionBoxPosition().x > collisionResult.collideTarget.getCollisionBoxPosition().x) {
-        this.position.x += collisionResult.intersection.width;
-      }
-    }
-    else {
-      if (this.getCollisionBoxPosition().y + this.collisionBox.height < collisionResult.collideTarget.getCollisionBoxPosition().y + collisionResult.collideTarget.collisionBox.height) {
-        this.position.y -= collisionResult.intersection.height;
-      }
-      else if (this.getCollisionBoxPosition().y > collisionResult.collideTarget.getCollisionBoxPosition().y) {
-        this.position.y += collisionResult.intersection.height;
-      }
-    }
+    this.doCollisionPhysics(collisionResult);
   }
   getMovementInput() {
     var output = new Vector(0, 0);
@@ -70,8 +59,11 @@ class Player extends GameObject {
     if (this.keyDown.fire === true) {
       this.fire();
     }
+  }
+  getDebugInput() {
     if (this.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
+      this.keyDown["drawDebug"] = false;
     }
   }
   fire() {

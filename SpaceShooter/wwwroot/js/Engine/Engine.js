@@ -5,12 +5,14 @@ var Game = {
   sprites: {},
   objectsToBeDisposed: [],
   isRunning: false,
-  drawDebugInfo: false,
+  startTime: null,
   tickNumber: 0,
   viewport: null,
+  drawDebugInfo: false,
 };
 Game.start = function(canvas) {
   Game.isRunning = true;
+  Game.startTime = new Date().getTime();
   Game.viewport = new Viewport(canvas);
   Game.main();
 }
@@ -101,12 +103,13 @@ class GameObject {
     this.type = "game-object";
     this.isDisposed = false;
     this.sprite = null;
-    this.collisionBox = null;
+    this.collisionBox = null
+    this.collidesWith = [];
     this.position = null;
     this.velocity = new Vector(0, 0);
   }
   update() {
-    
+
   }
   physicsUpdate(dT) {
     if (this.position != null) {
@@ -124,7 +127,28 @@ class GameObject {
     return (this.collisionBox != null) ? this.collisionBox.addOffsetVector(this.position) : null;
   }
   onCollision(collisionResult) {
-
+    // TODO: Fix
+    if (this.collidesWith.contains(collisionResult.collideTarget.type)) {
+      doCollisionPhysics(collisionResult);
+    }
+  }
+  doCollisionPhysics(collisionResult) {
+    if (collisionResult.intersection.width < collisionResult.intersection.height) {
+      if (this.getCollisionBoxPosition().x + this.collisionBox.width < collisionResult.collideTarget.getCollisionBoxPosition().x + collisionResult.collideTarget.collisionBox.width) {
+        this.position.x -= collisionResult.intersection.width;
+      }
+      else if (this.getCollisionBoxPosition().x > collisionResult.collideTarget.getCollisionBoxPosition().x) {
+        this.position.x += collisionResult.intersection.width;
+      }
+    }
+    else {
+      if (this.getCollisionBoxPosition().y + this.collisionBox.height < collisionResult.collideTarget.getCollisionBoxPosition().y + collisionResult.collideTarget.collisionBox.height) {
+        this.position.y -= collisionResult.intersection.height;
+      }
+      else if (this.getCollisionBoxPosition().y > collisionResult.collideTarget.getCollisionBoxPosition().y) {
+        this.position.y += collisionResult.intersection.height;
+      }
+    }
   }
 }
 
