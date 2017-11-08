@@ -11,6 +11,7 @@ class Enemy extends GameObject {
       console.log(Game.player.score, Game.player.numEnemiesDestroyed);
       this.destroy();
     }
+    super.onCollision(collisionResult);
   }
 }
 

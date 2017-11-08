@@ -5,6 +5,7 @@ class Player extends GameObject {
     this.type = "player";
     this.sprite = Game.sprites["player"];
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
+    this.collidesWith = ["bounds"];
     this.score = 0;
     this.numEnemiesDestroyed = 0;
     this.lives = 3;
@@ -26,7 +27,7 @@ class Player extends GameObject {
     this.getDebugInput();
   }
   onCollision(collisionResult) {
-    this.doCollisionPhysics(collisionResult);
+    super.onCollision(collisionResult);
   }
   getMovementInput() {
     var output = new Vector(0, 0);
@@ -97,5 +98,6 @@ class PlayerBullet extends GameObject {
     if (collisionResult.collideTarget.type === "enemy") {
       this.destroy();
     }
+    super.onCollision(collisionResult);
   }
 }

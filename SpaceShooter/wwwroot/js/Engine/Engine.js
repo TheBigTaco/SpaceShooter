@@ -127,9 +127,8 @@ class GameObject {
     return (this.collisionBox != null) ? this.collisionBox.addOffsetVector(this.position) : null;
   }
   onCollision(collisionResult) {
-    // TODO: Fix
-    if (this.collidesWith.contains(collisionResult.collideTarget.type)) {
-      doCollisionPhysics(collisionResult);
+    if (this.collidesWith.includes(collisionResult.collideTarget.type)) {
+      this.doCollisionPhysics(collisionResult);
     }
   }
   doCollisionPhysics(collisionResult) {
