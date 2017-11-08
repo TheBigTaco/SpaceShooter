@@ -5,7 +5,7 @@
   flex-wrap: wrap;
 }
 
-.profile-sprites-hide, .profile-themes-hide, .profile-friends-hide, .sprites-prompt, .themes-prompt, .friends-prompt {
+.profile-themes-hide, .profile-friends-hide, .themes-prompt, .friends-prompt {
   display: none;
 }
 
@@ -43,6 +43,7 @@
 .profile-quadrant-click {
   // background-color: rgba(150,150,150,0.5);
   border: 3px solid $black;
+  box-shadow: 0 0 5px 1px white;
 }
 
 @keyframes flyin {
