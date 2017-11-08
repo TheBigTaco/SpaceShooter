@@ -22,11 +22,14 @@
         <a href="/">Main Menu</a>
       </div>
     </div>
-    <div class="menu-profile">
-      <div class="menu-flex">
-        <a href="/profile/@Model.CurrentSession.PlayerId">Profile</a>
+    @if(Model.CurrentSession != null)
+    {
+      <div class="menu-profile">
+        <div class="menu-flex">
+          <a href="/profile/@Model.CurrentSession.PlayerId">Profile</a>
+        </div>
       </div>
-    </div>
+    }
     <div class="menu-search">
       <div class="menu-flex">
         <a href="/search">Search</a>

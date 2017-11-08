@@ -83,7 +83,10 @@ namespace SpaceShooter.Models
             long output = 0;
             while (rdr.Read())
             {
-                output = rdr.GetInt64(0);
+                if(!rdr.IsDBNull(0))
+                {
+                    output = rdr.GetInt64(0);
+                }
             }
             DB.EndCommand();
             return output;
@@ -96,7 +99,10 @@ namespace SpaceShooter.Models
             long output = 0;
             while (rdr.Read())
             {
-                output = rdr.GetInt64(0);
+                if(!rdr.IsDBNull(0))
+                {
+                    output = rdr.GetInt64(0);
+                }
             }
             DB.EndCommand();
             return output;
@@ -109,7 +115,10 @@ namespace SpaceShooter.Models
             int output = 0;
             while (rdr.Read())
             {
-                output = rdr.GetInt32(0);
+                if(!rdr.IsDBNull(0))
+                {
+                    output = rdr.GetInt32(0);
+                }
             }
             DB.EndCommand();
             return output;
@@ -122,7 +131,10 @@ namespace SpaceShooter.Models
             long output = 0;
             while (rdr.Read())
             {
-                output = rdr.GetInt64(0);
+                if(!rdr.IsDBNull(0))
+                {
+                    output = rdr.GetInt64(0);
+                }
             }
             DB.EndCommand();
             return output;

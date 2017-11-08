@@ -134,7 +134,14 @@
         <p class="time-played-score">@Model.TotalPlayTime</p>
         <p class="total-scores-score">@Model.TotalScore</p>
         <p class="last-play-score">@Model.MostRecentStats.Score</p>
-        <p>@Model.MostRecentStats.DatePlayed</p>
+        @if (@Model.MostRecentStats.Score == 0)
+        {
+          <p class="last-play-score">--/--/-- --:--:--</p>
+        }
+        else
+        {
+          <p class="last-play-score">@Model.MostRecentStats.DatePlayed</p>
+        }
       </div>
     @* </div> *@
   </div>
