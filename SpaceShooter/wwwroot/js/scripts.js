@@ -6,7 +6,6 @@ $(document).ready(function() {
     $(".menu-main").toggle();
     $(".menu-leaderboard").toggle();
     $(".menu-search").toggle();
-    // $(".search-form").fadeToggle();
   });
 
   $(".links-register").click(function() {
@@ -26,6 +25,12 @@ $(document).ready(function() {
     $(".friends-prompt").hide();
     $(".profile-themes-hide").hide();
     $(".profile-friends-hide").hide();
+    $("#sprite-button").addClass("profile-button-click");
+    $("#theme-button").removeClass("profile-button-click");
+    $("#friend-button").removeClass("profile-button-click");
+    $("#sprite-button").removeClass("button-border");
+    $("#theme-button").addClass("button-border");
+    $("#friend-button").addClass("button-border");
   });
 
   $("#theme-button").click(function() {
@@ -35,7 +40,12 @@ $(document).ready(function() {
     $(".sprites-prompt").hide();
     $(".profile-sprites-hide").hide();
     $(".profile-friends-hide").hide();
-  });
+    $("#sprite-button").removeClass("profile-button-click");
+    $("#theme-button").addClass("profile-button-click");
+    $("#friend-button").removeClass("profile-button-click");
+    $("#sprite-button").addClass("button-border");
+    $("#theme-button").removeClass("button-border");
+    $("#friend-button").addClass("button-border");  });
 
   $("#friend-button").click(function() {
     $(".profile-friends-hide").show();
@@ -44,6 +54,12 @@ $(document).ready(function() {
     $(".sprites-prompt").hide();
     $(".profile-sprites-hide").hide();
     $(".profile-themes-hide").hide();
+    $("#sprite-button").removeClass("profile-button-click");
+    $("#theme-button").removeClass("profile-button-click");
+    $("#friend-button").addClass("profile-button-click");
+    $("#sprite-button").addClass("button-border");
+    $("#theme-button").addClass("button-border");
+    $("#friend-button").removeClass("button-border");
   });
 
   $(".high-score").click(function() {
@@ -109,5 +125,61 @@ $(document).ready(function() {
     $(".time-played-score").hide();
     $(".total-scores-score").hide();
     $(".last-play-score").show();
+  });
+
+  $(".sprite-one").click(function() {
+    $(".sprite-one").addClass("profile-quadrant-click")
+    $(".sprite-two").removeClass("profile-quadrant-click")
+    $(".sprite-three").removeClass("profile-quadrant-click")
+    $(".sprite-four").removeClass("profile-quadrant-click")
+  });
+
+  $(".sprite-two").click(function() {
+    $(".sprite-one").removeClass("profile-quadrant-click")
+    $(".sprite-two").addClass("profile-quadrant-click")
+    $(".sprite-three").removeClass("profile-quadrant-click")
+    $(".sprite-four").removeClass("profile-quadrant-click")
+  });
+
+  $(".sprite-three").click(function() {
+    $(".sprite-one").removeClass("profile-quadrant-click")
+    $(".sprite-two").removeClass("profile-quadrant-click")
+    $(".sprite-three").addClass("profile-quadrant-click")
+    $(".sprite-four").removeClass("profile-quadrant-click")
+  });
+
+  $(".sprite-four").click(function() {
+    $(".sprite-one").removeClass("profile-quadrant-click")
+    $(".sprite-two").removeClass("profile-quadrant-click")
+    $(".sprite-three").removeClass("profile-quadrant-click")
+    $(".sprite-four").addClass("profile-quadrant-click")
+  });
+
+  $(".theme-one").click(function() {
+    $(".theme-one").addClass("profile-quadrant-click")
+    $(".theme-two").removeClass("profile-quadrant-click")
+    $(".theme-three").removeClass("profile-quadrant-click")
+    $(".theme-four").removeClass("profile-quadrant-click")
+  });
+
+  $(".theme-two").click(function() {
+    $(".theme-one").removeClass("profile-quadrant-click")
+    $(".theme-two").addClass("profile-quadrant-click")
+    $(".theme-three").removeClass("profile-quadrant-click")
+    $(".theme-four").removeClass("profile-quadrant-click")
+  });
+
+  $(".theme-three").click(function() {
+    $(".theme-one").removeClass("profile-quadrant-click")
+    $(".theme-two").removeClass("profile-quadrant-click")
+    $(".theme-three").addClass("profile-quadrant-click")
+    $(".theme-four").removeClass("profile-quadrant-click")
+  });
+
+  $(".theme-four").click(function() {
+    $(".theme-one").removeClass("profile-quadrant-click")
+    $(".theme-two").removeClass("profile-quadrant-click")
+    $(".theme-three").removeClass("profile-quadrant-click")
+    $(".theme-four").addClass("profile-quadrant-click")
   });
 });
