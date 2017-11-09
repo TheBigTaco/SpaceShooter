@@ -1040,6 +1040,7 @@ h1:nth-child(10) {
 
 .unfollow-line-one {
   width: 60px;
+
   height: 2px;
   transform: rotate(90deg);
   transform-origin: left; }

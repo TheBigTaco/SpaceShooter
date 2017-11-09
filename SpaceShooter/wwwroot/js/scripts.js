@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $(".background-themes").hide();
 
   $(".background-title").click(function() {
@@ -30,6 +31,7 @@ $(document).ready(function() {
     $(".background-theme-one").removeClass("border-glow");
     $(".background-theme-two").removeClass("border-glow");
     $(".background-theme-three").addClass("border-glow");
+
   });
 
   $(".menu-circle").click(function() {
@@ -215,8 +217,6 @@ $(document).ready(function() {
     $(".theme-three").removeClass("profile-quadrant-click")
     $(".theme-four").addClass("profile-quadrant-click")
   });
-
-
 
   //THIS IS FOR C# SEARCH FUNCTION DO NOT TOUCH
   $(".search-form").submit(function(event){

@@ -1,6 +1,8 @@
+
 @using SpaceShooter.Models;
 @using SpaceShooter.ViewModels;
 @model FriendsModel
+
 
 @{
   Layout = "_Layout";
@@ -32,7 +34,9 @@
 
     <div class="friends-results-wrapper">
 
+
       @foreach(PlayerListEntry friend in Model.FriendsList){
+
         <a href="/profile/0">
           <div class="friends-result">
             <div class="friends-pic">
@@ -40,11 +44,13 @@
             </div>
             <div class="friends-name">
             <div class="friends-profile-name">
+
               <p>@friend.Name</p>
             </div>
             <div class="friends-profile-rank">
               <p>High Score</p>
               <p>@friend.Score</p>
+
             </div>
             </div>
           </div>
