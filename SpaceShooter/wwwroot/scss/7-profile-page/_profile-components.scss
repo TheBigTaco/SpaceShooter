@@ -8,15 +8,13 @@
 #profile-username {
   text-align: center;
   font-size: 35px;
-  text-shadow: 2px 2px 2px grey;
+  // text-shadow: 2px 2px 2px grey;
   width: 100%;
   overflow: hidden;
   text-overflow: clip;
 }
 
 #sprite-button, #theme-button, #friend-button {
-  // border-left: 2px solid grey;
-  // border-bottom: 2px solid grey;
   padding: 10px;
   font-size: 25px;
   width: 125px;
@@ -36,23 +34,3 @@
   border-left: 3px solid $black;
   border-bottom: 3px solid $black;
 }
-
-#profile-title {
-  height: 200px;
-  position: absolute;
-  top: 60px;
-  left: 15px;
-}
-
-.profile-title {
-  transform:rotate3d(-1,1,0,30deg);
-  transform-origin: center center;
-  transform-style: preserve-3d;
-    h1 {
-      font-size: 100px;
-      animation: glow 5s ease-in-out infinite;
-      position: absolute;
-      text-decoration: underline;
-      color: black;
-    }
-  }

@@ -13,16 +13,13 @@
   transform:rotate3d(-1,1,0,30deg);
   transform-origin: center center;
   transform-style: preserve-3d;
-  // animation-fill-mode: forwards;
   }
 
 h1 {
   font-size: 200px;
   animation: glow 5s ease-in-out infinite;
-  // text-transform: uppercase;
   position: absolute;
   text-decoration: underline;
-  // text-decoration: underline;
 }
 
 

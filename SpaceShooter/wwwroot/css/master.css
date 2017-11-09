@@ -2,7 +2,9 @@
 body {
   background: url("../../img/space-bg.jpg");
   background-size: cover;
-  font-family: 'Orbitron', sans-serif; }
+  font-family: 'Orbitron', sans-serif;
+  width: 100%;
+  height: 100%; }
 
 .x-background {
   background-image: url("../../img/background.jpg");
@@ -16,6 +18,10 @@ body {
 body {
   height: 100%;
   width: 100%; }
+
+.a-title {
+  text-decoration: none;
+  color: black; }
 
 .container {
   margin-left: auto;
@@ -446,7 +452,6 @@ h1:nth-child(10) {
 #profile-username {
   text-align: center;
   font-size: 35px;
-  text-shadow: 2px 2px 2px grey;
   width: 100%;
   overflow: hidden;
   text-overflow: clip; }
@@ -467,23 +472,6 @@ h1:nth-child(10) {
   background-image: linear-gradient(90deg, black, transparent);
   border-left: 3px solid #fff;
   border-bottom: 3px solid #fff; }
-
-#profile-title {
-  height: 200px;
-  position: absolute;
-  top: 60px;
-  left: 15px; }
-
-.profile-title {
-  transform: rotate3d(-1, 1, 0, 30deg);
-  transform-origin: center center;
-  transform-style: preserve-3d; }
-  .profile-title h1 {
-    font-size: 100px;
-    animation: glow 5s ease-in-out infinite;
-    position: absolute;
-    text-decoration: underline;
-    color: black; }
 
 .profile-sprites, .profile-themes, .profile-friends {
   display: flex;
@@ -610,7 +598,9 @@ h1:nth-child(10) {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  width: 70%; }
+  width: 90%; }
+  .search-results-wrapper a {
+    text-decoration: none; }
 
 .search-result {
   display: flex;
@@ -628,10 +618,12 @@ h1:nth-child(10) {
   width: 100px;
   height: 100px;
   padding: 10px;
-  margin-right: 10px; }
+  margin-right: 20px;
+  display: flex;
+  align-items: center; }
   .search-pic img {
-    width: 100%;
-    height: 100%; }
+    width: 90px;
+    height: 90px; }
 
 .search-name {
   display: flex;
@@ -640,15 +632,20 @@ h1:nth-child(10) {
   flex-grow: 1; }
 
 .search-profile-name {
-  margin-left: 40px; }
+  margin-left: 40px;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis; }
   .search-profile-name p {
     font-size: 40px;
     color: #fff; }
 
 .search-profile-rank {
-  width: 350px;
+  width: 20%;
   text-align: center;
-  margin-right: 20px; }
+  margin-right: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
   .search-profile-rank p:first-child {
     color: grey;
     font-size: 20px;
@@ -781,6 +778,8 @@ h1:nth-child(10) {
   flex-direction: column;
   align-items: center;
   margin-top: 100px; }
+  .leaderboard-wrapper a {
+    text-decoration: none; }
 
 .leaderboard-header {
   margin-top: 100px;
@@ -887,26 +886,30 @@ h1:nth-child(10) {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.5);
   transition: border-radius .5s, width .5s, height .5s;
   margin-bottom: 10px; }
   .add-friend-button p {
+    color: #fff;
+    font-size: 20px;
     transition: transform .5s; }
   .add-friend-button:hover {
+    cursor: pointer;
+    border: 2px solid #545353;
     border-radius: 100%;
     width: 75px;
     height: 75px; }
     .add-friend-button:hover .line-one {
-      transform: translateX(37.5px) translateY(12.5px) rotate(90deg);
+      transform: translateX(35.5px) translateY(10.5px) rotate(90deg);
       width: 50px; }
     .add-friend-button:hover .line-two {
-      transform: translateX(-142.5px) translateY(12.5px) rotate(90deg);
+      transform: translateX(-144.5px) translateY(10.5px) rotate(90deg);
       width: 50px; }
     .add-friend-button:hover .line-three {
-      transform: translateX(12.5px) translateY(-22.5px);
+      transform: translateX(10.5px) translateY(-24.5px);
       width: 50px; }
     .add-friend-button:hover .line-four {
-      transform: translateX(12.5px) translateY(37.5px);
+      transform: translateX(10.5px) translateY(35.5px);
       width: 50px; }
     .add-friend-button:hover p {
       transform: scale(0); }
@@ -916,7 +919,7 @@ h1:nth-child(10) {
   top: 0;
   left: 0;
   transition: transform .5s, width .5s;
-  background-color: white; }
+  background-color: #fff; }
 
 .line-one {
   width: 60px;
@@ -939,5 +942,84 @@ h1:nth-child(10) {
 .line-four {
   width: 180px;
   height: 2px; }
+
+.unfollow-friend-button {
+  height: 60px;
+  width: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: border-radius .5s, width .5s, height .5s;
+  margin-bottom: 10px; }
+  .unfollow-friend-button p {
+    color: #fff;
+    font-size: 20px;
+    transition: transform .5s; }
+  .unfollow-friend-button:hover {
+    cursor: pointer;
+    border: 2px solid #545353;
+    border-radius: 100%;
+    width: 75px;
+    height: 75px; }
+    .unfollow-friend-button:hover .unfollow-line-one {
+      display: none; }
+    .unfollow-friend-button:hover .unfollow-line-two {
+      display: none; }
+    .unfollow-friend-button:hover .unfollow-line-three {
+      transform: translateX(10.5px) translateY(-24.5px);
+      width: 50px; }
+    .unfollow-friend-button:hover .unfollow-line-four {
+      transform: translateX(10.5px) translateY(35.5px);
+      width: 50px; }
+    .unfollow-friend-button:hover p {
+      transform: scale(0); }
+
+.unfollow-line-one, .unfollow-line-two, .unfollow-line-three, .unfollow-line-four {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform .5s, width .5s;
+  background-color: #fff; }
+
+.unfollow-line-one {
+  width: 60px;
+  height: 2px;
+  transform: rotate(90deg);
+  transform-origin: left; }
+
+.unfollow-line-two {
+  left: 180px;
+  width: 60px;
+  height: 2px;
+  transform: rotate(90deg);
+  transform-origin: left; }
+
+.unfollow-line-three {
+  width: 180px;
+  height: 2px;
+  top: 60px; }
+
+.unfollow-line-four {
+  width: 180px;
+  height: 2px; }
+
+#profile-title {
+  height: 200px;
+  position: absolute;
+  top: 60px;
+  left: 15px; }
+
+.profile-title {
+  transform: rotate3d(-1, 1, 0, 30deg);
+  transform-origin: center center;
+  transform-style: preserve-3d; }
+  .profile-title h1 {
+    font-size: 100px;
+    animation: glow 5s ease-in-out infinite;
+    position: absolute;
+    text-decoration: underline;
+    color: black; }
 
 /*# sourceMappingURL=master.css.map */
