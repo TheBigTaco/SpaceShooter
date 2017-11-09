@@ -8,36 +8,53 @@
 <div class="profile-container">
   @Html.Partial("_menubar")
 
-  <div id="profile-title">
-      <div class="profile-title">
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
-        <h1>stjörnu</h1>
+  <a class="a-title" href="/">
+    <div id="profile-title">
+        <div class="profile-title">
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+          <h1>stjörnu</h1>
+        </div>
       </div>
-    </div>
+    </a>
 
   <div class="profile-top">
     <div class="profile-col-1">
       <div class="profile-pic">
-        <img src="../../img/profile-pic.png" alt="">
+        <img src="../../img/playerShip1_blue.png">
       </div>
       <p id="profile-username">@Model.LoginName</p>
       <div class="profile-links">
+
+      <div class="follow-toggle">
+
         <div class="add-friend-button">
           <div class="line-one"></div>
           <div class="line-two"></div>
-          <p>Add Friend</p>
+          <p>Follow</p>
           <div class="line-three"></div>
           <div class="line-four"></div>
         </div>
+
+        <div class="unfollow-friend-button">
+          <div class="unfollow-line-one"></div>
+          <div class="unfollow-line-two"></div>
+          <p>Unfollow</p>
+          <div class="unfollow-line-three"></div>
+          <div class="unfollow-line-four"></div>
+        </div>
+
+      </div>
+
+
         <p id="sprite-button" class="button-border">Ships</p>
         <p id="theme-button" class="button-border">Theme</p>
         <p id="friend-button" class="button-border">Friends</p>
@@ -62,36 +79,40 @@
         <div class="profile-sprites-hide">
           <div class="profile-sprites">
             <div class="sprite-one profile-quadrant" id="sprite-one">
-              <p>Ship Name</p>
-              <img src="../../img/profile-pic.png">
+              <p>Fighter</p>
+              <img src="../../img/playerShip1_blue.png">
             </div>
             <div class="sprite-two profile-quadrant" id="sprite-two">
-              <p>Ship Name</p>
-              <img src="../../img/profile-pic.png">
+              <p>Destroyer</p>
+              <img src="../../img/playerShip2_blue.png">
             </div>
             <div class="sprite-three profile-quadrant" id="sprite-three">
-              <p>Ship Name</p>
-              <img src="../../img/profile-pic.png">
+              <p>Bomber</p>
+              <img src="../../img/playerShip3_blue.png">
             </div>
             <div class="sprite-four profile-quadrant" id="sprite-four">
-              <p>Ship Name</p>
-              <img src="../../img/profile-pic.png">
+              <p>Interceptor</p>
+              <img src="../../img/enemyBlue2.png">
             </div>
           </div>
         </div>
         <div class="profile-themes-hide">
           <div class="profile-themes">
             <div class="theme-one profile-quadrant">
-              <p>Color</p>
+              <p>Blue</p>
+              <img src="../../img/playerShip1_blue.png">
             </div>
             <div class="theme-two profile-quadrant">
-              <p>Color</p>
+              <p>Red</p>
+              <img src="../../img/playerShip1_red.png">
             </div>
             <div class="theme-three profile-quadrant">
-              <p>Color</p>
+              <p>Green</p>
+              <img src="../../img/playerShip1_green.png">
             </div>
             <div class="theme-four profile-quadrant">
-              <p>Color</p>
+              <p>Orange</p>
+              <img src="../../img/playerShip1_orange.png">
             </div>
           </div>
         </div>
@@ -99,15 +120,19 @@
           <div class="profile-friends">
             <div class="friend-one profile-quadrant">
               <p>Friend</p>
+              <img src="../../img/playerShip1_blue.png">
             </div>
             <div class="friend-two profile-quadrant">
               <p>Friend</p>
+              <img src="../../img/playerShip1_blue.png">
             </div>
             <div class="friend-three profile-quadrant">
               <p>Friend</p>
+              <img src="../../img/playerShip1_blue.png">
             </div>
             <div class="friend-four profile-quadrant">
               <p>Friend</p>
+              <img src="../../img/playerShip1_blue.png">
             </div>
           </div>
         </div>
