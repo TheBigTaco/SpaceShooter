@@ -51,14 +51,14 @@ namespace SpaceShooter.Controllers
         public ActionResult Search()
         {
             var sessionId = Request.Cookies["sessionId"];
-            var model = new IndexModel(sessionId);
+            var model = new SearchModel(sessionId);
             return View(model);
         }
         [HttpGet("/leaderboard")]
         public ActionResult Leaderboard()
         {
             var sessionId = Request.Cookies["sessionId"];
-            var model = new IndexModel(sessionId);
+            var model = new LeaderboardModel(sessionId);
             return View(model);
         }
         [HttpPost("/register")]

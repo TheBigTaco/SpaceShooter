@@ -1,8 +1,9 @@
+@using SpaceShooter.ViewModels;
+@model SearchModel
+
 @{
   Layout = "_Layout";
 }
-
-
 
 <div class="search-container">
   @Html.Partial("_menubar")
@@ -31,20 +32,24 @@
 
     <div class="search-results-wrapper">
 
-      <div class="search-result">
-        <div class="search-pic">
-          <img src="../../img/profile-pic.png">
-        </div>
-        <div class="search-name">
+      @foreach(string key in Model.Results.Keys)
+      {
+        <div class="search-result">
+          <div class="search-pic">
+            <img src="../../img/profile-pic.png">
+          </div>
+          <div class="search-name">
           <div class="search-profile-name">
-            <p>Name</p>
+            <p>@key</p>
           </div>
           <div class="search-profile-rank">
             <p>High Score</p>
-            <p>10000000000</p>
+            <p>@Model.Results[key]</p>
+          </div>
           </div>
         </div>
-      </div>
+      }
+
     </div>
   </div>
 </div>

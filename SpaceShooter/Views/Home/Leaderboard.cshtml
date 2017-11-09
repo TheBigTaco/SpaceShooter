@@ -1,3 +1,7 @@
+@using SpaceShooter.Models;
+@using SpaceShooter.ViewModels;
+@model LeaderboardModel
+
 @{
   Layout = "_Layout";
 }
@@ -28,19 +32,23 @@
 
     <div class="leaderboard-results-wrapper">
 
-      <div class="leaderboard-result">
-        <div class="leaderboard-pic">
-          <img src="../../img/profile-pic.png">
-        </div>
-        <div class="leaderboard-name">
-          <div class="leaderboard-profile-name">
-            <p>Name</p>
+      @foreach (LeaderboardEntry entry in Model.Leaderboard)
+      {
+        <div class="leaderboard-result">
+          <div class="leaderboard-pic">
+            <img src="../../img/profile-pic.png">
           </div>
-          <div class="leaderboard-profile-rank">
-            <p>10000000000</p>
+          <div class="leaderboard-name">
+            <div class="leaderboard-profile-name">
+              <p>@entry.Name</p>
+            </div>
+            <div class="leaderboard-profile-rank">
+              <p>@entry.Score</p>
+            </div>
           </div>
         </div>
-      </div>
+      }
+
     </div>
   </div>
 </div>
