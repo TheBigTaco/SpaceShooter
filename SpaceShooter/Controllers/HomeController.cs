@@ -47,6 +47,23 @@ namespace SpaceShooter.Controllers
             var model = new ProfileModel(id, sessionId);
             return View(model);
         }
+        [HttpPost("/friend/{id}/add")]
+        public ActionResult AddFriend(int id)
+        {
+            var sessionId = Request.Cookies["sessionId"];
+            int loggedInPlayer = Session.FindById(sessionId).PlayerId;
+            FriendPair newFriendPair = new FriendPair(loggedInPlayer, id);
+            newFriendPair.Save();
+            return new EmptyResult();
+        }
+        [HttpPost("/friend/{id}/unfollow")]
+        public ActionResult UnfollowFriend(int id)
+        {
+            var sessionId = Request.Cookies["sessionId"];
+            int loggedInPlayer = Session.FindById(sessionId).PlayerId;
+            FriendPair.Unfollow(loggedInPlayer, id);
+            return new EmptyResult();
+        }
         [HttpGet("/search")]
         public ActionResult Search()
         {
