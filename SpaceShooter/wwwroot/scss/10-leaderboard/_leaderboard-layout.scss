@@ -31,7 +31,7 @@
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
 }
 
 .leaderboard-result {
@@ -61,12 +61,16 @@
 .leaderboard-name {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-grow: 1;
 }
 
 .leaderboard-profile-name {
   margin-left: 40px;
+  float: right;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   p {
     font-size: 25px;
     color: $black;
@@ -77,6 +81,8 @@
   width: 350px;
   text-align: center;
   margin-right: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   p:last-child {
     color: $black;
     font-size: 20px;
