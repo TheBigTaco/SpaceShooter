@@ -14,12 +14,12 @@ class Enemy extends GameObject {
   }
 }
 
-Game.sprites["enemy-basic-enemy"] = new GameObjectSprite("img/player/player.png", 32, 32);
+Game.sprites["enemy-basic-enemy"] = new GameObjectSprite("img/Enemies/enemy-basic.png", 84, 104, .4);
 class BasicEnemy extends Enemy {
   constructor() {
     super();
     this.sprite = Game.sprites["enemy-basic-enemy"];
-    this.collisionBox = new Rect(4, 8, 24, 16);
+    this.collisionBox = new Rect(7, 0, this.sprite.width - 13, this.sprite.height);
     this.velocity = new Vector(-200, 0);
     this.scoreValue = 100;
   }
