@@ -34,19 +34,21 @@
 
       @foreach (PlayerListEntry entry in Model.Leaderboard)
       {
-        <div class="leaderboard-result">
-          <div class="leaderboard-pic">
-            <img src="../../img/profile-pic.png">
-          </div>
-          <div class="leaderboard-name">
-            <div class="leaderboard-profile-name">
-              <p>@entry.Name</p>
+        <a href="/profile/@entry.PlayerId">
+          <div class="leaderboard-result">
+            <div class="leaderboard-pic">
+              <img src="../../img/profile-pic.png">
             </div>
-            <div class="leaderboard-profile-rank">
-              <p>@entry.Score</p>
+            <div class="leaderboard-name">
+              <div class="leaderboard-profile-name">
+                <p>@entry.Name</p>
+              </div>
+              <div class="leaderboard-profile-rank">
+                <p>@entry.Score</p>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       }
 
     </div>
