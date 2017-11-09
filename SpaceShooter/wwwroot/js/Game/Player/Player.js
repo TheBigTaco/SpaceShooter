@@ -9,6 +9,10 @@ class Player extends GameObject {
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
     this.collidesWith = ["bounds"];
     this.score = 0;
+    this.difficulty = 0;
+    this.maxDifficulty = 20;
+    this.lastDifficultyIncreaseTime = new Date().getTime();
+    this.difficultyScaleTime = 1500;
     this.numEnemiesDestroyed = 0;
     this.lives = 3;
     this.isInvincible = false;
@@ -20,6 +24,13 @@ class Player extends GameObject {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
     this.getDebugInput();
+    var currentTime = new Date().getTime();
+    if (currentTime - this.lastDifficultyIncreaseTime > this.difficultyScaleTime) {
+      if (this.difficulty < this.maxDifficulty) {
+        this.difficulty++;
+        this.lastDifficultyIncreaseTime = currentTime;
+      }
+    }
   }
   onCollision(collisionResult) {
     if (!this.isInvincible && collisionResult.collideTarget.type === "enemy") {
@@ -82,10 +93,11 @@ class Player extends GameObject {
       Game.keyDown["drawDebug"] = false;
     }
   }
+  // dont base position on player sprite
   fire() {
     var currentTime = new Date().getTime();
     if (currentTime - this.lastFireTime > this.fireInterval) {
-      var offset = new Vector(this.sprite.width, this.sprite.height / 2);
+      var offset = new Vector(this.collisionBox.width, this.collisionBox.height / 2);
       var spawnPosition = Vector.add(this.position, offset);
       Game.spawnObject(new PlayerBullet(spawnPosition));
       this.lastFireTime = currentTime;
@@ -100,7 +112,7 @@ class PlayerBullet extends GameObject {
     this.type = "player-projectile";
     this.sprite = Game.sprites["player-bullet-1"];
     this.collisionBox = new Rect(0, 0, this.sprite.width, this.sprite.height);
-    var offset = new Vector(0, -this.sprite.height/2);
+    var offset = new Vector(0, -this.sprite.height/2 + 1);
     this.position = Vector.add(position, offset);
     this.velocity = new Vector(1000, 0);
   }

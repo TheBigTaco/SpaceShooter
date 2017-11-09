@@ -20,10 +20,14 @@ class BasicEnemy extends Enemy {
     super();
     this.sprite = Game.sprites["enemy-basic-enemy"];
     this.collisionBox = new Rect(7, 0, this.sprite.width - 13, this.sprite.height);
-    this.velocity = new Vector(-200, 0);
+    this.minSpeed = 400;
+    this.maxSpeed = 600;
+    this.velocity = new Vector(0, 0);
     this.scoreValue = 100;
   }
   update() {
+    var speed = this.minSpeed + (this.maxSpeed - this.minSpeed) * (Game.player.difficulty / Game.player.maxDifficulty);
+    this.velocity = new Vector(-speed, 0);
     if (this.position.x < -this.sprite.width) {
       this.despawn();
     }
