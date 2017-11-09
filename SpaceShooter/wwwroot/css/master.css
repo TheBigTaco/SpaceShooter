@@ -42,6 +42,25 @@ body {
   flex-direction: column;
   align-items: center; }
 
+.how-to {
+  font-size: 20px;
+  color: #fff;
+  position: absolute;
+  top: 900px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid white;
+  border-radius: 5px; }
+  .how-to p {
+    padding: 15px; }
+
+.warning {
+  width: 400px;
+  font-size: 14px;
+  color: #fff;
+  position: absolute;
+  top: 840px;
+  left: 425px; }
+
 .box {
   border: 1px solid black; }
 
@@ -1040,7 +1059,6 @@ h1:nth-child(10) {
 
 .unfollow-line-one {
   width: 60px;
-
   height: 2px;
   transform: rotate(90deg);
   transform-origin: left; }
@@ -1213,6 +1231,5 @@ h1:nth-child(9) {
 
 h1:nth-child(10) {
   transform: translateZ(45px); }
-
 
 /*# sourceMappingURL=master.css.map */
