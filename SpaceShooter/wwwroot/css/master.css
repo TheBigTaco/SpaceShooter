@@ -445,7 +445,10 @@ h1:nth-child(10) {
 
 #profile-username {
   font-size: 35px;
-  text-shadow: 2px 2px 2px grey; }
+  text-shadow: 2px 2px 2px grey;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: clip; }
 
 #sprite-button, #theme-button, #friend-button {
   padding: 10px;
@@ -869,5 +872,68 @@ h1:nth-child(10) {
     animation: glow 5s ease-in-out infinite;
     position: absolute;
     text-decoration: underline; }
+
+.add-friend-button {
+  height: 60px;
+  width: 180px;
+  position: relative;
+  transition: all 1s ease-in-out; }
+  .add-friend-button:hover .line-one {
+    left: 90px; }
+  .add-friend-button:hover .line-two {
+    animation: two-left 1s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .add-friend-button:hover .line-three {
+    animation: three-up 1s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+  .add-friend-button:hover .line-four {
+    animation: four-down 1s ease-in-out 0s 1;
+    animation-fill-mode: forwards; }
+
+.line-one, .line-two, .line-three, .line-four {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.line-one {
+  background-color: coral;
+  width: 60px;
+  height: 2px;
+  transform: rotate(90deg);
+  transform-origin: left; }
+
+.line-two {
+  left: 180px;
+  background-color: white;
+  width: 60px;
+  height: 2px;
+  transform: rotate(90deg);
+  transform-origin: left; }
+
+.line-three {
+  width: 180px;
+  height: 2px;
+  background-color: green;
+  top: 60px; }
+
+.line-four {
+  width: 180px;
+  height: 2px;
+  background-color: red; }
+
+@keyframes one-right {
+  100% {
+    left: 90px; } }
+@keyframes two-left {
+  100% {
+    left: 90px; } }
+@keyframes three-up {
+  100% {
+    top: 30px;
+    transform: scaleX(0.33); } }
+@keyframes four-down {
+  100% {
+    transform: scaleX(0.33);
+    top: 30px; } }
 
 /*# sourceMappingURL=master.css.map */
