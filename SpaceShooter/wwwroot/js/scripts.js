@@ -216,13 +216,7 @@ $(document).ready(function() {
     $(".theme-four").addClass("profile-quadrant-click")
   });
 
-  $(".unfollow-friend-button").hide();
 
-  $(".follow-toggle").click(function() {
-    $(".unfollow-friend-button").toggle();
-    $(".add-friend-button").toggle();
-
-  });
 
   //THIS IS FOR C# SEARCH FUNCTION DO NOT TOUCH
   $(".search-form").submit(function(event){
