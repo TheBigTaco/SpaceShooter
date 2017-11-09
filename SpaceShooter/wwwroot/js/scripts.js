@@ -1,6 +1,37 @@
 $(document).ready(function() {
-  $(".change-background").click(function() {
-    $("body").toggleClass("x-background");
+
+  $(".background-themes").hide();
+
+  $(".background-title").click(function() {
+    $(".background-themes").fadeToggle();
+  });
+
+  $(".background-theme-one").click(function() {
+    $("body").addClass("background-theme-one-toggle");
+    $("body").removeClass("background-theme-two-toggle");
+    $("body").removeClass("background-theme-three-toggle");
+    $(".background-theme-one").addClass("border-glow");
+    $(".background-theme-two").removeClass("border-glow");
+    $(".background-theme-three").removeClass("border-glow");
+  });
+
+  $(".background-theme-two").click(function() {
+    $("body").removeClass("background-theme-one-toggle");
+    $("body").addClass("background-theme-two-toggle");
+    $("body").removeClass("background-theme-three-toggle");
+    $(".background-theme-one").removeClass("border-glow");
+    $(".background-theme-two").addClass("border-glow");
+    $(".background-theme-three").removeClass("border-glow");
+  });
+
+  $(".background-theme-three").click(function() {
+    $("body").removeClass("background-theme-one-toggle");
+    $("body").removeClass("background-theme-two-toggle");
+    $("body").addClass("background-theme-three-toggle");
+    $(".background-theme-one").removeClass("border-glow");
+    $(".background-theme-two").removeClass("border-glow");
+    $(".background-theme-three").addClass("border-glow");
+
   });
 
   $(".menu-circle").click(function() {
@@ -186,8 +217,6 @@ $(document).ready(function() {
     $(".theme-three").removeClass("profile-quadrant-click")
     $(".theme-four").addClass("profile-quadrant-click")
   });
-
-
 
   //THIS IS FOR C# SEARCH FUNCTION DO NOT TOUCH
   $(".search-form").submit(function(event){
