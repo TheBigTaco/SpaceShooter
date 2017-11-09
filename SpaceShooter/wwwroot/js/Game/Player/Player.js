@@ -4,30 +4,33 @@ class Player extends GameObject {
     super();
     this.type = "player";
     this.sprite = Game.sprites["player"];
-    this.spawnPosition = new Vector(50, 50);
+    this.spawnPosition = new Vector(50, 200);
     this.respawnInvincibilityTime = 1000;
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
     this.collidesWith = ["bounds"];
     this.score = 0;
+    this.difficulty = 0;
+    this.maxDifficulty = 20;
+    this.lastDifficultyIncreaseTime = new Date().getTime();
+    this.difficultyScaleTime = 1500;
     this.numEnemiesDestroyed = 0;
     this.lives = 3;
     this.isInvincible = false;
     this.lastFireTime = 0;
     this.fireInterval = 150;
-    this.keyDown = {
-      left: false,
-      right: false,
-      up: false,
-      down: false,
-      fire: false,
-      drawDebug: false,
-    }
     this.maxVelocity = 350;
   }
   update() {
     this.velocity = Vector.scale(this.maxVelocity,  this.getMovementInput());
     this.getActionInput();
     this.getDebugInput();
+    var currentTime = new Date().getTime();
+    if (currentTime - this.lastDifficultyIncreaseTime > this.difficultyScaleTime) {
+      if (this.difficulty < this.maxDifficulty) {
+        this.difficulty++;
+        this.lastDifficultyIncreaseTime = currentTime;
+      }
+    }
   }
   onCollision(collisionResult) {
     if (!this.isInvincible && collisionResult.collideTarget.type === "enemy") {
@@ -46,27 +49,27 @@ class Player extends GameObject {
     }
   }
   deathRespawn() {
+    Animation.flash(this, 10, this.respawnInvincibilityTime);
     this.isInvincible = true;
-    this.position = this.spawnPosition;
     setTimeout(function() {
       this.isInvincible = false;
     }.bind(this), this.respawnInvincibilityTime);
   }
   getMovementInput() {
     var output = new Vector(0, 0);
-    if (this.keyDown.left === true) {
+    if (Game.keyDown.left === true) {
       output.x = -1;
     }
-    else if (this.keyDown.right === true) {
+    else if (Game.keyDown.right === true) {
       output.x = 1;
     }
     else {
       output.x = 0;
     }
-    if (this.keyDown.up === true) {
+    if (Game.keyDown.up === true) {
       output.y = -1;
     }
-    else if (this.keyDown.down === true) {
+    else if (Game.keyDown.down === true) {
       output.y = 1;
     }
     else {
@@ -80,20 +83,21 @@ class Player extends GameObject {
     return output;
   }
   getActionInput() {
-    if (this.keyDown.fire === true) {
+    if (Game.keyDown.fire === true) {
       this.fire();
     }
   }
   getDebugInput() {
-    if (this.keyDown.drawDebug === true) {
+    if (Game.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
-      this.keyDown["drawDebug"] = false;
+      Game.keyDown["drawDebug"] = false;
     }
   }
+  // dont base position on player sprite
   fire() {
     var currentTime = new Date().getTime();
     if (currentTime - this.lastFireTime > this.fireInterval) {
-      var offset = new Vector(this.sprite.width, this.sprite.height / 2);
+      var offset = new Vector(this.collisionBox.width, this.collisionBox.height / 2);
       var spawnPosition = Vector.add(this.position, offset);
       Game.spawnObject(new PlayerBullet(spawnPosition));
       this.lastFireTime = currentTime;
@@ -108,7 +112,7 @@ class PlayerBullet extends GameObject {
     this.type = "player-projectile";
     this.sprite = Game.sprites["player-bullet-1"];
     this.collisionBox = new Rect(0, 0, this.sprite.width, this.sprite.height);
-    var offset = new Vector(0, -this.sprite.height/2);
+    var offset = new Vector(0, -this.sprite.height/2 + 1);
     this.position = Vector.add(position, offset);
     this.velocity = new Vector(1000, 0);
   }

@@ -6,30 +6,36 @@ var Game = {
   lastTextObjectId: 0,
   sprites: {},
   objectsToBeDisposed: [],
+  currentScene: null,
   isRunning: false,
   startTime: null,
   tickNumber: 0,
   viewport: null,
   drawDebugInfo: false,
 };
-Game.start = function(canvas) {
-  Game.isRunning = true;
-  Game.startTime = new Date().getTime();
+Game.initialize = function(canvas) {
   Game.viewport = new Viewport(canvas);
   Game.main();
+}
+Game.start = function() {
+  Game.isRunning = true;
+  Game.startTime = new Date().getTime();
 }
 Game.main = function() {
   var currentTickTime = new Date().getTime();
   var prevTickTime = currentTickTime;
   setInterval(function() {
     currentTickTime = new Date().getTime();
-    Game.updateGameObjects(currentTickTime - prevTickTime);
+    Game.update(currentTickTime - prevTickTime);
     Game.checkCollisions();
     Game.deleteDisposedObjects();
     prevTickTime = currentTickTime;
   }, 10);
 }
-Game.updateGameObjects = function(dT) {
+Game.update = function(dT) {
+  if (Game.currentScene != null) {
+    Game.currentScene.update();
+  }
   if (Game.isRunning === true) {
     if (Object.keys(Game.gameObjects).length > 0) {
       Object.keys(Game.gameObjects).forEach(function(key) {
@@ -78,6 +84,15 @@ Game.deleteDisposedObjects = function() {
     Game.gameObjects;
   });
 Game.objectsToBeDisposed = [];
+}
+
+class Scene {
+  constructor(name) {
+    this.name = name;
+  }
+  update() {
+
+  }
 }
 
 class Viewport {
@@ -195,6 +210,20 @@ class GameObjectSprite {
     this.height = height * this.scale;
     this.img = new Image();
     this.img.src = imgSrc;
+  }
+}
+
+var Animation = {};
+Animation.flash = function(gameObject, rate, time) {
+  var numberOfFlashes = time / rate / 2;
+  var sprite = gameObject.sprite;
+  for (var i = 0; i < 2 * numberOfFlashes; i += 2) {
+    setTimeout(function() {
+      gameObject.sprite = null;
+    }, i * rate);
+    setTimeout(function() {
+      gameObject.sprite = sprite;
+    }, (i + 1) * rate);
   }
 }
 
