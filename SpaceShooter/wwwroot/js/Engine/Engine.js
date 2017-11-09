@@ -211,6 +211,20 @@ class GameObjectSprite {
   }
 }
 
+var Animation = {};
+Animation.flash = function(gameObject, rate, time) {
+  var numberOfFlashes = time / rate / 2;
+  var sprite = gameObject.sprite;
+  for (var i = 0; i < 2 * numberOfFlashes; i += 2) {
+    setTimeout(function() {
+      gameObject.sprite = null;
+    }, i * rate);
+    setTimeout(function() {
+      gameObject.sprite = sprite;
+    }, (i + 1) * rate);
+  }
+}
+
 class Vector {
   constructor(x, y) {
     this.x = x;

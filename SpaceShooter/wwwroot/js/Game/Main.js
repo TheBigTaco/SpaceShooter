@@ -110,7 +110,6 @@ $(document).ready(function() {
   var canvas = document.getElementById("game-window");
   Game.start(canvas);
   Game.initObjects();
-  Game.drawDebugInfo = true;
 
   document.onkeydown = function(event) {
     var key = event.key;

@@ -38,8 +38,8 @@ class Player extends GameObject {
     }
   }
   deathRespawn() {
+    Animation.flash(this, 10, this.respawnInvincibilityTime);
     this.isInvincible = true;
-    this.position = this.spawnPosition;
     setTimeout(function() {
       this.isInvincible = false;
     }.bind(this), this.respawnInvincibilityTime);
