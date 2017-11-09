@@ -8,7 +8,7 @@ Game.keyDown = {
   drawDebug: false,
 }
 Game.initObjects = function() {
-  Game.currentScene = new GamePlayingScene();
+  Game.currentScene = new StartScreenScene();
 
   Game.player = new Player();
   Game.player.position = Game.player.spawnPosition;
@@ -20,54 +20,8 @@ Game.initObjects = function() {
 }
 Game.gameOver = function() {
   Game.isRunning = false;
-  Game.showGameOverScreen();
   Game.submitStats();
   Game.currentScene = new GameOverScene();
-}
-Game.showGameOverScreen = function() {
-  Game.spawnText(new TextObject(
-    "GAME OVER",
-    new Vector(Game.viewport.width / 2, 50),
-    {
-      font: "72px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-
-  Game.spawnText(new TextObject(
-    "Score: " + Game.player.score,
-    new Vector(Game.viewport.width / 2, 150),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-  Game.spawnText(new TextObject(
-    "Enemies Destroyed: " + Game.player.numEnemiesDestroyed,
-    new Vector(Game.viewport.width / 2, 200),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-    // TODO: Do time conversion
-  var playTime = Math.floor((new Date().getTime() - Game.startTime) / 1000);
-  Game.spawnText(new TextObject(
-    "Play Time: " + playTime + "s",
-    new Vector(Game.viewport.width / 2, 250),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-  Game.spawnText(new TextObject(
-    "Press 'r' to restart",
-    new Vector(Game.viewport.width / 2, 300),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
 }
 Game.submitStats = function() {
   // TODO: error handling
@@ -108,7 +62,7 @@ Game.addScreenBounds = function() {
 
 $(document).ready(function() {
   var canvas = document.getElementById("game-window");
-  Game.start(canvas);
+  Game.initialize(canvas);
   Game.initObjects();
 
   document.onkeydown = function(event) {

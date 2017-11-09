@@ -13,11 +13,13 @@ var Game = {
   viewport: null,
   drawDebugInfo: false,
 };
-Game.start = function(canvas) {
-  Game.isRunning = true;
-  Game.startTime = new Date().getTime();
+Game.initialize = function(canvas) {
   Game.viewport = new Viewport(canvas);
   Game.main();
+}
+Game.start = function() {
+  Game.isRunning = true;
+  Game.startTime = new Date().getTime();
 }
 Game.main = function() {
   var currentTickTime = new Date().getTime();
