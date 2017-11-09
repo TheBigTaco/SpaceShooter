@@ -11,16 +11,20 @@ namespace SpaceShooter.ViewModels
         public string TotalPlayTime {get;}
         public long TotalScore {get;}
         public GameStats MostRecentStats {get;}
-        public string LoginName {get;}
+        public Player Player {get;}
+        public List<Friend> Friends {get;}
+        public bool? Follow {get;}
 
-        public ProfileModel(int id, string sessionId) : base(sessionId)
+        public ProfileModel(int profileId, string sessionId) : base(sessionId)
         {
-            Highscore = GameStats.GetPlayerHighScore(id);
-            TotalEnemiesDestroyed = GameStats.GetPlayerTotalEnemiesDestroyed(id);
-            TotalPlayTime = new TimeSpan(GameStats.GetPlayerTotalTimePlayed(id)*10000).ToString(@"hh\:mm\:ss");
-            TotalScore = GameStats.GetPlayerTotalScore(id);
-            MostRecentStats = GameStats.GetPlayerMostRecentStats(id);
-            LoginName = Player.FindById(id).Username;
+            Highscore = GameStats.GetPlayerHighScore(profileId);
+            TotalEnemiesDestroyed = GameStats.GetPlayerTotalEnemiesDestroyed(profileId);
+            TotalPlayTime = new TimeSpan(GameStats.GetPlayerTotalTimePlayed(profileId)*10000).ToString(@"hh\:mm\:ss");
+            TotalScore = GameStats.GetPlayerTotalScore(profileId);
+            MostRecentStats = GameStats.GetPlayerMostRecentStats(profileId);
+            Player = Player.FindById(profileId);
+            Friends = Friend.GetAllFriendsForPlayer(profileId);
+            Follow = FriendPair.CheckForFriend(base.CurrentSession.PlayerId, profileId);
         }
     }
 }

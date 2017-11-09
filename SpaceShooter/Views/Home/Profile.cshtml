@@ -31,30 +31,52 @@
       <div class="profile-pic">
         <img src="../../img/playerShip1_blue.png">
       </div>
-      <p id="profile-username">@Model.LoginName</p>
+      <p id="profile-username">@Model.Player.Username</p>
       <div class="profile-links">
+      @if(Model.Follow != null)
+      {
+        <div class="follow-toggle">
 
-      <div class="follow-toggle">
+            <div class="add-friend-button">
+              <div class="line-one"></div>
+                <div class="line-two"></div>
+                  <p>Follow</p>
+                <div class="line-three"></div>
+              <div class="line-four"></div>
+            </div>
+            <div class="unfollow-friend-button">
+              <div class="unfollow-line-one"></div>
+                <div class="unfollow-line-two"></div>
+                  <p>Unfollow</p>
+                <div class="unfollow-line-three"></div>
+              <div class="unfollow-line-four"></div>
+            </div>
 
-        <div class="add-friend-button">
-          <div class="line-one"></div>
-          <div class="line-two"></div>
-          <p>Follow</p>
-          <div class="line-three"></div>
-          <div class="line-four"></div>
         </div>
-
-        <div class="unfollow-friend-button">
-          <div class="unfollow-line-one"></div>
-          <div class="unfollow-line-two"></div>
-          <p>Unfollow</p>
-          <div class="unfollow-line-three"></div>
-          <div class="unfollow-line-four"></div>
-        </div>
-
-      </div>
-
-
+      }
+      <script>
+        $(document).ready(function(){
+          console.log("@Model.Follow");
+          @if(Model.Follow == false)
+          {
+            @:$(".unfollow-friend-button").hide();
+          }
+          @if(Model.Follow == true)
+          {
+            @:$(".add-friend-button").hide();
+          }
+          $(".add-friend-button").click(function() {
+            $(".unfollow-friend-button").toggle();
+            $(".add-friend-button").toggle();
+            $.post("/friend/@Model.Player.Id/add");
+          });
+          $(".unfollow-friend-button").click(function() {
+            $(".unfollow-friend-button").toggle();
+            $(".add-friend-button").toggle();
+            $.post("/friend/@Model.Player.Id/unfollow");
+          });
+        });
+      </script>
         <p id="sprite-button" class="button-border">Ships</p>
         <p id="theme-button" class="button-border">Theme</p>
         <p id="friend-button" class="button-border">Friends</p>
@@ -119,20 +141,32 @@
         <div class="profile-friends-hide">
           <div class="profile-friends">
             <div class="friend-one profile-quadrant">
-              <p>Friend</p>
-              <img src="../../img/playerShip1_blue.png">
+              @if(Model.Friends.Count > 0)
+              {
+                <p>@Model.Friends[0].Name</p>
+                <img src="../../img/playerShip1_blue.png">
+              }
             </div>
             <div class="friend-two profile-quadrant">
-              <p>Friend</p>
+            @if(Model.Friends.Count > 1)
+            {
+              <p>@Model.Friends[1].Name</p>
               <img src="../../img/playerShip1_blue.png">
+            }
             </div>
             <div class="friend-three profile-quadrant">
-              <p>Friend</p>
+            @if(Model.Friends.Count > 2)
+            {
+              <p>@Model.Friends[2].Name</p>
               <img src="../../img/playerShip1_blue.png">
+            }
             </div>
             <div class="friend-four profile-quadrant">
-              <p>Friend</p>
+            @if(Model.Friends.Count > 3)
+            {
+              <p>@Model.Friends[3].Name</p>
               <img src="../../img/playerShip1_blue.png">
+            }
             </div>
           </div>
         </div>
@@ -165,7 +199,7 @@
         <p class="time-played-score">@Model.TotalPlayTime</p>
         <p class="total-scores-score">@Model.TotalScore</p>
         <p class="last-play-score">@Model.MostRecentStats.Score</p>
-        @if (@Model.MostRecentStats.Score == 0)
+        @if(Model.MostRecentStats.DatePlayed.ToString() == "1/1/01 12:00:00 AM")
         {
           <p class="last-play-score">--/--/-- --:--:--</p>
         }
