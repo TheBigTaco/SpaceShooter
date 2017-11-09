@@ -52,18 +52,28 @@ namespace SpaceShooter.Models
         public static Dictionary<string, long> GetSearchResults(string search)
         {
             var output = new Dictionary<string, long> {};
-            var cmd = DB.BeginCommand("SELECT players.login_name, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
-            while (rdr.Read())
+            Console.WriteLine("Got to here" + search);
+            if(search != null)
             {
-                string name = rdr.GetString(0);
-                long score = rdr.GetInt64(1);
-                if (!output.ContainsKey(name))
+                Console.WriteLine("Got inside"+search);
+                Regex regex = new Regex($@"{search}", RegexOptions.IgnoreCase);
+                var cmd = DB.BeginCommand("SELECT players.login_name, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
+                var rdr = cmd.ExecuteReader() as MySqlDataReader;
+                while (rdr.Read())
                 {
-                    output.Add(name, score);
+                    string name = rdr.GetString(0);
+                    long score = rdr.GetInt64(1);
+                    if (!output.ContainsKey(name))
+                    {
+                        Match match = regex.Match(name);
+                        if(match.Success)
+                        {
+                            output.Add(name, score);
+                        }
+                    }
                 }
+                DB.EndCommand();
             }
-            DB.EndCommand();
             return output;
         }
     }

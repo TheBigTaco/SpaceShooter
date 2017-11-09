@@ -7,9 +7,9 @@ namespace SpaceShooter.ViewModels
     public class SearchModel : HomeModel
     {
         public Dictionary<string, long> Results {get; private set;}
-        public SearchModel(string sessionId) : base(sessionId)
+        public SearchModel(string searchTerm, string sessionId) : base(sessionId)
         {
-            Results = PlayerListEntry.GetSearchResults("");
+            Results = PlayerListEntry.GetSearchResults(searchTerm);
         }
     }
 }

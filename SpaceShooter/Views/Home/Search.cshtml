@@ -25,11 +25,23 @@
         </div>
       </div>
 
-    <form class="search-form" action="index.html" method="post">
+    <form class="search-form" action="/search" method="post">
       <input type="text" name="search-input" id="search-input" placeholder="Search">
-      <button type="button" name="search-input">Go</button>
+      <button type="submit" id="search-button" name="search-input">Go</button>
     </form>
-
+    <p id="test-output"></p>
+    <script>
+      $(document).ready(function(){
+        $("#search-form").submit(function(event){
+          event.preventDefault();
+          console.log("It did the thing");
+          var input = $("search-input").val();
+          $.post("/search", function(data){
+            console.log(data);
+          });
+        });
+      });
+    </script>
     <div class="search-results-wrapper">
 
       @foreach(string key in Model.Results.Keys)

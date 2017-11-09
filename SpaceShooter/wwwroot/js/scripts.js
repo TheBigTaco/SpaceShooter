@@ -186,4 +186,11 @@ $(document).ready(function() {
     $(".theme-three").removeClass("profile-quadrant-click")
     $(".theme-four").addClass("profile-quadrant-click")
   });
+
+  //THIS IS FOR C# SEARCH FUNCTION DO NOT TOUCH
+  $("#search-button").submit(function(event){
+    event.preventDefault();
+    console.log("stuff happened");
+    
+  });
 });
