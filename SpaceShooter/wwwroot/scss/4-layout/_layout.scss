@@ -24,3 +24,26 @@
   flex-direction: column;
   align-items: center;
 }
+
+
+.how-to {
+  font-size: 20px;
+  color: $black;
+  position: absolute;
+  top: 900px;
+  background-color: rgba(0,0,0,0.5);
+  border: 2px solid white;
+  border-radius: 5px;
+  p {
+    padding: 15px;
+  }
+}
+
+.warning {
+  width: 400px;
+  font-size: 14px;
+  color: $black;
+  position: absolute;
+  top: 840px;
+  left: 425px;
+}
