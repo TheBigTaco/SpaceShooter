@@ -66,7 +66,6 @@ namespace SpaceShooter.Models
         }
         public static bool? CheckForFriend(int player1Id, int player2Id)
         {
-            Console.WriteLine(player1Id + " " + player2Id);
             if(player1Id != player2Id)
             {
                 var cmd = DB.BeginCommand("SELECT COUNT(*) FROM friends WHERE player_1_id = @Player1Id AND player_2_id = @Player2Id;");

@@ -12,7 +12,7 @@ namespace SpaceShooter.ViewModels
         public long TotalScore {get;}
         public GameStats MostRecentStats {get;}
         public Player Player {get;}
-        public List<Friend> Friends {get;}
+        public List<PlayerListEntry> Friends {get;}
         public bool? Follow {get;}
 
         public ProfileModel(int profileId, string sessionId) : base(sessionId)
@@ -23,7 +23,7 @@ namespace SpaceShooter.ViewModels
             TotalScore = GameStats.GetPlayerTotalScore(profileId);
             MostRecentStats = GameStats.GetPlayerMostRecentStats(profileId);
             Player = Player.FindById(profileId);
-            Friends = Friend.GetAllFriendsForPlayer(profileId);
+            Friends = Friend.GetFriendList(profileId);
             Follow = FriendPair.CheckForFriend(base.CurrentSession.PlayerId, profileId);
         }
     }
