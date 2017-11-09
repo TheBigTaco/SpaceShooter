@@ -1,4 +1,15 @@
+Game.keyDown = {
+  left: false,
+  right: false,
+  up: false,
+  down: false,
+  fire: false,
+  restart: false,
+  drawDebug: false,
+}
 Game.initObjects = function() {
+  Game.currentScene = new StartScreenScene();
+
   Game.player = new Player();
   Game.player.position = Game.player.spawnPosition;
   Game.spawnObject(Game.player);
@@ -7,57 +18,10 @@ Game.initObjects = function() {
 
   Game.addScreenBounds();
 }
-
 Game.gameOver = function() {
-
   Game.isRunning = false;
-  Game.showGameOverScreen();
   Game.submitStats();
-}
-Game.showGameOverScreen = function() {
-  Game.spawnText(new TextObject(
-    "GAME OVER",
-    new Vector(Game.viewport.width / 2, 50),
-    {
-      font: "72px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-
-  Game.spawnText(new TextObject(
-    "Score: " + Game.player.score,
-    new Vector(Game.viewport.width / 2, 150),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-  Game.spawnText(new TextObject(
-    "Enemies Destroyed: " + Game.player.numEnemiesDestroyed,
-    new Vector(Game.viewport.width / 2, 200),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-    // TODO: Do time conversion
-  var playTime = Math.floor((new Date().getTime() - Game.startTime) / 1000);
-  Game.spawnText(new TextObject(
-    "Play Time: " + playTime + "s",
-    new Vector(Game.viewport.width / 2, 250),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
-  Game.spawnText(new TextObject(
-    "Press 'r' to restart",
-    new Vector(Game.viewport.width / 2, 300),
-    {
-      font: "35px sans-serif",
-      fillStyle: "rgb(255,255,255)",
-      alignment: "center",
-    }));
+  Game.currentScene = new GameOverScene();
 }
 Game.submitStats = function() {
   // TODO: error handling
@@ -98,57 +62,62 @@ Game.addScreenBounds = function() {
 
 $(document).ready(function() {
   var canvas = document.getElementById("game-window");
-  Game.start(canvas);
+  Game.initialize(canvas);
   Game.initObjects();
-  Game.drawDebugInfo = true;
 
   document.onkeydown = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
-      Game.player.keyDown.right = true;
+      Game.keyDown.right = true;
       event.preventDefault();
     }
     else if (key === "ArrowLeft") {
-      Game.player.keyDown.left = true;
+      Game.keyDown.left = true;
       event.preventDefault();
     }
     else if (key === "ArrowUp") {
-      Game.player.keyDown.up = true;
+      Game.keyDown.up = true;
       event.preventDefault();
     }
     else if (key === "ArrowDown") {
-      Game.player.keyDown.down = true;
+      Game.keyDown.down = true;
       event.preventDefault();
     }
     else if (key === " ") {
-      Game.player.keyDown.fire = true;
+      Game.keyDown.fire = true;
+      event.preventDefault();
+    }
+    else if (key === "r") {
+      Game.keyDown.restart = true;
       event.preventDefault();
     }
     else if (key === "F2") {
-      Game.player.keyDown.drawDebug = true;
+      Game.keyDown.drawDebug = true;
       event.preventDefault();
     }
   };
   document.onkeyup = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
-      Game.player.keyDown.right = false;
+      Game.keyDown.right = false;
     }
     else if (key === "ArrowLeft") {
-      Game.player.keyDown.left = false;
+      Game.keyDown.left = false;
     }
     else if (key === "ArrowUp") {
-      Game.player.keyDown.up = false;
+      Game.keyDown.up = false;
     }
     else if (key === "ArrowDown") {
-      Game.player.keyDown.down = false;
+      Game.keyDown.down = false;
     }
     else if (key === " ") {
-      Game.player.keyDown.fire = false;
+      Game.keyDown.fire = false;
+    }
+    else if (key === "r") {
+      Game.keyDown.restart = false;
     }
     else if (key === "F2") {
-      Game.player.keyDown.drawDebug = false;
-      event.preventDefault();
+      Game.keyDown.drawDebug = false;
     }
   };
 });
