@@ -4,7 +4,7 @@ class Player extends GameObject {
     super();
     this.type = "player";
     this.sprite = Game.sprites["player"];
-    this.spawnPosition = new Vector(50, 50);
+    this.spawnPosition = new Vector(50, 200);
     this.respawnInvincibilityTime = 1000;
     this.collisionBox = new Rect(0, 2, this.sprite.width - 10, this.sprite.height - 4);
     this.collidesWith = ["bounds"];
@@ -14,14 +14,6 @@ class Player extends GameObject {
     this.isInvincible = false;
     this.lastFireTime = 0;
     this.fireInterval = 150;
-    this.keyDown = {
-      left: false,
-      right: false,
-      up: false,
-      down: false,
-      fire: false,
-      drawDebug: false,
-    }
     this.maxVelocity = 350;
   }
   update() {
@@ -54,19 +46,19 @@ class Player extends GameObject {
   }
   getMovementInput() {
     var output = new Vector(0, 0);
-    if (this.keyDown.left === true) {
+    if (Game.keyDown.left === true) {
       output.x = -1;
     }
-    else if (this.keyDown.right === true) {
+    else if (Game.keyDown.right === true) {
       output.x = 1;
     }
     else {
       output.x = 0;
     }
-    if (this.keyDown.up === true) {
+    if (Game.keyDown.up === true) {
       output.y = -1;
     }
-    else if (this.keyDown.down === true) {
+    else if (Game.keyDown.down === true) {
       output.y = 1;
     }
     else {
@@ -80,14 +72,14 @@ class Player extends GameObject {
     return output;
   }
   getActionInput() {
-    if (this.keyDown.fire === true) {
+    if (Game.keyDown.fire === true) {
       this.fire();
     }
   }
   getDebugInput() {
-    if (this.keyDown.drawDebug === true) {
+    if (Game.keyDown.drawDebug === true) {
       Game.drawDebugInfo = !Game.drawDebugInfo;
-      this.keyDown["drawDebug"] = false;
+      Game.keyDown["drawDebug"] = false;
     }
   }
   fire() {

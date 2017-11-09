@@ -1,4 +1,15 @@
+Game.keyDown = {
+  left: false,
+  right: false,
+  up: false,
+  down: false,
+  fire: false,
+  restart: false,
+  drawDebug: false,
+}
 Game.initObjects = function() {
+  Game.currentScene = new GamePlayingScene();
+
   Game.player = new Player();
   Game.player.position = Game.player.spawnPosition;
   Game.spawnObject(Game.player);
@@ -7,12 +18,11 @@ Game.initObjects = function() {
 
   Game.addScreenBounds();
 }
-
 Game.gameOver = function() {
-
   Game.isRunning = false;
   Game.showGameOverScreen();
   Game.submitStats();
+  Game.currentScene = new GameOverScene();
 }
 Game.showGameOverScreen = function() {
   Game.spawnText(new TextObject(
@@ -105,50 +115,56 @@ $(document).ready(function() {
   document.onkeydown = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
-      Game.player.keyDown.right = true;
+      Game.keyDown.right = true;
       event.preventDefault();
     }
     else if (key === "ArrowLeft") {
-      Game.player.keyDown.left = true;
+      Game.keyDown.left = true;
       event.preventDefault();
     }
     else if (key === "ArrowUp") {
-      Game.player.keyDown.up = true;
+      Game.keyDown.up = true;
       event.preventDefault();
     }
     else if (key === "ArrowDown") {
-      Game.player.keyDown.down = true;
+      Game.keyDown.down = true;
       event.preventDefault();
     }
     else if (key === " ") {
-      Game.player.keyDown.fire = true;
+      Game.keyDown.fire = true;
+      event.preventDefault();
+    }
+    else if (key === "r") {
+      Game.keyDown.restart = true;
       event.preventDefault();
     }
     else if (key === "F2") {
-      Game.player.keyDown.drawDebug = true;
+      Game.keyDown.drawDebug = true;
       event.preventDefault();
     }
   };
   document.onkeyup = function(event) {
     var key = event.key;
     if (key === "ArrowRight") {
-      Game.player.keyDown.right = false;
+      Game.keyDown.right = false;
     }
     else if (key === "ArrowLeft") {
-      Game.player.keyDown.left = false;
+      Game.keyDown.left = false;
     }
     else if (key === "ArrowUp") {
-      Game.player.keyDown.up = false;
+      Game.keyDown.up = false;
     }
     else if (key === "ArrowDown") {
-      Game.player.keyDown.down = false;
+      Game.keyDown.down = false;
     }
     else if (key === " ") {
-      Game.player.keyDown.fire = false;
+      Game.keyDown.fire = false;
+    }
+    else if (key === "r") {
+      Game.keyDown.restart = false;
     }
     else if (key === "F2") {
-      Game.player.keyDown.drawDebug = false;
-      event.preventDefault();
+      Game.keyDown.drawDebug = false;
     }
   };
 });

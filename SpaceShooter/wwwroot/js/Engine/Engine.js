@@ -6,6 +6,7 @@ var Game = {
   lastTextObjectId: 0,
   sprites: {},
   objectsToBeDisposed: [],
+  currentScene: null,
   isRunning: false,
   startTime: null,
   tickNumber: 0,
@@ -23,13 +24,16 @@ Game.main = function() {
   var prevTickTime = currentTickTime;
   setInterval(function() {
     currentTickTime = new Date().getTime();
-    Game.updateGameObjects(currentTickTime - prevTickTime);
+    Game.update(currentTickTime - prevTickTime);
     Game.checkCollisions();
     Game.deleteDisposedObjects();
     prevTickTime = currentTickTime;
   }, 10);
 }
-Game.updateGameObjects = function(dT) {
+Game.update = function(dT) {
+  if (Game.currentScene != null) {
+    Game.currentScene.update();
+  }
   if (Game.isRunning === true) {
     if (Object.keys(Game.gameObjects).length > 0) {
       Object.keys(Game.gameObjects).forEach(function(key) {
@@ -78,6 +82,15 @@ Game.deleteDisposedObjects = function() {
     Game.gameObjects;
   });
 Game.objectsToBeDisposed = [];
+}
+
+class Scene {
+  constructor(name) {
+    this.name = name;
+  }
+  update() {
+
+  }
 }
 
 class Viewport {
