@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $(".change-background").click(function() {
-    $("body").addClass("x-background");
+    $("body").toggleClass("x-background");
   });
 
   $(".menu-circle").click(function() {
@@ -185,6 +185,14 @@ $(document).ready(function() {
     $(".theme-two").removeClass("profile-quadrant-click")
     $(".theme-three").removeClass("profile-quadrant-click")
     $(".theme-four").addClass("profile-quadrant-click")
+  });
+
+  $(".unfollow-friend-button").hide();
+
+  $(".follow-toggle").click(function() {
+    $(".unfollow-friend-button").toggle();
+    $(".add-friend-button").toggle();
+
   });
 
   //THIS IS FOR C# SEARCH FUNCTION DO NOT TOUCH

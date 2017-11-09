@@ -1,4 +1,4 @@
-.add-friend-button {
+.unfollow-friend-button {
   height: 60px;
   width: 180px;
   position: relative;
@@ -20,22 +20,20 @@
     border-radius: 100%;
     width: 75px;
     height: 75px;
-    .line-one {
-      transform: translateX(35.5px) translateY(10.5px) rotate(90deg);
-      width: 50px;
+    .unfollow-line-one {
+      display: none;
     }
 
-    .line-two {
-      transform: translateX(-144.5px) translateY(10.5px) rotate(90deg);
-      width: 50px;
+    .unfollow-line-two {
+      display: none;
     }
 
-    .line-three {
+    .unfollow-line-three {
       transform: translateX(10.5px) translateY(-24.5px);
       width: 50px;
     }
 
-    .line-four {
+    .unfollow-line-four {
       transform: translateX(10.5px) translateY(35.5px);
       width: 50px;
     }
@@ -45,7 +43,7 @@
   }
 }
 
-.line-one, .line-two, .line-three, .line-four {
+.unfollow-line-one, .unfollow-line-two, .unfollow-line-three, .unfollow-line-four {
   position: absolute;
   top: 0;
   left: 0;
@@ -53,14 +51,14 @@
   background-color: $black;
 }
 
-.line-one {
+.unfollow-line-one {
   width: 60px;
   height: 2px;
   transform: rotate(90deg);
   transform-origin: left;
 }
 
-.line-two {
+.unfollow-line-two {
   left: 180px;
   width: 60px;
   height: 2px;
@@ -69,13 +67,13 @@
 }
 
 
-.line-three {
+.unfollow-line-three {
   width: 180px;
   height: 2px;
   top: 60px;
 }
 
-.line-four {
+.unfollow-line-four {
   width: 180px;
   height: 2px;
 }
