@@ -8,6 +8,9 @@
 #profile-username {
   font-size: 35px;
   text-shadow: 2px 2px 2px grey;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 #sprite-button, #theme-button, #friend-button {

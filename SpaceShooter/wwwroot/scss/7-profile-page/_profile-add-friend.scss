@@ -1,0 +1,105 @@
+.add-friend-button {
+  height: 60px;
+  width: 180px;
+  // background-color: orange;
+  position: relative;
+  transition: all 1s ease-in-out;
+
+  &:hover {
+    .line-one {
+      left: 90px;
+      // animation: one-right 1s ease-in-out 0s 1;
+      // animation-fill-mode: forwards;
+    }
+
+    .line-two {
+      animation: two-left 1s ease-in-out 0s 1;
+      animation-fill-mode: forwards;
+    }
+
+    .line-three {
+      animation: three-up 1s ease-in-out 0s 1;
+      animation-fill-mode: forwards;
+    }
+
+    .line-four {
+      animation: four-down 1s ease-in-out 0s 1;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+.line-one, .line-two, .line-three, .line-four {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.line-one {
+  background-color: coral;
+  width: 60px;
+  height: 2px;
+  transform: rotate(90deg);
+  transform-origin: left;
+  // animation: one-right 1s ease-in-out 1s 1;
+  // animation-fill-mode: forwards;
+}
+
+.line-two {
+  left: 180px;
+  background-color: white;
+  width: 60px;
+  height: 2px;
+  transform: rotate(90deg);
+  transform-origin: left;
+  // animation: two-left 1s ease-in-out 1s 1;
+  // animation-fill-mode: forwards;
+}
+
+
+.line-three {
+  width: 180px;
+  height: 2px;
+  background-color: green;
+  top: 60px;
+  // animation: three-up 1s ease-in-out 1s 1;
+  // animation-fill-mode: forwards;
+}
+
+.line-four {
+  width: 180px;
+  height: 2px;
+  background-color: red;
+  // animation: four-down 1s ease-in-out 1s 1;
+  // animation-fill-mode: forwards;
+}
+
+@keyframes one-right {
+  0% {}
+  100% {
+    left: 90px
+  }
+}
+
+@keyframes two-left {
+  0% {}
+  100% {
+    left: 90px
+  }
+}
+
+@keyframes three-up {
+  0% {}
+  100% {
+    top: 30px;
+    transform: scaleX(0.33);
+  }
+}
+
+@keyframes four-down {
+  0% {}
+  100% {
+    transform: scaleX(0.33);
+    top: 30px;
+  }
+}
