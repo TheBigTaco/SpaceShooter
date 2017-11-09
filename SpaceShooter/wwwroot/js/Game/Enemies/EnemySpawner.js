@@ -11,7 +11,6 @@ class EnemySpawner extends GameObject {
     var spawnDelay = this.maxSpawnDelay - (this.maxSpawnDelay - this.minSpawnDelay) * (Game.player.difficulty / Game.player.maxDifficulty);
     var currentTime = new Date().getTime();
     if (currentTime - this.lastSpawnTime > spawnDelay) {
-      console.log(spawnDelay);
       this.spawnBasicEnemy();
       this.lastSpawnTime = currentTime;
     }

@@ -48,5 +48,26 @@ namespace SpaceShooter.Models
             DB.EndCommand();
             return output;
         }
+        public static List<PlayerListEntry> GetFriendList(int profileId)
+        {
+            var output = new List<PlayerListEntry> {};
+            var keys = new List<int> {};
+            var cmd = DB.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM players JOIN friends ON (players.id = friends.player_2_id) JOIN game_stats ON (friends.player_2_id = game_stats.player_id) ORDER BY game_stats.score DESC;");
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while (rdr.Read())
+            {
+                string name = rdr.GetString(0);
+                int id = rdr.GetInt32(1);
+                long score = rdr.GetInt64(2);
+                if (!keys.Contains(id))
+                {
+                    PlayerListEntry newEntry = new PlayerListEntry(id, name, score);
+                    output.Add(newEntry);
+                    keys.Add(id);
+                }
+            }
+            DB.EndCommand();
+            return output;
+        }
     }
 }

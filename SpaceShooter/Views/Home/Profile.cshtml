@@ -56,7 +56,6 @@
       }
       <script>
         $(document).ready(function(){
-          console.log("@Model.Follow");
           @if(Model.Follow == false)
           {
             @:$(".unfollow-friend-button").hide();
@@ -93,7 +92,7 @@
         </div>
         <div class="friends-prompt">
           <p>Friends</p>
-          <a href="#">View All Friends</a>
+          <a href="/friend/@Model.Player.Id">View All Friends</a>
         </div>
       </div>
 
