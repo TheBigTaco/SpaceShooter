@@ -47,6 +47,13 @@ namespace SpaceShooter.Controllers
             var model = new ProfileModel(id, sessionId);
             return View(model);
         }
+        [HttpGet("/friend/{id}")]
+        public ActionResult Friends(int id)
+        {
+            var sessionId = Request.Cookies["sessionId"];
+            var model = new FriendsModel(id, sessionId);
+            return View(model);
+        }
         [HttpPost("/friend/{id}/add")]
         public ActionResult AddFriend(int id)
         {
@@ -84,13 +91,6 @@ namespace SpaceShooter.Controllers
         {
             var sessionId = Request.Cookies["sessionId"];
             var model = new LeaderboardModel(sessionId);
-            return View(model);
-        }
-        [HttpGet("/friends")]
-        public ActionResult Friends()
-        {
-            var sessionId = Request.Cookies["sessionId"];
-            var model = new HomeModel(sessionId);
             return View(model);
         }
         [HttpPost("/register")]
