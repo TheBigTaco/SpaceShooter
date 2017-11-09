@@ -444,6 +444,7 @@ h1:nth-child(10) {
   height: 100%; }
 
 #profile-username {
+  text-align: center;
   font-size: 35px;
   text-shadow: 2px 2px 2px grey;
   width: 100%;
@@ -794,7 +795,7 @@ h1:nth-child(10) {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  width: 60%; }
+  width: 90%; }
 
 .leaderboard-result {
   display: flex;
@@ -820,11 +821,15 @@ h1:nth-child(10) {
 .leaderboard-name {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-grow: 1; }
 
 .leaderboard-profile-name {
-  margin-left: 40px; }
+  margin-left: 40px;
+  float: right;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis; }
   .leaderboard-profile-name p {
     font-size: 25px;
     color: #fff; }
@@ -832,7 +837,9 @@ h1:nth-child(10) {
 .leaderboard-profile-rank {
   width: 350px;
   text-align: center;
-  margin-right: 20px; }
+  margin-right: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
   .leaderboard-profile-rank p:last-child {
     color: #fff;
     font-size: 20px; }
@@ -877,26 +884,41 @@ h1:nth-child(10) {
   height: 60px;
   width: 180px;
   position: relative;
-  transition: all 1s ease-in-out; }
-  .add-friend-button:hover .line-one {
-    left: 90px; }
-  .add-friend-button:hover .line-two {
-    animation: two-left 1s ease-in-out 0s 1;
-    animation-fill-mode: forwards; }
-  .add-friend-button:hover .line-three {
-    animation: three-up 1s ease-in-out 0s 1;
-    animation-fill-mode: forwards; }
-  .add-friend-button:hover .line-four {
-    animation: four-down 1s ease-in-out 0s 1;
-    animation-fill-mode: forwards; }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  transition: border-radius .5s, width .5s, height .5s;
+  margin-bottom: 10px; }
+  .add-friend-button p {
+    transition: transform .5s; }
+  .add-friend-button:hover {
+    border-radius: 100%;
+    width: 75px;
+    height: 75px; }
+    .add-friend-button:hover .line-one {
+      transform: translateX(37.5px) translateY(12.5px) rotate(90deg);
+      width: 50px; }
+    .add-friend-button:hover .line-two {
+      transform: translateX(-142.5px) translateY(12.5px) rotate(90deg);
+      width: 50px; }
+    .add-friend-button:hover .line-three {
+      transform: translateX(12.5px) translateY(-22.5px);
+      width: 50px; }
+    .add-friend-button:hover .line-four {
+      transform: translateX(12.5px) translateY(37.5px);
+      width: 50px; }
+    .add-friend-button:hover p {
+      transform: scale(0); }
 
 .line-one, .line-two, .line-three, .line-four {
   position: absolute;
   top: 0;
-  left: 0; }
+  left: 0;
+  transition: transform .5s, width .5s;
+  background-color: white; }
 
 .line-one {
-  background-color: coral;
   width: 60px;
   height: 2px;
   transform: rotate(90deg);
@@ -904,7 +926,6 @@ h1:nth-child(10) {
 
 .line-two {
   left: 180px;
-  background-color: white;
   width: 60px;
   height: 2px;
   transform: rotate(90deg);
@@ -913,27 +934,10 @@ h1:nth-child(10) {
 .line-three {
   width: 180px;
   height: 2px;
-  background-color: green;
   top: 60px; }
 
 .line-four {
   width: 180px;
-  height: 2px;
-  background-color: red; }
-
-@keyframes one-right {
-  100% {
-    left: 90px; } }
-@keyframes two-left {
-  100% {
-    left: 90px; } }
-@keyframes three-up {
-  100% {
-    top: 30px;
-    transform: scaleX(0.33); } }
-@keyframes four-down {
-  100% {
-    transform: scaleX(0.33);
-    top: 30px; } }
+  height: 2px; }
 
 /*# sourceMappingURL=master.css.map */
