@@ -96,12 +96,12 @@ namespace SpaceShooter.Controllers
         [HttpPost("/register")]
         public ActionResult RegisterNewUser()
         {
-            var model = new IndexModel();
 
             string username = Request.Form["user-name"];
             string password = Request.Form["user-password"];
             if (Player.DoesUsernameExist(username))
             {
+                var model = new IndexModel();
                 model.RegisterFailed = true;
                 return View("Index", model);
             }
@@ -111,8 +111,14 @@ namespace SpaceShooter.Controllers
                 Hash newHash = new Hash(password, newSalt);
                 Player newPlayer = new Player(username, newHash.Result, newSalt);
                 newPlayer.Save();
+                Session newSession = Player.Login(username, password);
+                var cookieOptions = new CookieOptions();
+                cookieOptions.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Append("sessionId", newSession.SessionId, cookieOptions);
+                var model = new IndexModel(newSession.SessionId);
                 model.RegisterSuccess = true;
                 model.RegisteredPlayer = newPlayer;
+                model.LoginSuccess = true;
                 return View("Index", model);
             }
         }
