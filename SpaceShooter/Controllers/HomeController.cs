@@ -51,7 +51,7 @@ namespace SpaceShooter.Controllers
         public ActionResult Search()
         {
             var sessionId = Request.Cookies["sessionId"];
-            var model = new SearchModel(sessionId, null);
+            var model = new SearchModel(null, sessionId);
             return View(model);
         }
         [HttpPost("/search")]
@@ -59,8 +59,7 @@ namespace SpaceShooter.Controllers
         {
             string searchTerm = Request.Form["search-input"];
             var sessionId = Request.Cookies["sessionId"];
-            //TODO: needs to recieve script post from cshtml for the searchterm input
-            var model = new SearchModel("the", sessionId);
+            var model = new SearchModel(searchTerm, sessionId);
             return View("Search", model);
         }
         [HttpGet("/leaderboard")]

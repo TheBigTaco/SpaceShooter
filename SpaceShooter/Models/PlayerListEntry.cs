@@ -9,11 +9,13 @@ namespace SpaceShooter.Models
     {
         public string Name {get; private set;}
         public long Score {get; private set;}
+        public int PlayerId{get; private set;}
 
-        public PlayerListEntry(string name, long score)
+        public PlayerListEntry(int playerId, string name, long score)
         {
             Name = name;
             Score = score;
+            PlayerId = playerId;
         }
         public override bool Equals(object other)
         {
@@ -37,38 +39,39 @@ namespace SpaceShooter.Models
         public static List<PlayerListEntry> GetLeaderboard()
         {
             var output = new List<PlayerListEntry> {};
-            var cmd = DB.BeginCommand("SELECT players.login_name, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
+            var cmd = DB.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
                 string name = rdr.GetString(0);
-                long score = rdr.GetInt64(1);
-                output.Add(new PlayerListEntry(name, score));
+                int id = rdr.GetInt32(1);
+                long score = rdr.GetInt64(2);
+                output.Add(new PlayerListEntry(id, name, score));
             }
             DB.EndCommand();
             return output;
         }
         // string = name, long = score
-        public static Dictionary<string, long> GetSearchResults(string search)
+        public static Dictionary<string, PlayerListEntry> GetSearchResults(string search)
         {
-            var output = new Dictionary<string, long> {};
-            Console.WriteLine("Got to here" + search);
+            var output = new Dictionary<string, PlayerListEntry> {};
             if(search != null)
             {
-                Console.WriteLine("Got inside"+search);
                 Regex regex = new Regex($@"{search}", RegexOptions.IgnoreCase);
-                var cmd = DB.BeginCommand("SELECT players.login_name, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
+                var cmd = DB.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
                 var rdr = cmd.ExecuteReader() as MySqlDataReader;
                 while (rdr.Read())
                 {
                     string name = rdr.GetString(0);
-                    long score = rdr.GetInt64(1);
+                    int id = rdr.GetInt32(1);
+                    long score = rdr.GetInt64(2);
                     if (!output.ContainsKey(name))
                     {
                         Match match = regex.Match(name);
                         if(match.Success)
                         {
-                            output.Add(name, score);
+                            PlayerListEntry newEntry = new PlayerListEntry(id, name, score);
+                            output.Add(name, newEntry);
                         }
                     }
                 }

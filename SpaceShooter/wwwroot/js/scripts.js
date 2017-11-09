@@ -188,9 +188,12 @@ $(document).ready(function() {
   });
 
   //THIS IS FOR C# SEARCH FUNCTION DO NOT TOUCH
-  $("#search-button").submit(function(event){
+  $(".search-form").submit(function(event){
     event.preventDefault();
-    console.log("stuff happened");
-    
+    var postData = {};
+    postData["search-input"] = $("#search-input").val();
+    $.post("/search", postData, function(data){
+      $("body").html(data);
+    });
   });
 });
