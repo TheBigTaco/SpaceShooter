@@ -6,9 +6,20 @@ namespace SpaceShooter.Models
 {
     public static class DB
     {
-        private static MySqlConnection _currentConnection = null;
+        public static void ClearAll()
+        {
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand(@"DELETE FROM profiles; DELETE FROM game_stats; DELETE FROM friends; DELETE FROM sessions; DELETE FROM players;");
+            cmd.ExecuteNonQuery();
+            _conn.EndCommand();
+        }
+    }
 
-        public static MySqlCommand BeginCommand(string query)
+    public class DBConnection
+    {
+        private MySqlConnection _currentConnection = null;
+
+        public MySqlCommand BeginCommand(string query)
         {
             if (_currentConnection != null)
             {
@@ -21,7 +32,7 @@ namespace SpaceShooter.Models
             return cmd;
         }
 
-        public static void EndCommand()
+        public void EndCommand()
         {
             _currentConnection.Close();
             if (_currentConnection != null)
@@ -29,13 +40,6 @@ namespace SpaceShooter.Models
                 _currentConnection.Dispose();
                 _currentConnection = null;
             }
-        }
-
-        public static void ClearAll()
-        {
-            var cmd = BeginCommand(@"DELETE FROM profiles; DELETE FROM game_stats; DELETE FROM friends; DELETE FROM sessions; DELETE FROM players;");
-            cmd.ExecuteNonQuery();
-            EndCommand();
         }
     }
 }
