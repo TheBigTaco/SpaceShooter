@@ -41,16 +41,18 @@ namespace SpaceShooter.Models
         public void Save()
         {
             SessionId = Player.MakeSalt();
-            var cmd = DB.BeginCommand("INSERT INTO sessions (session_id, player_id) VALUES (@SessionId, @PlayerId);");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("INSERT INTO sessions (session_id, player_id) VALUES (@SessionId, @PlayerId);");
             cmd.Parameters.Add(new MySqlParameter("@SessionId", SessionId));
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", PlayerId));
             cmd.ExecuteNonQuery();
-            DB.EndCommand();
+            _conn.EndCommand();
         }
         public static List<Session> GetAll()
         {
             var output = new List<Session> {};
-            var cmd = DB.BeginCommand("SELECT * FROM sessions;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM sessions;");
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -58,12 +60,13 @@ namespace SpaceShooter.Models
                 int playerId = rdr.GetInt32(1);
                 output.Add(new Session(playerId, sessionId));
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static Session FindById(string searchId)
         {
-            var cmd = DB.BeginCommand("SELECT * FROM sessions WHERE session_id = @SessionId;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM sessions WHERE session_id = @SessionId;");
             cmd.Parameters.Add(new MySqlParameter("@SessionId", searchId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             string sessionId = "";
@@ -78,15 +81,16 @@ namespace SpaceShooter.Models
             {
                 output = null;
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static void DeleteById(string searchId)
         {
-            var cmd = DB.BeginCommand("DELETE FROM sessions WHERE session_id = @SessionId;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("DELETE FROM sessions WHERE session_id = @SessionId;");
             cmd.Parameters.Add(new MySqlParameter("@SessionId", searchId));
             cmd.ExecuteNonQuery();
-            DB.EndCommand();
+            _conn.EndCommand();
         }
     }
 }

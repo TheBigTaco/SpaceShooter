@@ -36,24 +36,27 @@ namespace SpaceShooter.Models
         }
         public void Save()
         {
-            var cmd = DB.BeginCommand("INSERT INTO friends (player_1_id, player_2_id) VALUES (@Player1Id, @Player2Id);");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("INSERT INTO friends (player_1_id, player_2_id) VALUES (@Player1Id, @Player2Id);");
             cmd.Parameters.Add(new MySqlParameter("@Player1Id", Player1Id));
             cmd.Parameters.Add(new MySqlParameter("@Player2Id", Player2Id));
             cmd.ExecuteNonQuery();
-            DB.EndCommand();
+            _conn.EndCommand();
         }
         public static void Unfollow(int player1id, int player2id)
         {
-            var cmd = DB.BeginCommand("DELETE FROM friends WHERE player_1_id = @Player1Id AND player_2_id = @Player2Id;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("DELETE FROM friends WHERE player_1_id = @Player1Id AND player_2_id = @Player2Id;");
             cmd.Parameters.Add(new MySqlParameter("@Player1Id", player1id));
             cmd.Parameters.Add(new MySqlParameter("@Player2Id", player2id));
             cmd.ExecuteNonQuery();
-            DB.EndCommand();
+            _conn.EndCommand();
         }
         public static List<FriendPair> GetAllFriendPairs()
         {
             var output = new List<FriendPair> {};
-            var cmd = DB.BeginCommand("SELECT * FROM friends;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM friends;");
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -61,14 +64,15 @@ namespace SpaceShooter.Models
                 int player2Id = rdr.GetInt32(1);
                 output.Add(new FriendPair(player1Id, player2Id));
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static bool? CheckForFriend(int player1Id, int player2Id)
         {
             if(player1Id != player2Id)
             {
-                var cmd = DB.BeginCommand("SELECT COUNT(*) FROM friends WHERE player_1_id = @Player1Id AND player_2_id = @Player2Id;");
+                var _conn = new DBConnection();
+                var cmd = _conn.BeginCommand("SELECT COUNT(*) FROM friends WHERE player_1_id = @Player1Id AND player_2_id = @Player2Id;");
                 cmd.Parameters.Add(new MySqlParameter("Player1Id", player1Id));
                 cmd.Parameters.Add(new MySqlParameter("Player2Id", player2Id));
                 var rdr = cmd.ExecuteReader() as MySqlDataReader;
@@ -77,7 +81,7 @@ namespace SpaceShooter.Models
                 {
                     count = rdr.GetInt32(0);
                 }
-                DB.EndCommand();
+                _conn.EndCommand();
                 if(count == 0)
                 {
                     return false;

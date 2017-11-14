@@ -49,19 +49,21 @@ namespace SpaceShooter.Models
         }
         public void Save()
         {
-            var cmd = DB.BeginCommand("INSERT INTO game_stats (player_id, score, enemies_destroyed, game_time, date_played) VALUES (@PlayerId, @Score, @EnemiesDestroyed, @GameTime, @DatePlayed);");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("INSERT INTO game_stats (player_id, score, enemies_destroyed, game_time, date_played) VALUES (@PlayerId, @Score, @EnemiesDestroyed, @GameTime, @DatePlayed);");
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", PlayerId));
             cmd.Parameters.Add(new MySqlParameter("@Score", Score));
             cmd.Parameters.Add(new MySqlParameter("@EnemiesDestroyed", EnemiesDestroyed));
             cmd.Parameters.Add(new MySqlParameter("@GameTime", GameTime));
             cmd.Parameters.Add(new MySqlParameter("@DatePlayed", DatePlayed.ToString("yyyy-MM-dd HH:mm:ss")));
             cmd.ExecuteNonQuery();
-            DB.EndCommand();
+            _conn.EndCommand();
         }
         public static List<GameStats> GetAllOrderedByScore()
         {
             var output = new List<GameStats> {};
-            var cmd = DB.BeginCommand("SELECT * FROM game_stats ORDER BY score DESC;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM game_stats ORDER BY score DESC;");
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -72,12 +74,13 @@ namespace SpaceShooter.Models
                 DateTime datePlayed = rdr.GetDateTime(4);
                 output.Add(new GameStats(playerId, score, enemiesDestroyed, gameTime, datePlayed));
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static long GetPlayerHighScore(int playerId)
         {
-            var cmd = DB.BeginCommand("SELECT MAX(score) FROM game_stats WHERE player_id = @PlayerId;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT MAX(score) FROM game_stats WHERE player_id = @PlayerId;");
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", playerId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             long output = 0;
@@ -88,12 +91,13 @@ namespace SpaceShooter.Models
                     output = rdr.GetInt64(0);
                 }
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static long GetPlayerTotalScore(int playerId)
         {
-            var cmd = DB.BeginCommand("SELECT SUM(score) FROM game_stats WHERE player_id = @PlayerId;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT SUM(score) FROM game_stats WHERE player_id = @PlayerId;");
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", playerId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             long output = 0;
@@ -104,12 +108,13 @@ namespace SpaceShooter.Models
                     output = rdr.GetInt64(0);
                 }
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static int GetPlayerTotalEnemiesDestroyed(int playerId)
         {
-            var cmd = DB.BeginCommand("SELECT SUM(enemies_destroyed) FROM game_stats WHERE player_id = @PlayerId;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT SUM(enemies_destroyed) FROM game_stats WHERE player_id = @PlayerId;");
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", playerId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int output = 0;
@@ -120,12 +125,13 @@ namespace SpaceShooter.Models
                     output = rdr.GetInt32(0);
                 }
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static long GetPlayerTotalTimePlayed(int playerId)
         {
-            var cmd = DB.BeginCommand("SELECT SUM(game_time) FROM game_stats WHERE player_id = @PlayerId;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT SUM(game_time) FROM game_stats WHERE player_id = @PlayerId;");
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", playerId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             long output = 0;
@@ -136,12 +142,13 @@ namespace SpaceShooter.Models
                     output = rdr.GetInt64(0);
                 }
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static GameStats GetPlayerMostRecentStats(int searchId)
         {
-            var cmd = DB.BeginCommand("SELECT * FROM game_stats WHERE player_id = @PlayerId ORDER BY date_played DESC LIMIT 1;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM game_stats WHERE player_id = @PlayerId ORDER BY date_played DESC LIMIT 1;");
             cmd.Parameters.Add(new MySqlParameter("@PlayerId", searchId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int playerId = 0;
@@ -158,7 +165,7 @@ namespace SpaceShooter.Models
                 datePlayed = rdr.GetDateTime(4);
             }
             GameStats output = new GameStats(playerId, score, enemiesDestroyed, gameTime, datePlayed);
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
     }

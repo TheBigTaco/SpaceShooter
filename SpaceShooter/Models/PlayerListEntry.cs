@@ -39,7 +39,8 @@ namespace SpaceShooter.Models
         public static List<PlayerListEntry> GetLeaderboard()
         {
             var output = new List<PlayerListEntry> {};
-            var cmd = DB.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -48,7 +49,7 @@ namespace SpaceShooter.Models
                 long score = rdr.GetInt64(2);
                 output.Add(new PlayerListEntry(id, name, score));
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         // string = name, long = score
@@ -58,7 +59,8 @@ namespace SpaceShooter.Models
             if(search != null)
             {
                 Regex regex = new Regex($@"{search}", RegexOptions.IgnoreCase);
-                var cmd = DB.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
+                var _conn = new DBConnection();
+                var cmd = _conn.BeginCommand("SELECT players.login_name, players.id, game_stats.score FROM game_stats JOIN players ON (players.id = game_stats.player_id) ORDER BY game_stats.score DESC;");
                 var rdr = cmd.ExecuteReader() as MySqlDataReader;
                 while (rdr.Read())
                 {
@@ -75,7 +77,7 @@ namespace SpaceShooter.Models
                         }
                     }
                 }
-                DB.EndCommand();
+                _conn.EndCommand();
             }
             return output;
         }

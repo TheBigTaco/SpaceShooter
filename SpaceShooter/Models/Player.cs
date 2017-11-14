@@ -66,19 +66,21 @@ namespace SpaceShooter.Models
             }
             else
             {
-                var cmd = DB.BeginCommand("INSERT INTO players (login_name, password_hash, salt) VALUES (@Username, @Hash, @Salt);");
+                var _conn = new DBConnection();
+                var cmd = _conn.BeginCommand("INSERT INTO players (login_name, password_hash, salt) VALUES (@Username, @Hash, @Salt);");
                 cmd.Parameters.Add(new MySqlParameter("@Username", Username));
                 cmd.Parameters.Add(new MySqlParameter("@Hash", Hash));
                 cmd.Parameters.Add(new MySqlParameter("@Salt", Salt));
                 cmd.ExecuteNonQuery();
                 this.Id = (int)cmd.LastInsertedId;
-                DB.EndCommand();
+                _conn.EndCommand();
             }
         }
         public static List<Player> GetAll()
         {
             var output = new List<Player> {};
-            var cmd = DB.BeginCommand("SELECT * FROM players;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM players;");
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -88,12 +90,13 @@ namespace SpaceShooter.Models
                 string salt = rdr.GetString(3);
                 output.Add(new Player(username, hash, salt, id));
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static Player FindById(int searchId)
         {
-            var cmd = DB.BeginCommand("SELECT * FROM players WHERE id = @Id;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM players WHERE id = @Id;");
             cmd.Parameters.Add(new MySqlParameter("@Id", searchId));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int id = 0;
@@ -108,12 +111,13 @@ namespace SpaceShooter.Models
                 salt = rdr.GetString(3);
             }
             var output = new Player(username, hash, salt, id);
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static bool DoesUsernameExist(string username)
         {
-            var cmd = DB.BeginCommand("SELECT COUNT(*) FROM players WHERE login_name = @LoginName;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT COUNT(*) FROM players WHERE login_name = @LoginName;");
             cmd.Parameters.Add(new MySqlParameter("@LoginName", username));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             bool output = false;
@@ -125,12 +129,13 @@ namespace SpaceShooter.Models
                     output = true;
                 }
             }
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         public static Player FindByUsername(string searchName)
         {
-            var cmd = DB.BeginCommand("SELECT * FROM players WHERE login_name = @LoginName;");
+            var _conn = new DBConnection();
+            var cmd = _conn.BeginCommand("SELECT * FROM players WHERE login_name = @LoginName;");
             cmd.Parameters.Add(new MySqlParameter("@LoginName", searchName));
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int id = 0;
@@ -145,7 +150,7 @@ namespace SpaceShooter.Models
                 salt = rdr.GetString(3);
             }
             var output = new Player(username, hash, salt, id);
-            DB.EndCommand();
+            _conn.EndCommand();
             return output;
         }
         // Return new session on successful login, else null
