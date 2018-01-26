@@ -5,12 +5,20 @@
 ## Authors
 
 Rane Fields - [GitHub](https://github.com/LydianLights) / [GitLab](https://gitlab.com/LydianLights)
+[Linkedin](https://www.linkedin.com/in/rane-fields/)
+rane.fields@gmail.com
 
 Brandon Kudo - [GitHub](https://github.com/brandonkudo)
+[Linkedin](https://www.linkedin.com/in/brandonkudo/)
+brandonkudo@gmail.com
 
 Adam Titus - [GitHub](https://github.com/TheBigTaco)
+[Linkedin](https://www.linkedin.com/in/adam-titus/)
+adamtitus76@gmail.com
 
 Chris Turina - [GitHub](https://github.com/chris-turina)
+[Linkedin](https://www.linkedin.com/in/chris-turina/)
+chris.turina@gmail.com
 
 ## Pictures
 
@@ -29,10 +37,6 @@ Chris Turina - [GitHub](https://github.com/chris-turina)
 ![photo](/SpaceShooter/wwwroot/img/shot7.png)
 
 ![photo](/SpaceShooter/wwwroot/img/shot8.png)
-
-
-
-https://app.asana.com/0/469898844471581/board
 
 ## Description
 A game built with Canvas element and javascript. There are login credentials and account creation built from scratch (Meant for educational purposes only, please do not enter any sensitive information). Social Networking including following other players, and a leaderboard.
