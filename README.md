@@ -4,20 +4,20 @@
 
 ## Authors
 
-Rane Fields - [GitHub](https://github.com/LydianLights) / [GitLab](https://gitlab.com/LydianLights)
-[Linkedin](https://www.linkedin.com/in/rane-fields/)
+Rane Fields - [GitHub](https://github.com/LydianLights) / [GitLab](https://gitlab.com/LydianLights) |
+[Linkedin](https://www.linkedin.com/in/rane-fields/) |
 rane.fields@gmail.com
 
-Brandon Kudo - [GitHub](https://github.com/brandonkudo)
-[Linkedin](https://www.linkedin.com/in/brandonkudo/)
+Brandon Kudo - [GitHub](https://github.com/brandonkudo) |
+[Linkedin](https://www.linkedin.com/in/brandonkudo/) |
 brandonkudo@gmail.com
 
-Adam Titus - [GitHub](https://github.com/TheBigTaco)
-[Linkedin](https://www.linkedin.com/in/adam-titus/)
+Adam Titus - [GitHub](https://github.com/TheBigTaco) |
+[Linkedin](https://www.linkedin.com/in/adam-titus/) |
 adamtitus76@gmail.com
 
-Chris Turina - [GitHub](https://github.com/chris-turina)
-[Linkedin](https://www.linkedin.com/in/chris-turina/)
+Chris Turina - [GitHub](https://github.com/chris-turina) |
+[Linkedin](https://www.linkedin.com/in/chris-turina/) |
 chris.turina@gmail.com
 
 ## Pictures
