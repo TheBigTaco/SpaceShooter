@@ -39,14 +39,14 @@ chris.turina@gmail.com
 ![photo](/SpaceShooter/wwwroot/img/shot8.png)
 
 ## Description
-A game built with Canvas element and javascript. There are login credentials and account creation built from scratch (Meant for educational purposes only, please do not enter any sensitive information). Social Networking including following other players, and a leaderboard.
+A game built using the Canvas element and Javascript. There are login credentials and account creation built from scratch (Meant for educational purposes only, please do not enter any sensitive information). Social Networking including following other players, and a leaderboard.
 
 ## Game Assets
 
 https://opengameart.org/content/space-shooter-redux
 
 ## Installation Instructions
-* Clone this repository from github to your desktop
+* Clone this repository from Github to your desktop
 * Download MAMP
 * Run MAMP
 * Open preferences and make sure ports are 8889 and 8888
@@ -58,9 +58,9 @@ https://opengameart.org/content/space-shooter-redux
 
 Without Visual Studio
 * Open Command Prompt/ Git Bash
-* type cd Desktop/SpaceShooter/SpaceShooter
-* type dotnet restore and wait for it to complete
-* type dotnet run
+* Type cd Desktop/SpaceShooter/SpaceShooter
+* Type dotnet restore and wait for it to complete
+* Type dotnet run
 
 With Visual Studio
 * Open the .sln in Visual Studio
